@@ -7,23 +7,23 @@ import java.math.*;
 
 public class Fraction extends Number implements Comparable {
 
-	BigInteger zaehler;
-	BigInteger nenner;
+	BigInteger numerator; //Zähler
+	BigInteger denomiator; //Nenner
 
 	// Constructor
-	public Fraction (BigInteger pZaehler, BigInteger pNenner ){
+	public Fraction (BigInteger pNumerator, BigInteger pDenomiator ){
 		//Screening if the denominator is 0
-		switch(pNenner.signum()) {
+		switch(pDenomiator.signum()) {
 		case 0:
-			nenner = BigInteger.ZERO;
+			denomiator = BigInteger.ZERO;
 			break;
 		case -1:
-			zaehler = pZaehler.negate();
-			nenner = pNenner.negate();
+			numerator = pNumerator.negate();
+			denomiator = pDenomiator.negate();
 		break;
 		case 1:
-			zaehler = pZaehler;
-			nenner = pNenner;
+			numerator = pNumerator;
+			denomiator = pDenomiator;
 			break;
 		}
 	}
@@ -31,84 +31,84 @@ public class Fraction extends Number implements Comparable {
 	//Converts fractions into an Integer
 	@Override
 	public int intValue() {
-		return zaehler.divide(nenner).intValue();
+		return numerator.divide(denomiator).intValue();
 	}
 
 	//Converts fractions into a Long
 	@Override
 	public long longValue() {
-		return zaehler.divide(nenner).longValue();
+		return numerator.divide(denomiator).longValue();
 	}
 
 	//Converts fractions into a Float
 	@Override
 	public float floatValue() {
-		return zaehler.divide(nenner).floatValue();
+		return numerator.floatValue() / denomiator.floatValue();
 	}
 
 	//Converts fractions into a Double
 	@Override
 	public double doubleValue() {
-		return zaehler.divide(nenner).doubleValue();
+		return numerator.doubleValue() / denomiator.doubleValue();
 	}
 
 
 	//Adds two fractions together
 	public Fraction add (Fraction pNumber) {
-		BigInteger mZaehler;
-		BigInteger mNenner;
+		BigInteger newNumerator;
+		BigInteger newDenomiator;
 
-		mNenner = this.nenner.multiply(pNumber.nenner);
-		mZaehler = this.zaehler.multiply(pNumber.nenner).add(pNumber.zaehler.multiply(this.nenner));
+		newDenomiator = this.denomiator.multiply(pNumber.denomiator);
+		newNumerator = this.numerator.multiply(pNumber.denomiator).add(pNumber.numerator.multiply(this.denomiator));
 
 
-		Fraction sum = new Fraction(mZaehler, mNenner);
+		Fraction sum = new Fraction(newNumerator, newDenomiator);
 		return sum.shorten();
 	}
 
 	//Subtracts two fractions from each other
 	public Fraction subtract (Fraction pNumber) {
-		BigInteger mZaehler;
-		BigInteger mNenner;
+		BigInteger newNumerator;
+		BigInteger newDenomiator;
 
-		mNenner = this.nenner.multiply(pNumber.nenner);
-		mZaehler = this.zaehler.multiply(mNenner).subtract(pNumber.zaehler.multiply(mNenner));
+		newDenomiator = this.denomiator.multiply(pNumber.denomiator);
+		newNumerator = this.numerator.multiply(pNumber.denomiator).subtract(pNumber.numerator.multiply(this.denomiator));
 
-		Fraction product = new Fraction(mZaehler, mNenner);
+		Fraction product = new Fraction(newNumerator, newDenomiator);
 		return product.shorten();
 	}
 
 	//Multiplies two fractions together
 	public Fraction multiply (Fraction pNumber) {
-		BigInteger mZaehler;
-		BigInteger mNenner;
+		BigInteger newNumerator;
+		BigInteger newDenomiator;
 
-		mZaehler = this.zaehler.multiply(pNumber.zaehler);
-		mNenner = this.nenner.multiply(pNumber.nenner);
+		newNumerator = this.numerator.multiply(pNumber.numerator);
+		newDenomiator = this.denomiator.multiply(pNumber.denomiator);
 
-		Fraction product = new Fraction(mZaehler, mNenner);
+		Fraction product = new Fraction(newNumerator, newDenomiator);
 		return product.shorten();
 	}
 
 	//Divides two fractions from each other
 	public Fraction divide (Fraction pNumber) {
-		BigInteger mZaehler;
-		BigInteger mNenner;
+		BigInteger newNumerator;
+		BigInteger newDenomiator;
 
-		mZaehler = this.zaehler.multiply(pNumber.nenner);
-		mNenner = this.nenner.multiply(pNumber.zaehler);
+		newNumerator = this.numerator.multiply(pNumber.denomiator);
+		newDenomiator = this.denomiator.multiply(pNumber.numerator);
 
-		Fraction quotient = new Fraction(mZaehler, mNenner);
+		Fraction quotient = new Fraction(newNumerator, newDenomiator);
 		return quotient.shorten();
 	}
 
 
 	//Converts the fraction into a String
 	public String toString() {
-		if(this.nenner.equals(BigInteger.ONE)) {
-			return "" + this.zaehler;
+		if(this.denomiator.equals(BigInteger.ONE)) {
+			return "" + this.numerator;
 		}else {
-			return "" + this.zaehler + "/" + this.nenner;
+			return "" + this.numerator + "/" + this.denomiator;
 		}
 	}
 
@@ -116,15 +116,15 @@ public class Fraction extends Number implements Comparable {
 	public Fraction shorten () {
 		BigInteger ggT;
 		//Determines the gcd of the given fraction
-		ggT = this.zaehler.gcd(this.nenner);
+		ggT = this.numerator.gcd(this.denomiator);
 		//Uses the gcd to divide the given fraction
-		Fraction sum = new Fraction(zaehler.divide(ggT), nenner.divide(ggT));
+		Fraction sum = new Fraction(numerator.divide(ggT), denomiator.divide(ggT));
 		return sum;
 	}
 
 	//Checks if the given fraction has a 1 as the denominator
 	public boolean isInteger() {
-		if(this.nenner.equals(BigInteger.ONE)) {
+		if(this.denomiator.equals(BigInteger.ONE)) {
 			return true;
 		}else {
 			return false;
@@ -137,7 +137,7 @@ public class Fraction extends Number implements Comparable {
 		int re = 0;
 		if(o instanceof Fraction) {
 			Fraction other = (Fraction) o;
-			re = this.zaehler.multiply(other.nenner).compareTo(other.zaehler.multiply(this.nenner));
+			re = this.numerator.multiply(other.denomiator).compareTo(other.numerator.multiply(this.denomiator));
 		}
 		return re;
 	}
