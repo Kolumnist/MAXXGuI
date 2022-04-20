@@ -1,5 +1,3 @@
-package MAXX;
-
 /*This is a class for fractions which inherits form Number.
 *
 * @version 1 22.11.2021

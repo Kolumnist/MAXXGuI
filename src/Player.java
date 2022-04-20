@@ -1,5 +1,3 @@
-package MAXX;
-
 import java.math.BigInteger;
 
 /*

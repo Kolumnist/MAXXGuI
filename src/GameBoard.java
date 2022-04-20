@@ -1,4 +1,3 @@
-package MAXX;
 /**This is the game board for MAXX
  *
  * @version 1 20.12.2021
