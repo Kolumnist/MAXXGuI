@@ -1,15 +1,14 @@
 import javax.swing.*;
 
-public class MainMenu {
+public class MainMenu extends JFrame {
 
     public MainMenu()
     {
-        JFrame f = new JFrame();
-        f.setLayout(null);
-        f.setTitle("ElevenColors");
-        f.setSize(width, height);
-        f.setVisible(true);
-        f.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLayout(null);
+        setTitle("MAXXGuI");
+        setSize(500, 500);
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
 }
