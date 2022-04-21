@@ -11,45 +11,20 @@ import java.util.Random;
 
 public class Field extends JButton {
     private Random rnd = new Random();
-    private int postionX, postionY;
+    private int positionX, positionY;
     private BigInteger numerator, denominator;
     private Fraction fieldValue = new Fraction(new BigInteger("0"), new BigInteger("1"));
     private boolean notInteger = false;
-<<<<<<< Updated upstream
-    private EventHandler button;
 
-    public Field(){
-        button = new EventHandler(createValue());
-        button.setSize(10, 10);
-=======
-    //private JButton field;
-
-    public Field(){
+    public Field(int pPositionX, int pPositionY) {
         setName(createValue());
-        setSize(10, 10);
-        setVisible(true);
->>>>>>> Stashed changes
+        pPositionX = pPositionX;
+        positionY = pPositionY;
     }
 
     public void setPlayerOnField(Player pPlayer){
         switch (pPlayer.toString()){
             case "w":
-<<<<<<< Updated upstream
-                button = new EventHandler("w");
-                playerColor = Color.WHITE;
-                break;
-            case "b":
-                button = new EventHandler("b");
-                playerColor = Color.BLACK;
-                break;
-            case "r":
-                button = new EventHandler("r");
-                playerColor = Color.RED;
-                break;
-            case "y":
-                button = new EventHandler("y");
-                playerColor = Color.YELLOW;
-=======
                 setName("w");
                 setBackground(Color.WHITE);
                 break;
@@ -64,7 +39,6 @@ public class Field extends JButton {
             case "y":
                 setName("y");
                 setBackground(Color.YELLOW);
->>>>>>> Stashed changes
                 break;
         }
     }
