@@ -63,11 +63,10 @@ public class GameBoard extends JFrame {
         });
 
         //this ActionListener close_JMenuItem the whole program
-        close_JMenuItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
+        close_JMenuItem.addActionListener(e -> {
+                    System.exit(0);
+                }
+        );
 
         //do-while-loop to create a field with a sum of 84
         do {

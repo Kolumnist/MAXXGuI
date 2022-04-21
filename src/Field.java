@@ -33,7 +33,6 @@ public class Field extends JButton {
         setPlayerOnField(pPlayer);
         positionX = pPositionX;
         positionY = pPositionY;
-        freeField = false;
         setFont(new Font("Serif",Font.PLAIN,14));
     }
 
@@ -44,21 +43,26 @@ public class Field extends JButton {
                 setText("W");
                 setName("W");
                 setBackground(Color.WHITE);
+                freeField = false;
                 break;
             case "B":
                 setText("B");
                 setName("B");
                 setBackground(Color.BLACK);
+                setForeground(Color.WHITE);
+                freeField = false;
                 break;
             case "R":
                 setText("R");
                 setName("R");
                 setBackground(Color.RED);
+                freeField = false;
                 break;
             case "Y":
                 setText("Y");
                 setName("Y");
                 setBackground(Color.YELLOW);
+                freeField = false;
                 break;
         }
     }
@@ -100,6 +104,5 @@ public class Field extends JButton {
     public int getPositionY(){
         return positionY;
     }
-
     //endregion
 }
