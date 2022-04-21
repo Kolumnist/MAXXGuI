@@ -10,15 +10,11 @@ public class MAXX implements MouseListener {
     public static boolean repeat = true; // create a boolean variable
     public static String s;  // create a String named s
     public static int selected = 0; //0-3 First to Last Player
-    public static int playerNumber = 2;  // create a player number -> at the beginning there are 2 players selected
 
-    public static Player white;
-    public static Player black;
-    public static Player red;
-    public static Player yellow;
-    public static Player[] players = new Player[playerNumber];
+    public static Player[] players = {new Player(2, 2, 'W'), new Player(5, 5, 'B'),
+                                      new Player(5, 2, 'R'), new Player(2, 5, 'Y')};
 
-    public static MainMenu mm = new MainMenu(playerNumber, players); // gameboard object
+    public static MainMenu mm = new MainMenu(players); // gameboard object
 
     public void mouseClicked(MouseEvent e) {
         if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() + 1
@@ -26,77 +22,45 @@ public class MAXX implements MouseListener {
         {
             players[selected].northWest();
             players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
-            players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent());
+            players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent(), selected);
         }
         else if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() - 1
                 && players[selected].getY_pos() == ((Field) e.getComponent()).getY() + 1)
         {
             players[selected].southWest();
             players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
-            players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent());
+            players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent(), selected);
         }
         else if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() - 1
                 && players[selected].getY_pos() == ((Field) e.getComponent()).getY() - 1)
         {
             players[selected].southEast();
             players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
-            players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent());
+            players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent(), selected);
         }
         else if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() + 1
                 && players[selected].getY_pos() == ((Field) e.getComponent()).getY() - 1)
         {
-            players[selected].northEast();
-            players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
-            players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent());
+            players[selected].northEast();///
+            players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
+            players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent(), selected);///
         }
-        else if (players[selected].special())
+        else if (players[selected].special()) //checks if the special action is allowed
         {
-            players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
-            players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent());
+            players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
+            players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent(), selected);///
         }
-        else
-            System.out.println("\n  Das darf deine Figur nicht!");
-        //When the player gives something that he cant do
+        else//When the player gives something that he cant do
+            System.out.println("Das darf deine Figur nicht!");
     }
 
-    // This method shows the instruction and create a gameboard with 2/ 3 or 4 Players
     public static void main(String[] args) throws Exception {
 
-        switch (playerNumber) {
-            case 2:
-                white = new Player(2, 2, 'W');
-                black = new Player(5, 5, 'B');
-                players[0] = white;
-                players[1] = black;
-                break;
-            case 3:
-                white = new Player(2, 2, 'W');
-                black = new Player(5, 5, 'B');
-                red = new Player(5, 2, 'R');
-                players[0] = white;
-                players[1] = black;
-                players[2] = red;
-                break;
-            case 4:
-                white = new Player(2, 2, 'W');
-                black = new Player(5, 5, 'B');
-                red = new Player(5, 2, 'R');
-                yellow = new Player(2, 5, 'Y');
-                players[0] = white;
-                players[1] = black;
-                players[2] = red;
-                players[3] = yellow;
-                break;
-        }
-
-        sc.nextLine();
         gb.createBoard(players);
         gb.drawBoard();
 
-
         while (repeat) {
             for (int i = 0; i < playerNumber && repeat; i++) {
-
                 phase(players[i]);
             }
             for (Player value : players) {
@@ -108,64 +72,24 @@ public class MAXX implements MouseListener {
 }
 
     // this method organizate the whole game history: With this method a player can walk/ he can stop the game or the method prints the victory of an player
-    public static void phase(Player p) throws InterruptedException {
+    public static void phase(Player p) throws InterruptedException
+    {
         s = readString("Spieler" + p.toString() + " gebe einen Befehl für deinen Zug ein.");
-
-        if (s.toUpperCase().trim().equals("STOP") == true) {// Programm closes here
-            stop();
-        } else {
-            repeat = p.walk(s);
-            while (!repeat) {
-                s = readString("Spieler" + p.toString() + " bitte gebe einen richtigen Befehl ein!");
-                repeat = p.walk(s);
-            }
-
-            gb.setPlayer(p);
-            gb.drawBoard();
-
-            if (p.player_value.intValue() >= (84 / playerNumber)) {
-                System.out.println("Herzlichen Glückwunsch der" + p.toString() + "  Spieler hat mit "
-                        + p.player_value.doubleValue() + " Punkten gewonnen!");
-                repeat = false;
-            }
-        }
     }
 
-    // this method stops the programm
-    public static void stop() throws InterruptedException {
+    /*if (p.player_value.intValue() >= (84 / playerNumber)) {
+        System.out.println("Herzlichen Glückwunsch der" + p.toString() + "  Spieler hat mit " + p.player_value.doubleValue() + " Punkten gewonnen!");
         repeat = false;
-        System.out.print("Dieses Programm schließt sich jetzt auf euer Geheiß hin");
-        for (int i = 0; i < 3; i++) {
-            Thread.sleep(800);
-            System.out.print(".");
         }
-        System.out.println("\n");
-    }
-
-    // this method set an player number
-    public static void setPlayerNumber(int pNumber) {
-        playerNumber = pNumber;
-    }
-
+    //System.out.print("Dieses Programm schließt sich jetzt auf euer Geheiß hin");
+    */
 
     @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
+    public void mousePressed(MouseEvent e) {}
     @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
+    public void mouseReleased(MouseEvent e) {}
     @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
+    public void mouseEntered(MouseEvent e) {}
     @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
-
+    public void mouseExited(MouseEvent e) {}
 }
