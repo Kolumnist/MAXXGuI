@@ -62,7 +62,7 @@ public class GameBoard {
 					fraction = fraction.shorten();	//Shorting the fraction
 
 					BigInteger comp = new BigInteger("9");
-					if(fraction.nenner.compareTo(comp) > 0 && fraction.zaehler.compareTo(comp) > 0) {
+					if(fraction.denominator.compareTo(comp) > 0 && fraction.numerator.compareTo(comp) > 0) {
 						//Testing if the fraction is an integer
 						if(fraction.isInteger() == false) {
 							fractionBoard[i][j] = fraction;	//Filling fractionBoard with the generated fractions
@@ -97,7 +97,7 @@ public class GameBoard {
 					fraction = fraction.shorten();	//Shorting the fraction
 
 					BigInteger comp = new BigInteger("9");
-					if(fraction.nenner.compareTo(comp) > 0 && fraction.zaehler.compareTo(comp) > 0) {
+					if(fraction.denominator.compareTo(comp) > 0 && fraction.numerator.compareTo(comp) > 0) {
 						//Testing if the fraction is an integer
 						if(fraction.isInteger() == false) {
 							fractionBoard[i][j] = fraction;	//Filling fractionBoard with the generated fractions
@@ -132,7 +132,7 @@ public class GameBoard {
 					fraction = fraction.shorten();	//Shorting the fraction
 
 					BigInteger comp = new BigInteger("9");
-					if(fraction.nenner.compareTo(comp) > 0 && fraction.zaehler.compareTo(comp) > 0) {
+					if(fraction.denominator.compareTo(comp) > 0 && fraction.numerator.compareTo(comp) > 0) {
 						//Testing if the fraction is an integer
 						if(fraction.isInteger() == false) {
 							fractionBoard[i][j] = fraction;	//Filling fractionBoard with the generated fractions
@@ -177,17 +177,17 @@ public class GameBoard {
 		BigInteger comp2 = new BigInteger("1");
 		for(int i = 0; i < y; i++) {
 			for(int j = 0; j < x; j++) {
-				if(fractionBoard[i][j].nenner.compareTo(comp2) == 0 && fractionBoard[i][j].zaehler.compareTo(comp2) == -1) {
+				if(fractionBoard[i][j].denominator.compareTo(comp2) == 0 && fractionBoard[i][j].numerator.compareTo(comp2) == -1) {
 					System.out.print("   " + board[i][j] + "   ");
-				}else if(fractionBoard[i][j].nenner.compareTo(comp1) == -1  && fractionBoard[i][j].zaehler.compareTo(comp1) == -1) {
+				}else if(fractionBoard[i][j].denominator.compareTo(comp1) == -1  && fractionBoard[i][j].numerator.compareTo(comp1) == -1) {
 					System.out.print("  " + board[i][j] + " ");
-				}else if(fractionBoard[i][j].nenner.compareTo(comp1) == -1  && fractionBoard[i][j].zaehler.compareTo(comp1) == 1) {
+				}else if(fractionBoard[i][j].denominator.compareTo(comp1) == -1  && fractionBoard[i][j].numerator.compareTo(comp1) == 1) {
 					System.out.print(" " + board[i][j] + " ");
-				}else if(fractionBoard[i][j].nenner.compareTo(comp1) == 1  && fractionBoard[i][j].zaehler.compareTo(comp1) == -1) {
+				}else if(fractionBoard[i][j].denominator.compareTo(comp1) == 1  && fractionBoard[i][j].numerator.compareTo(comp1) == -1) {
 					System.out.print("  " + board[i][j]);
-				}else if(fractionBoard[i][j].nenner.compareTo(comp1) == -1  && fractionBoard[i][j].zaehler.compareTo(comp1) == 0) {
+				}else if(fractionBoard[i][j].denominator.compareTo(comp1) == -1  && fractionBoard[i][j].numerator.compareTo(comp1) == 0) {
 					System.out.print(" " + board[i][j] + "  ");
-				}else if(fractionBoard[i][j].nenner.compareTo(comp1) == 0  && fractionBoard[i][j].zaehler.compareTo(comp1) == -1) {
+				}else if(fractionBoard[i][j].denominator.compareTo(comp1) == 0  && fractionBoard[i][j].numerator.compareTo(comp1) == -1) {
 					System.out.print("  " + board[i][j]);
 				}else{
 					System.out.print(" " + board[i][j]);

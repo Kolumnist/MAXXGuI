@@ -8,22 +8,22 @@ import java.math.*;
 public class Fraction extends Number implements Comparable {
 
 	BigInteger numerator; //Zähler
-	BigInteger denomiator; //Nenner
+	BigInteger denominator; //Nenner
 
 	// Constructor
-	public Fraction (BigInteger pNumerator, BigInteger pDenomiator ){
+	public Fraction (BigInteger pNumerator, BigInteger pDenominator ){
 		//Screening if the denominator is 0
-		switch(pDenomiator.signum()) {
+		switch(pDenominator.signum()) {
 		case 0:
-			denomiator = BigInteger.ZERO;
+			denominator = BigInteger.ZERO;
 			break;
 		case -1:
 			numerator = pNumerator.negate();
-			denomiator = pDenomiator.negate();
+			denominator = pDenominator.negate();
 		break;
 		case 1:
 			numerator = pNumerator;
-			denomiator = pDenomiator;
+			denominator = pDenominator;
 			break;
 		}
 	}
@@ -31,25 +31,25 @@ public class Fraction extends Number implements Comparable {
 	//Converts fractions into an Integer
 	@Override
 	public int intValue() {
-		return numerator.divide(denomiator).intValue();
+		return numerator.divide(denominator).intValue();
 	}
 
 	//Converts fractions into a Long
 	@Override
 	public long longValue() {
-		return numerator.divide(denomiator).longValue();
+		return numerator.divide(denominator).longValue();
 	}
 
 	//Converts fractions into a Float
 	@Override
 	public float floatValue() {
-		return numerator.floatValue() / denomiator.floatValue();
+		return numerator.floatValue() / denominator.floatValue();
 	}
 
 	//Converts fractions into a Double
 	@Override
 	public double doubleValue() {
-		return numerator.doubleValue() / denomiator.doubleValue();
+		return numerator.doubleValue() / denominator.doubleValue();
 	}
 
 
@@ -58,8 +58,8 @@ public class Fraction extends Number implements Comparable {
 		BigInteger newNumerator;
 		BigInteger newDenomiator;
 
-		newDenomiator = this.denomiator.multiply(pNumber.denomiator);
-		newNumerator = this.numerator.multiply(pNumber.denomiator).add(pNumber.numerator.multiply(this.denomiator));
+		newDenomiator = this.denominator.multiply(pNumber.denominator);
+		newNumerator = this.numerator.multiply(pNumber.denominator).add(pNumber.numerator.multiply(this.denominator));
 
 
 		Fraction sum = new Fraction(newNumerator, newDenomiator);
@@ -71,8 +71,8 @@ public class Fraction extends Number implements Comparable {
 		BigInteger newNumerator;
 		BigInteger newDenomiator;
 
-		newDenomiator = this.denomiator.multiply(pNumber.denomiator);
-		newNumerator = this.numerator.multiply(pNumber.denomiator).subtract(pNumber.numerator.multiply(this.denomiator));
+		newDenomiator = this.denominator.multiply(pNumber.denominator);
+		newNumerator = this.numerator.multiply(pNumber.denominator).subtract(pNumber.numerator.multiply(this.denominator));
 
 		Fraction product = new Fraction(newNumerator, newDenomiator);
 		return product.shorten();
@@ -84,7 +84,7 @@ public class Fraction extends Number implements Comparable {
 		BigInteger newDenomiator;
 
 		newNumerator = this.numerator.multiply(pNumber.numerator);
-		newDenomiator = this.denomiator.multiply(pNumber.denomiator);
+		newDenomiator = this.denominator.multiply(pNumber.denominator);
 
 		Fraction product = new Fraction(newNumerator, newDenomiator);
 		return product.shorten();
@@ -95,8 +95,8 @@ public class Fraction extends Number implements Comparable {
 		BigInteger newNumerator;
 		BigInteger newDenomiator;
 
-		newNumerator = this.numerator.multiply(pNumber.denomiator);
-		newDenomiator = this.denomiator.multiply(pNumber.numerator);
+		newNumerator = this.numerator.multiply(pNumber.denominator);
+		newDenomiator = this.denominator.multiply(pNumber.numerator);
 
 		Fraction quotient = new Fraction(newNumerator, newDenomiator);
 		return quotient.shorten();
@@ -105,10 +105,10 @@ public class Fraction extends Number implements Comparable {
 
 	//Converts the fraction into a String
 	public String toString() {
-		if(this.denomiator.equals(BigInteger.ONE)) {
+		if(this.denominator.equals(BigInteger.ONE)) {
 			return "" + this.numerator;
 		}else {
-			return "" + this.numerator + "/" + this.denomiator;
+			return "" + this.numerator + "/" + this.denominator;
 		}
 	}
 
@@ -116,15 +116,15 @@ public class Fraction extends Number implements Comparable {
 	public Fraction shorten () {
 		BigInteger ggT;
 		//Determines the gcd of the given fraction
-		ggT = this.numerator.gcd(this.denomiator);
+		ggT = this.numerator.gcd(this.denominator);
 		//Uses the gcd to divide the given fraction
-		Fraction sum = new Fraction(numerator.divide(ggT), denomiator.divide(ggT));
+		Fraction sum = new Fraction(numerator.divide(ggT), denominator.divide(ggT));
 		return sum;
 	}
 
 	//Checks if the given fraction has a 1 as the denominator
 	public boolean isInteger() {
-		if(this.denomiator.equals(BigInteger.ONE)) {
+		if(this.denominator.equals(BigInteger.ONE)) {
 			return true;
 		}else {
 			return false;
@@ -137,7 +137,7 @@ public class Fraction extends Number implements Comparable {
 		int re = 0;
 		if(o instanceof Fraction) {
 			Fraction other = (Fraction) o;
-			re = this.numerator.multiply(other.denomiator).compareTo(other.numerator.multiply(this.denomiator));
+			re = this.numerator.multiply(other.denominator).compareTo(other.numerator.multiply(this.denominator));
 		}
 		return re;
 	}
