@@ -96,11 +96,11 @@ public class MainMenu extends JFrame {
         play.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (playerSelection.getSelectedIndex() == 0) {
-                    GameBoard myBoard = new GameBoard(2);
+                    GameBoard myBoard0 = new GameBoard(2);
                 } else if (playerSelection.getSelectedIndex() == 1) {
-                    GameBoard myBoard = new GameBoard(3);
+                    GameBoard myBoard1 = new GameBoard(3);
                 } else if (playerSelection.getSelectedIndex() == 2) {
-                    GameBoard myBoard = new GameBoard(4);
+                    GameBoard myBoard2 = new GameBoard(4);
                 }
             }
         });
