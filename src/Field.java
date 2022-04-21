@@ -20,6 +20,16 @@ public class Field extends JButton {
         setName(createValue());
         pPositionX = pPositionX;
         positionY = pPositionY;
+        setBackground(Color.CYAN);
+        setFont(new Font("Serif",1,20));
+    }
+
+    public Field(int pPositionX, int pPositionY, Player pPlayer){
+        setPlayerOnField(pPlayer);
+        pPositionX = pPositionX;
+        positionY = pPositionY;
+        setBackground(Color.CYAN);
+        setFont(new Font("Serif",1,20));
     }
 
     public void setPlayerOnField(Player pPlayer){
