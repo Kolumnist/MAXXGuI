@@ -98,7 +98,7 @@ public class MainMenu extends JFrame implements Runnable {
             myJFrame.setVisible(true);
         });
 
-        play.addActionListener(new ActionListener() {
+       /* play.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (playerSelection.getSelectedIndex() == 0) {
                     GameBoard myBoard0 = new GameBoard(2, players);
@@ -108,7 +108,7 @@ public class MainMenu extends JFrame implements Runnable {
                     GameBoard myBoard2 = new GameBoard(4, players);
                 }
             }
-        });
+        });*/
 
         //this ActionListener close the whole program
         close.addActionListener(new ActionListener() {
