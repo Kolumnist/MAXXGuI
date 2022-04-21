@@ -79,7 +79,7 @@ public class GameBoard extends JFrame {
                     boardFields[j][k] = new Field(j, k);
                     add(boardFields[j][k]);
                 }
-                boardFields[j][k].addMouseListener();
+                boardFields[j][k].addMouseListener(new MAXX());
             }
         }
     }
