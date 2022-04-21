@@ -43,27 +43,28 @@ public class Player {
 
     public boolean special() //Move Action that is special for every player
     {
+        System.out.println("Buh");
         switch(player_ID)
         {
             case(1):/*first Player*/
                 x_v = 0; y_v = 1;
                 x_pos += x_v; y_pos += y_v;
-                return true;
+                return false;
 
             case(2):/*second Player*/
                 x_v = 0; y_v = -1;
                 x_pos += x_v; y_pos += y_v;
-                return true;
+                return false;
 
             case(3):/*third Player*/
                 x_v = 1; y_v = 0;
                 x_pos += x_v; y_pos += y_v;
-                return true;
+                return false;
 
             case(4):/*fourth Player*/
                 x_v = -1; y_v = 0;
                 x_pos += x_v; y_pos += y_v;
-                return true;
+                return false;
 
             default:
                 x_v = 0; y_v = 0;
@@ -95,13 +96,15 @@ public class Player {
 
     public int onPlayerMoves(Field before, Field after, int selected)//the fields get renewed and the players go to the new field
     {
-        if(selected == 3) selected = -1;
+        //if(selected == 3) selected = -1;
         after.setPlayerOnField(this);
+        this.players_field = after;
 
+        before.freeField = true;
         before.setBackground(Color.cyan);
         before.setText("x");
         before.setName("x");
         before.fieldValue = new Fraction(new BigInteger("0"), new BigInteger("1"));
-        return ++selected;
+        return selected;
     }
 }
