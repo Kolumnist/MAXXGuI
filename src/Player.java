@@ -41,34 +41,29 @@ public class Player {
         return y_pos;
     }
 
-    public boolean special() //Move Action that is special for every player
+    public void special() //Move Action that is special for every player
     {
         switch(player_ID)
         {
             case(1):/*first Player*/
                 x_v = 0; y_v = 1;
                 x_pos += x_v; y_pos += y_v;
-                return false;
-
+                break;
             case(2):/*second Player*/
                 x_v = 0; y_v = -1;
                 x_pos += x_v; y_pos += y_v;
-                return false;
-
+                break;
             case(3):/*third Player*/
                 x_v = 1; y_v = 0;
                 x_pos += x_v; y_pos += y_v;
-                return false;
-
+                break;
             case(4):/*fourth Player*/
                 x_v = -1; y_v = 0;
                 x_pos += x_v; y_pos += y_v;
-                return false;
-
+                break;
             default:
                 x_v = 0; y_v = 0;
                 x_pos += x_v; y_pos += y_v;
-                return false;
         }
     }
 

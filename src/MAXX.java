@@ -13,44 +13,43 @@ public class MAXX implements MouseListener {
 
     public void mouseReleased(MouseEvent e) {
 
-        if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1
-                && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1
+        if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1
                 && ((Field) e.getComponent()).freeField)
         {
             players[selected].northWest();///
             players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
             selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected);///
         }
-        else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() - 1
-                && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1
+        else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1
                 && ((Field) e.getComponent()).freeField)
         {
             players[selected].southWest();///
             players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
             selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected );///
         }
-        else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() - 1
-                && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1
+        else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1
                 && ((Field) e.getComponent()).freeField)
         {
             players[selected].southEast();///
             players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
             selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected);///
         }
-        else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1
-                && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1
+        else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1
                 && ((Field) e.getComponent()).freeField)
         {
             players[selected].northEast();///
             players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
             selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected);///
         }
-        else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX()
-                && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() && players[selected].getX_pos() == ((Field) e.getComponent()).getPositionY()
+        else if (( (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() && selected == 0)
+                || (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() && selected == 1)
+                || (players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1 && players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() && selected == 2)
+                || (players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1 && players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() && selected == 3))
                 && ((Field) e.getComponent()).freeField)
         {
+            players[selected].special();///
             players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
-            players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent(), selected);///
+            players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected);///
         }
         else//When the player gives something that he cant do
             System.out.println("Das darf deine Figur nicht!");

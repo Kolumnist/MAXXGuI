@@ -80,20 +80,25 @@ public class GameBoard extends JFrame {
         } while (boardSum == 84);
 
         //creating the fields for the players
-        Field white = new Field(2, 2, pPlayer[0]);
-        Field black = new Field(5, 5, pPlayer[1]);
-        Field red = new Field(2, 5, pPlayer[2]);
-        Field yellow = new Field(5, 2, pPlayer[3]);
+        Field white;
+        Field black;
+        Field red;
+        Field yellow;
 
         //setting 2-4 player on the board and giving the players their field
         switch (pPlayerNumber) {
             case 2:
+                white = new Field(2, 2, pPlayer[0]);
+                black = new Field(5, 5, pPlayer[1]);
                 pPlayer[0].players_field = white;
                 pPlayer[1].players_field = black;
                 boardFields[2][2] = white;
                 boardFields[5][5] = black;
                 break;
             case 3:
+                white = new Field(2, 2, pPlayer[0]);
+                black = new Field(5, 5, pPlayer[1]);
+                red = new Field(2, 5, pPlayer[2]);
                 pPlayer[0].players_field = white;
                 pPlayer[1].players_field = black;
                 pPlayer[2].players_field = red;
@@ -102,6 +107,10 @@ public class GameBoard extends JFrame {
                 boardFields[5][2] = red;
                 break;
             case 4:
+                white = new Field(2, 2, pPlayer[0]);
+                black = new Field(5, 5, pPlayer[1]);
+                red = new Field(2, 5, pPlayer[2]);
+                yellow = new Field(5, 2, pPlayer[3]);
                 pPlayer[0].players_field = white;
                 pPlayer[1].players_field = black;
                 pPlayer[2].players_field = red;

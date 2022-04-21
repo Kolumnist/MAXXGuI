@@ -105,16 +105,7 @@ public class MainMenu extends JFrame implements Runnable {
             }
         });
 
-        play.addActionListener(e -> {
-            if (playerSelection.getSelectedIndex() == 0) {
-                GameBoard myBoard0 = new GameBoard(2, players);
-            } else if (playerSelection.getSelectedIndex() == 1) {
-                GameBoard myBoard1 = new GameBoard(3, players);
-            } else if (playerSelection.getSelectedIndex() == 2) {
-                GameBoard myBoard2 = new GameBoard(4, players);
-            }
-        });
-        Thread thread = new Thread(this);
+        Thread thread = new Thread(()->run());
         thread.start();
     }
 
