@@ -96,34 +96,26 @@ public class Player implements PlayerEvent, MouseListener {
 
     public void northWest() /*Northwest movement*/
     {
-        x_v = -1;
-        y_v = -1;
-        x_pos += x_v;
-        y_pos += y_v;
+        x_v = -1; y_v = -1;
+        x_pos += x_v; y_pos += y_v;
     }
 
     public void northEast() /*Northeast movement*/
     {
-        x_v = -1;
-        y_v = 1;
-        x_pos += x_v;
-        y_pos += y_v;
+        x_v = -1; y_v = 1;
+        x_pos += x_v; y_pos += y_v;
     }
 
     public void southWest() /*Southwest movement*/
     {
-        x_v = 1;
-        y_v = -1;
-        x_pos += x_v;
-        y_pos += y_v;
+        x_v = 1; y_v = -1;
+        x_pos += x_v; y_pos += y_v;
     }
 
     public void southEast() /*Southeast movement*/
     {
-        x_v = 1;
-        y_v = 1;
-        x_pos += x_v;
-        y_pos += y_v;
+        x_v = 1; y_v = 1;
+        x_pos += x_v; y_pos += y_v;
     }
 
     @Override

@@ -1,12 +1,10 @@
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Scanner;
-
-/*
- *
+/**
  * @version 1 20.12.2021
  * @author Michel Jouaux, Collin Hoss, Lara Mangi
  */
+
 public class MAXX implements MouseListener {
 
     public static boolean repeat = true; // create a boolean variable
@@ -47,7 +45,7 @@ public class MAXX implements MouseListener {
             players[selected].northEast();
             players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
         }
-        else if ()
+        else if (players[selected] == )
         {
             players[selected].special();
             players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
