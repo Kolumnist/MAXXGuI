@@ -43,6 +43,7 @@ public class Field extends JButton {
                 setText("W");
                 setName("W");
                 setBackground(Color.WHITE);
+                setForeground(Color.BLACK);
                 freeField = false;
                 break;
             case "B":
@@ -56,12 +57,14 @@ public class Field extends JButton {
                 setText("R");
                 setName("R");
                 setBackground(Color.RED);
+                setForeground(Color.BLACK);
                 freeField = false;
                 break;
             case "Y":
                 setText("Y");
                 setName("Y");
                 setBackground(Color.YELLOW);
+                setForeground(Color.BLACK);
                 freeField = false;
                 break;
         }
