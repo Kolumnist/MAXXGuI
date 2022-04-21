@@ -14,29 +14,29 @@ public class Field {
     private Fraction fieldValue = new Fraction(new BigInteger("0"), new BigInteger("1"));
     private Color playerColor;
     private boolean notInteger = false;
-    private Button button;
+    private EventHandler button;
 
     public Field(){
-        button = new Button(createValue());
+        button = new EventHandler(createValue());
         button.setSize(10, 10);
     }
 
     public void setPlayerOnField(Player pPlayer){
         switch (pPlayer.toString()){
             case "w":
-                button = new Button("w");
+                button = new EventHandler("w");
                 playerColor = Color.WHITE;
                 break;
             case "b":
-                button = new Button("b");
+                button = new EventHandler("b");
                 playerColor = Color.BLACK;
                 break;
             case "r":
-                button = new Button("r");
+                button = new EventHandler("r");
                 playerColor = Color.RED;
                 break;
             case "y":
-                button = new Button("y");
+                button = new EventHandler("y");
                 playerColor = Color.YELLOW;
                 break;
         }
