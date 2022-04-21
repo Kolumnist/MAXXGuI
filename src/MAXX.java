@@ -25,22 +25,26 @@ public class MAXX implements MouseListener {
 
 
     public void mouseClicked(MouseEvent e) {
-        if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() + 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getY() + 1)
+        if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() + 1
+                && players[selected].getY_pos() == ((Field) e.getComponent()).getY() + 1)
         {
             players[selected].northWest();
             players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
         }
-        else if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() - 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getY() + 1)
+        else if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() - 1
+                && players[selected].getY_pos() == ((Field) e.getComponent()).getY() + 1)
         {
             players[selected].southWest();
             players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
         }
-        else if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() - 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getY() - 1)
+        else if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() - 1
+                && players[selected].getY_pos() == ((Field) e.getComponent()).getY() - 1)
         {
             players[selected].southEast();
             players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
         }
-        else if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() + 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getY() - 1)
+        else if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() + 1
+                && players[selected].getY_pos() == ((Field) e.getComponent()).getY() - 1)
         {
             players[selected].northEast();
             players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
