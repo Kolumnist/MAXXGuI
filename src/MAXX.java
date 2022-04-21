@@ -18,7 +18,7 @@ public class MAXX implements MouseListener {
     public static Player yellow;
     public static Player[] players = new Player[playerNumber];
 
-    public static GameBoard gb = new GameBoard(playerNumber, players); // gameboard object
+    public static MainMenu mm = new MainMenu(playerNumber, players); // gameboard object
 
     public void mouseClicked(MouseEvent e) {
         if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() + 1
