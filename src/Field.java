@@ -15,6 +15,7 @@ public class Field extends JButton {
     private BigInteger numerator, denominator;
     public Fraction fieldValue = new Fraction(new BigInteger("0"), new BigInteger("1"));
     private boolean notInteger = false;
+    public boolean freeField = true;
 
     //constructor to create a field with a fraction
     public Field(int pPositionX, int pPositionY) {
@@ -32,6 +33,7 @@ public class Field extends JButton {
         setPlayerOnField(pPlayer);
         positionX = pPositionX;
         positionY = pPositionY;
+        freeField = false;
         setFont(new Font("Serif",Font.PLAIN,14));
     }
 
@@ -81,4 +83,23 @@ public class Field extends JButton {
         }
         return fieldValue.toString();
     }
+
+    //region Setter & Getter
+    public void setPositionX(int pPositionX){
+        positionX = pPositionX;
+    }
+
+    public void setPositionY(int pPositionY){
+        positionY = pPositionY;
+    }
+
+    public int getPositionX(){
+        return positionX;
+    }
+
+    public int getPositionY(){
+        return positionY;
+    }
+
+    //endregion
 }

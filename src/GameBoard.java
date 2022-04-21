@@ -40,25 +40,26 @@ public class GameBoard extends JFrame {
         setLayout(new GridLayout(8, 8));
 
         //this ActionListener shows the manual_JMenuItem
-        manual_JMenuItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                JFrame myJFrame = new JFrame();
-                JPanel panel = new JPanel();
+        manual_JMenuItem.addActionListener(e -> {
+            JFrame myJFrame = new JFrame();
+            JPanel panel = new JPanel();
 
-                JTextArea manual = new JTextArea("Hallo! Herzlich willkommen zu 'MAXX'!"
-                        + "\nIn unserem Spiel können vier Spieler abwechselnd miteinander spielen. Diese Spieler sind als 'black', 'white', 'red' und 'yellow' konfiguriert."
-                        + "\nAlle Spieler haben einen Spielstein, welchen sie auf dem Spielfeld hin und her bewegen können."
-                        + "\n\nAber Achtung!!"
-                        + "\nDer Spielstein kann nur in 4 bestimmte Richtungen bewegt werden. Nämlich nach: 'NW' 'NO' 'SO' und 'SW'."
-                        + "\nZudem hat jeder Spieler noch einen special move, welcher dem Schwarzen Spieler erlaubt seinen Spielstein nach rechts zu bewegen, "
-                        + "\ndem weißen Spieler ist es erlaubt, seinen nach links zu bewegen, der rote Spieler kann seinen nach oben und der gelbe Spieler seinen nach unten bewegen."
-                        + "\nDieser move wird unter 'SPECIAL' abgerufen!"
-                        + "\nGewinner des Spiels ist derjenige, der mehr oder gleich 42 Punkte hat!\n");
-                panel.add(manual);
-                myJFrame.setSize(900, 300);
-                myJFrame.add(panel);
-                myJFrame.setVisible(true);
-            }
+            JTextArea manual1 = new JTextArea("Hallo! Herzlich willkommen zu 'MAXX'!"
+                    + "\nIn unserem Spiel können vier Spieler abwechselnd miteinander spielen. Diese Spieler sind als 'black', 'white', 'red' und 'yellow' konfiguriert."
+                    + "\nAlle Spieler fangen an einem unterschiedlichen Punkt des Spielfeldes an."
+                    + "\nZiel des Spieles ist es, 21-42 Punkte zu ergattern."
+                    + "\nDie Punkte setzen sich aus den Brüchen in den insgesamt 60-62 Buttons zusammen."
+                    + "\nDamit der Spieler auf einen Button springen kann, muss einfacherweise nur auf den Button geklickt werden."
+                    + "\n\nABER ACHTUNG!"
+                    + "\nDie Spieler können sich nur schräg über das Spielfeld bewegen."
+                    + "\n Desweiteren gibt es noch einen SPECIAL MOVE, welcher den Spieler eine bestimmte Bewegung ermöglicht, die den anderen Spielern nicht vergönnt ist."
+                    + "\nSo kann sich der weiße Spieler nach unten, der rote Spieler nach rechts, der gelbe Spieler nach links und der schwarze Spieler nach oben bewegen."
+                    + "\n\n"
+                    + "\nGewinner des Spiels ist derjenige, der mehr oder gleich 42 Punkte hat!\n");
+            panel.add(manual1);
+            myJFrame.setSize(900, 300);
+            myJFrame.add(panel);
+            myJFrame.setVisible(true);
         });
 
         //this ActionListener close_JMenuItem the whole program
@@ -68,6 +69,7 @@ public class GameBoard extends JFrame {
             }
         });
 
+        //do-while-loop to create a field with a sum of 84
         do {
             //this nested for-loop creates fields and puts them into "boardFields"
             for (int g = 0; g < 8; g++) {
@@ -80,14 +82,13 @@ public class GameBoard extends JFrame {
             }
         } while (boardsum == 84);
 
-
         //creating the fields for the players
         Field white = new Field(2, 2, pPlayer[0]);
         Field black = new Field(5, 5, pPlayer[1]);
         Field red = new Field(2, 5, pPlayer[2]);
         Field yellow = new Field(2, 5, pPlayer[3]);
 
-        //setting 2-4 player on the board
+        //setting 2-4 player on the board and giving the players their field
         switch (pPlayerNumber) {
             case 2:
                 pPlayer[0].players_field = white;
