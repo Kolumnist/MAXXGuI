@@ -90,7 +90,7 @@ public class MainMenu extends JFrame implements Runnable {
                     + "\nDie Spieler können sich nur schräg über das Spielfeld bewegen."
                     + "\n Desweiteren gibt es noch einen SPECIAL MOVE, welcher den Spieler eine bestimmte Bewegung ermöglicht, die den anderen Spielern nicht vergönnt ist."
                     + "\nSo kann sich der weiße Spieler beispielsweise mithilfe des SPECIAL MOVES nach links bewegen, der rote Spieler kann sich nach oben und der gelbe Spieler nach unten bewegen."
-                    + "\n\n
+                    + "\n\n"
                     + "\nGewinner des Spiels ist derjenige, der mehr oder gleich 42 Punkte hat!\n");
             panel.add(manual1);
             myJFrame.setSize(900, 300);
