@@ -26,35 +26,37 @@ public class MAXX implements MouseListener {
         {
             players[selected].northWest();
             players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
+            players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent());
         }
         else if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() - 1
                 && players[selected].getY_pos() == ((Field) e.getComponent()).getY() + 1)
         {
             players[selected].southWest();
             players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
+            players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent());
         }
         else if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() - 1
                 && players[selected].getY_pos() == ((Field) e.getComponent()).getY() - 1)
         {
             players[selected].southEast();
             players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
+            players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent());
         }
         else if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() + 1
                 && players[selected].getY_pos() == ((Field) e.getComponent()).getY() - 1)
         {
             players[selected].northEast();
             players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
+            players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent());
         }
-        else if (players[selected] == )
+        else if (players[selected].special())
         {
-            players[selected].special();
             players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
+            players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent());
         }
         else
             System.out.println("\n  Das darf deine Figur nicht!");
         //When the player gives something that he cant do
-
-        onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent());
     }
 
     // This method shows the instruction and create a gameboard with 2/ 3 or 4 Players
