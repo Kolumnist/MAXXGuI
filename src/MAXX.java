@@ -75,6 +75,7 @@ public class MAXX implements MouseListener {
             f.setSize(300, 300);
             f.add(panel);
             f.setVisible(true);
+            System.out.println("Win happened!");
         }
     }
 
