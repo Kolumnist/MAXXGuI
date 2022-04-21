@@ -8,8 +8,7 @@ import java.awt.event.MouseListener;
 public class MAXX implements MouseListener {
 
     public static int selected = 0; //0-3 First to Last Player
-    public static Player[] players = {new Player(2, 2, 'W'), new Player(5, 5, 'B'),
-                                      new Player(5, 2, 'R'), new Player(2, 5, 'Y')};
+    public static Player[] players;
     public static MainMenu mm; // gameboard object
 
     public void mouseReleased(MouseEvent e) {
@@ -60,6 +59,8 @@ public class MAXX implements MouseListener {
 
     public static void main(String[] args)
     {
+        players = new Player[]{new Player(2, 2, 'W'), new Player(5, 5, 'B'),
+                new Player(5, 2, 'R'), new Player(2, 5, 'Y')};
         mm = new MainMenu(players);
     }
     /*if (p.player_value.intValue() >= (84 / playerNumber)) {
