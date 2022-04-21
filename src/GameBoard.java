@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 
 public class GameBoard extends JFrame {
     private Field[][] boardFields = new Field[8][8];
+    private double boardsum;
     private static int programCount;
     private int playerCount = 0;
 
@@ -67,37 +68,46 @@ public class GameBoard extends JFrame {
             }
         });
 
-        //this nested for-loop creates fields and puts them into "boardFields"
-        for (int g = 0; g < 8; g++){
-            for (int h = 0; h < 8; h++){
-                Field field = new Field(g,h);
-                boardFields[g][h] = field;
+        do {
+            //this nested for-loop creates fields and puts them into "boardFields"
+            for (int g = 0; g < 8; g++) {
+                for (int h = 0; h < 8; h++) {
+                    Field field = new Field(g, h);
+                    boardFields[g][h] = field;
+
+                    boardsum += field.fieldValue.doubleValue();
+                }
             }
-        }
+        } while (boardsum == 84);
+
 
         //creating the fields for the players
-        Field white = new Field(2,2,pPlayer[0]);
-        Field black = new Field(5,5,pPlayer[1]);
-        Field red = new Field(2,5,pPlayer[2]);
-        Field yellow = new Field(2,5,pPlayer[3]);
-        //giving the playerfield to the player
-        pPlayer[0].players_field = white;
-        pPlayer[1].players_field = black;
-        pPlayer[2].players_field = red;
-        pPlayer[3].players_field = yellow;
+        Field white = new Field(2, 2, pPlayer[0]);
+        Field black = new Field(5, 5, pPlayer[1]);
+        Field red = new Field(2, 5, pPlayer[2]);
+        Field yellow = new Field(2, 5, pPlayer[3]);
 
         //setting 2-4 player on the board
-        switch (pPlayerNumber){
+        switch (pPlayerNumber) {
             case 2:
+                pPlayer[0].players_field = white;
+                pPlayer[1].players_field = black;
                 boardFields[2][2] = white;
                 boardFields[5][5] = black;
                 break;
             case 3:
+                pPlayer[0].players_field = white;
+                pPlayer[1].players_field = black;
+                pPlayer[2].players_field = red;
                 boardFields[2][2] = white;
                 boardFields[5][5] = black;
                 boardFields[2][5] = red;
                 break;
             case 4:
+                pPlayer[0].players_field = white;
+                pPlayer[1].players_field = black;
+                pPlayer[2].players_field = red;
+                pPlayer[3].players_field = yellow;
                 boardFields[2][2] = white;
                 boardFields[5][5] = black;
                 boardFields[2][5] = red;
@@ -106,8 +116,8 @@ public class GameBoard extends JFrame {
         }
 
         //this nested for-loop adds every "field" of "boardFields" to the frame
-        for (int t = 0; t < 8; t++){
-            for(int z = 0; z < 8; z++){
+        for (int t = 0; t < 8; t++) {
+            for (int z = 0; z < 8; z++) {
                 add(boardFields[t][z]);
                 boardFields[t][z].addMouseListener(new MAXX());
             }
