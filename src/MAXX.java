@@ -9,20 +9,18 @@ import java.util.Scanner;
  */
 public class MAXX implements MouseListener {
 
-    public static Scanner sc = new Scanner(System.in); // create a scanner, so people can enter a text by the keyboard
-    public static GameBoard gb = new GameBoard(8, 8); // gameboard object
-
+    public static boolean repeat = true; // create a boolean variable
+    public static String s;  // create a String named s
     public static int selected = 0; //0-3 First to Last Player
     public static int playerNumber = 2;  // create a player number -> at the beginning there are 2 players selected
+
     public static Player white;
     public static Player black;
     public static Player red;
     public static Player yellow;
     public static Player[] players = new Player[playerNumber];
 
-    public static boolean repeat = true; // create a boolean variable
-    public static String s;  // create a String named s
-
+    public static GameBoard gb = new GameBoard(playerNumber, players); // gameboard object
 
     public void mouseClicked(MouseEvent e) {
         if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() + 1
