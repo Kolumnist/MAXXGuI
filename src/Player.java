@@ -8,8 +8,8 @@ import java.math.BigInteger;
 public class Player {
 
     public Fraction player_value;//Value is 0 in the beginning and who has 42 first wins
-    public Field players_field;//The field the player is on atm
     public final byte player_ID;//for identification of the characters: 1 = white , 2 = black , 3 = red, 4 = yellow
+    public Field players_field;//The field the player is on atm
 
     private char name; //for the playing field
     private static byte identifier = 1; // helps with the identification of a created character
@@ -41,23 +41,13 @@ public class Player {
         return y_pos;
     }
 
-    public Field getPlayers_field() {
-        return players_field;
-    }
-
-    public void setPlayers_field(Field players_field) {
-        this.players_field = players_field;
-    }
-
     public boolean special() //Move Action that is special for every player
     {
         switch(player_ID)
         {
             case(1):/*first Player*/
-                x_v = 0;
-                y_v = 1;
-                x_pos += x_v;
-                y_pos += y_v;
+                x_v = 0; y_v = 1;
+                x_pos += x_v; y_pos += y_v;
                 return true;
 
             case(2):/*second Player*/
@@ -77,7 +67,7 @@ public class Player {
 
             default:
                 x_v = 0; y_v = 0;
-                x_pos += x_v;y_pos += y_v;
+                x_pos += x_v; y_pos += y_v;
                 return false;
         }
     }
