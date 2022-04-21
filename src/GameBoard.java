@@ -10,12 +10,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GameBoard extends JFrame {
-    private Field[][] boardFields;
+    private Field[][] boardFields = new Field[8][8];
     private static int programCount;
     private int playerCount = 0;
 
     public GameBoard(int pPlayerNumber, Player[] pPlayer) {
-        setSize(500, 500);
+        setSize(700, 700);
         setVisible(true);
         setTitle("MaXX" + (programCount++));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -29,17 +29,15 @@ public class GameBoard extends JFrame {
 
         //create and add JMenu
         JMenuItem manual_JMenuItem = new JMenuItem("Manual");
-        JMenuItem close_JMenuItem = new JMenuItem("Close Window");
+        JMenuItem close_JMenuItem = new JMenuItem("Close all Window");
         info_JMenu.add(manual_JMenuItem);
         exit_JMenu.add(close_JMenuItem);
 
-        JPanel board_JPanel = new JPanel();
-        board_JPanel.setLayout(new GridLayout(8, 8));
+        //set JMenuBar into JFrame
+        setJMenuBar(menuBar);
 
-        Container container = getContentPane();
-        container.setLayout(new GridLayout(2, 1));
-        container.add(menuBar);
-        container.add(board_JPanel);
+        //Container container = getContentPane();
+        setLayout(new GridLayout(9, 9));
 
         //this ActionListener shows the manual_JMenuItem
         manual_JMenuItem.addActionListener(new ActionListener() {
@@ -73,10 +71,12 @@ public class GameBoard extends JFrame {
         for (int j = 0; j < 8; j++) {
             for (int k = 0; k < 8; k++) {
                 if (((j == 2 && k == 2) || (j == 2 && k == 5) || (j == 5 && k == 2) || (j == 5 && k == 5)) && (playerCount < pPlayerNumber)) {
-                    boardFields[j][k] = new Field(j, k, pPlayer[playerCount]);
+                    Field playerField = new Field(j, k, pPlayer[playerCount]);
+                    boardFields[j][k] = playerField;
                     playerCount++;
                 } else {
-                    boardFields[j][k] = new Field(j, k);
+                    Field field = new Field(j, k);
+                    boardFields[j][k] = field;
                     add(boardFields[j][k]);
                 }
                 boardFields[j][k].addMouseListener(new MAXX());

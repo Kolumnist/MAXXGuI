@@ -18,11 +18,13 @@ public class Field extends JButton {
 
     //constructor to create a field with a fraction
     public Field(int pPositionX, int pPositionY) {
-        setName(createValue());
+        String s = createValue();
+        setText(s);
+        setName(s);
         positionX = pPositionX;
         positionY = pPositionY;
         setBackground(Color.CYAN);
-        setFont(new Font("Serif",Font.PLAIN,20));
+        setFont(new Font("Serif",Font.PLAIN,14));
     }
 
     //constructor to create a field with a player
@@ -30,27 +32,30 @@ public class Field extends JButton {
         setPlayerOnField(pPlayer);
         positionX = pPositionX;
         positionY = pPositionY;
-        setBackground(Color.CYAN);
-        setFont(new Font("Serif",Font.PLAIN,20));
+        setFont(new Font("Serif",Font.PLAIN,14));
     }
 
     //sets a player on a button
     public void setPlayerOnField(Player pPlayer){
-        switch (pPlayer.toString()){
-            case "w":
-                setName("w");
+        switch (pPlayer.toString().trim()){
+            case "W":
+                setText("W");
+                setName("W");
                 setBackground(Color.WHITE);
                 break;
-            case "b":
-                setName("b");
+            case "B":
+                setText("B");
+                setName("B");
                 setBackground(Color.BLACK);
                 break;
-            case "r":
-                setName("r");
+            case "R":
+                setText("R");
+                setName("R");
                 setBackground(Color.RED);
                 break;
-            case "y":
-                setName("y");
+            case "Y":
+                setText("Y");
+                setName("Y");
                 setBackground(Color.YELLOW);
                 break;
         }
