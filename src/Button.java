@@ -2,20 +2,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 public class Button extends JButton implements ActionListener {
 
     private String value = "";
     private int bx_pos = 0, by_pos = 0;
 
-    public Button(String value, int bx_pos, int by_pos)
+    public Button(Fraction value, int bx_pos, int by_pos)
     {
         this.bx_pos = bx_pos;
         this.by_pos = by_pos;
         this.setBackground(Color.RED);
-        this.setName(value);
+        this.setName(value.toString());
     }
 
     @Override
