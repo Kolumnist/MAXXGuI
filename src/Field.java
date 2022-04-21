@@ -16,22 +16,25 @@ public class Field extends JButton {
     public Fraction fieldValue = new Fraction(new BigInteger("0"), new BigInteger("1"));
     private boolean notInteger = false;
 
+    //constructor to create a field with a fraction
     public Field(int pPositionX, int pPositionY) {
         setName(createValue());
-        pPositionX = pPositionX;
+        positionX = pPositionX;
         positionY = pPositionY;
         setBackground(Color.CYAN);
-        setFont(new Font("Serif",1,20));
+        setFont(new Font("Serif",Font.PLAIN,20));
     }
 
+    //constructor to create a field with a player
     public Field(int pPositionX, int pPositionY, Player pPlayer){
         setPlayerOnField(pPlayer);
-        pPositionX = pPositionX;
+        positionX = pPositionX;
         positionY = pPositionY;
         setBackground(Color.CYAN);
-        setFont(new Font("Serif",1,20));
+        setFont(new Font("Serif",Font.PLAIN,20));
     }
 
+    //sets a player on a button
     public void setPlayerOnField(Player pPlayer){
         switch (pPlayer.toString()){
             case "w":
@@ -53,6 +56,7 @@ public class Field extends JButton {
         }
     }
 
+    //creates a random fraction
     public String createValue(){
         while (!notInteger){
             numerator = BigInteger.valueOf(rnd.nextInt(10, 1000));
@@ -65,7 +69,7 @@ public class Field extends JButton {
             //Testing if the denominator and numerator are greater then 9
             if(fieldValue.denominator.compareTo(comp) == 1 && fieldValue.numerator.compareTo(comp) == 1) {
                 //Testing if the fraction is an integer
-                if(fieldValue.isInteger() == false) {
+                if(!fieldValue.isInteger()) {
                     notInteger = true;
                 }
             }

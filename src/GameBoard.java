@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GameBoard extends JFrame {
-    private char[] playerName = {'w', 'b', 'r', 'y'};
     private Field[][] boardFields;
     private static int programCount;
     private int playerCount = 0;
@@ -23,27 +22,27 @@ public class GameBoard extends JFrame {
 
         // create and add JMenuBar
         JMenuBar menuBar = new JMenuBar();
-        JMenu info = new JMenu("More Information");
-        JMenu exit = new JMenu("Exit");
-        menuBar.add(info);
-        menuBar.add(exit);
+        JMenu info_JMenu = new JMenu("More Information");
+        JMenu exit_JMenu = new JMenu("Exit");
+        menuBar.add(info_JMenu);
+        menuBar.add(exit_JMenu);
 
         //create and add JMenu
-        JMenuItem manual = new JMenuItem("Manual");
-        JMenuItem close = new JMenuItem("Close Window");
-        info.add(manual);
-        exit.add(close);
+        JMenuItem manual_JMenuItem = new JMenuItem("Manual");
+        JMenuItem close_JMenuItem = new JMenuItem("Close Window");
+        info_JMenu.add(manual_JMenuItem);
+        exit_JMenu.add(close_JMenuItem);
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(8, 8));
+        JPanel board_JPanel = new JPanel();
+        board_JPanel.setLayout(new GridLayout(8, 8));
 
         Container container = getContentPane();
         container.setLayout(new GridLayout(2, 1));
         container.add(menuBar);
-        container.add(panel);
+        container.add(board_JPanel);
 
-        //this ActionListener shows the manual
-        manual.addActionListener(new ActionListener() {
+        //this ActionListener shows the manual_JMenuItem
+        manual_JMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JFrame myJFrame = new JFrame();
                 JPanel panel = new JPanel();
@@ -64,8 +63,8 @@ public class GameBoard extends JFrame {
             }
         });
 
-        //this ActionListener close the whole program
-        close.addActionListener(new ActionListener() {
+        //this ActionListener close_JMenuItem the whole program
+        close_JMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
@@ -78,9 +77,9 @@ public class GameBoard extends JFrame {
                     playerCount++;
                 } else {
                     boardFields[j][k] = new Field(j, k);
-                    //boardFields[j][k].addMouseListener();
                     add(boardFields[j][k]);
                 }
+                boardFields[j][k].addMouseListener();
             }
         }
     }
