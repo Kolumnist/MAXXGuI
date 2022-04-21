@@ -109,15 +109,6 @@ public class MainMenu extends JFrame implements Runnable {
         thread.start();
     }
 
-
-    public static void main(String[] args) {
-        new MainMenu();
-
-
-        //Game Start (button) -> soll überprüfen, was in der Combo ausgewählt wird und ruft dann den Konstruktor des Gameboards auf (-> dort wird die Anzahl der Spieler die man benötigt übergeben
-        //thread erstellen-> damit mehrere Fenster unabhängig voneinander geöffnet werden können
-    }
-
     @Override
     public void run() {
         play.addActionListener(new ActionListener() {
