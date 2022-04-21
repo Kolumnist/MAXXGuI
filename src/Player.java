@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.math.BigInteger;
@@ -25,6 +26,7 @@ public class Player implements PlayerEvent, MouseListener {
         this.name = name;
 
         player_ID = identifier++;//sets character to identifier and then counts the identifier up
+        if(identifier == 5) identifier = 1;
         player_value = new Fraction(new BigInteger("0"), new BigInteger("1"));
     }
 
@@ -57,7 +59,7 @@ public class Player implements PlayerEvent, MouseListener {
 
     public void special() //Move Action that is special for every player
     {
-        switch(player_ID%4)
+        switch(player_ID)
         {
             case(1):/*first Player*/
                 x_v = 0;
@@ -77,7 +79,7 @@ public class Player implements PlayerEvent, MouseListener {
                 x_pos += x_v;
                 y_pos += y_v;
                 break;
-            case(0):/*fourth Player*/
+            case(4):/*fourth Player*/
                 x_v = -1;
                 y_v = 0;
                 x_pos += x_v;
@@ -183,8 +185,13 @@ public class Player implements PlayerEvent, MouseListener {
     }
 
     @Override
-    public void onPlayerMoves(Field before, Field after)
+    public void onPlayerMoves(Field before, Field after)//the fields get renewed and the players go to the new field
     {
-        redraw();//drawboard wird aufgerufen um das Feld zu erfrischen
+        after.setPlayerOnField(this);
+        after.setBackground(this.color);
+
+        before.setBackground(Color.cyan);
+        before.setName("x");
+        before.fieldValue = new Fraction(new BigInteger("0"), new BigInteger("1"));
     }
 }
