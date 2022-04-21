@@ -9,7 +9,7 @@ public class MainMenu extends JFrame implements Runnable {
     private JButton play;
     private JComboBox playerSelection;
 
-    public MainMenu() {
+    public MainMenu(Player[] player) {
         setTitle("MAXXGuI");
         setLayout(new FlowLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -97,18 +97,17 @@ public class MainMenu extends JFrame implements Runnable {
         play.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (playerSelection.getSelectedIndex() == 0) {
-                    //GameBoard myBoard0 = new GameBoard(2);
+                    GameBoard myBoard0 = new GameBoard(2,player);
                 } else if (playerSelection.getSelectedIndex() == 1) {
-                    //  GameBoard myBoard1 = new GameBoard(3);
+                    GameBoard myBoard1 = new GameBoard(3,player);
                 } else if (playerSelection.getSelectedIndex() == 2) {
-                    // GameBoard myBoard2 = new GameBoard(4);
+                    GameBoard myBoard2 = new GameBoard(4,player);
                 }
             }
         });
         Thread thread = new Thread(() -> run());
         thread.start();
     }
-
 
 
     public static void main(String[] args) {
@@ -118,6 +117,7 @@ public class MainMenu extends JFrame implements Runnable {
         //Game Start (button) -> soll überprüfen, was in der Combo ausgewählt wird und ruft dann den Konstruktor des Gameboards auf (-> dort wird die Anzahl der Spieler die man benötigt übergeben
         //thread erstellen-> damit mehrere Fenster unabhängig voneinander geöffnet werden können
     }
+
     @Override
     public void run() {
         play.addActionListener(new ActionListener() {
