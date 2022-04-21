@@ -67,23 +67,7 @@ public class GameBoard extends JFrame {
             }
         });
 
-        /*
-        for (int j = 0; j < 8; j++) {
-            for (int k = 0; k < 8; k++) {
-                if (((j == 2 && k == 2) || (j == 2 && k == 5) || (j == 5 && k == 2) || (j == 5 && k == 5)) && (playerCount < pPlayerNumber)) {
-                    Field playerField = new Field(j, k, pPlayer[playerCount]);
-                    boardFields[j][k] = playerField;
-                    playerCount++;
-                } else {
-                    Field field = new Field(j, k);
-                    boardFields[j][k] = field;
-                    add(boardFields[j][k]);
-                }
-                boardFields[j][k].addMouseListener(new MAXX());
-            }
-        }
-         */
-
+        //this nested for-loop creates fields and puts them into "boardFields"
         for (int g = 0; g < 8; g++){
             for (int h = 0; h < 8; h++){
                 Field f = new Field(g,h);
@@ -114,6 +98,7 @@ public class GameBoard extends JFrame {
                 break;
         }
 
+        //this nested for-loop adds every "field" of "boardFields" to the frame
         for (int t = 0; t < 8; t++){
             for(int z = 0; z < 8; z++){
                 add(boardFields[t][z]);
