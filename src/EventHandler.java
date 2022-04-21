@@ -1,24 +1,16 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class EventHandler implements ActionListener {
-
-    private Fraction value;
-
-    public EventHandler(Fraction value, int bx_pos, int by_pos)
-    {
-        this.value = value;
-    }
-
-    public EventHandler(Player player, int bx_pos, int by_pos)
-    {
-        this.value = value;
-    }
+public class EventHandler implements ActionListener, MouseListener {
 
     @Override
     public void actionPerformed(ActionEvent e)
     {
+
+
         //Überprüfe ob der Spieler dorthin darf
         //nehme dann den Wert addiere ihn zum Spieler und bewege den Spieler auf das neue Feld
         //Verändere dann den alten Platz des Spielers zu einem Leeren Feld
@@ -55,5 +47,30 @@ public class EventHandler implements ActionListener {
         //When the player gives something that he cant do
 
         redraw();//drawboard wird aufgerufen um das Feld zu erfrischen
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }
