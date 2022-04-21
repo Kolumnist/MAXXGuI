@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainMenu extends JFrame implements Runnable {
+public class MainMenu extends JFrame implements Runnable, ActionListener {
 
     private JButton play;
     private JComboBox playerSelection;
@@ -33,7 +33,7 @@ public class MainMenu extends JFrame implements Runnable {
 
         //create and add JMenu
         JMenuItem manual = new JMenuItem("Manual");
-        JMenuItem close = new JMenuItem("Close all Windows");
+        JMenuItem close = new JMenuItem("Close all Window");
         info.add(manual);
         exit.add(close);
 
@@ -73,6 +73,7 @@ public class MainMenu extends JFrame implements Runnable {
         play.setVisible(true);
         play.setBackground(Color.LIGHT_GRAY);
         play.setLocation(650, 650);
+        play.addActionListener(this);
         add(play);
 
         //this ActionListener shows the manual
@@ -105,13 +106,12 @@ public class MainMenu extends JFrame implements Runnable {
             }
         });
 
-        Thread thread = new Thread(()->run());
+        Thread thread = new Thread(this);
         thread.start();
-    }
 
-    @Override
-    public void run() {
-        play.addActionListener(e -> {
+    }
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals(play)) {
             if (playerSelection.getSelectedIndex() == 0) {
                 GameBoard myBoard0 = new GameBoard(2, players);
             } else if (playerSelection.getSelectedIndex() == 1) {
@@ -119,7 +119,37 @@ public class MainMenu extends JFrame implements Runnable {
             } else if (playerSelection.getSelectedIndex() == 2) {
                 GameBoard myBoard2 = new GameBoard(4, players);
             }
-        });
+        }
+    }
+
+
+    @Override
+    public void run() {
+
+
+    }
+
+
+    public void win(Player[] p) {
+        int z = 0;
+        if (p.length == 2) {
+            z = 2;
+        } else if (p.length == 3) {
+            z = 3;
+        } else if (p.length == 4) {
+            z = 4;
+        }
+        for (int i = 0; i <= p.length; i++) {
+            if (p[i].player_ID == 84 / z) {
+                JFrame f = new JFrame();
+                JPanel panel = new JPanel();
+                JTextArea win = new JTextArea("Herzlichen Glückwunsch der " + p[i].toString() + "  Spieler hat mit " + p[i].player_value.doubleValue() + " Punkten gewonnen!\n");
+                panel.add(win);
+                f.setSize(300, 300);
+                f.add(panel);
+                f.setVisible(true);
+            }
+        }
     }
 }
 
