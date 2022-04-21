@@ -14,7 +14,7 @@ public class MainMenu extends JFrame implements Runnable {
     private JButton play;
     private JComboBox playerSelection;
 
-    public MainMenu(Player[] players) {
+    public MainMenu() {
         setTitle("MAXXGuI");
         setLayout(new FlowLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);

@@ -6,6 +6,8 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class GameBoard extends JFrame {
     private Field[][] boardFields = new Field[8][8];
@@ -13,6 +15,7 @@ public class GameBoard extends JFrame {
     private double boardSum;
     private static int programCount;
     private int playerCount = 0;
+    private int selected = 0;
 
     public GameBoard(int pPlayerNumber) {
 
@@ -131,8 +134,70 @@ public class GameBoard extends JFrame {
         for (int t = 0; t < 8; t++) {
             for (int z = 0; z < 8; z++) {
                 add(boardFields[t][z]);
-                boardFields[t][z].addMouseListener(new MAXX(players, playerCount));
+                boardFields[t][z].addMouseListener(mouseAdapter);
             }
         }
     }
+
+    MouseAdapter mouseAdapter = new MouseAdapter() {
+        public void mouseReleased(MouseEvent e) {
+            //NORTH WEST MOVE
+            if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1
+                    && ((Field) e.getComponent()).freeField)
+            {
+                players[selected].northWest();///
+                players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
+                selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);///
+            }
+            //SOUTH WEST MOVE
+            else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1
+                    && ((Field) e.getComponent()).freeField)
+            {
+                players[selected].southWest();///
+                players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
+                selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);///
+            }
+            //SOUTH EAST MOVE
+            else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1
+                    && ((Field) e.getComponent()).freeField)
+            {
+                players[selected].southEast();///
+                players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
+                selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);///
+            }
+            //NORTH EAST MOVE
+            else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1
+                    && ((Field) e.getComponent()).freeField)
+            {
+                players[selected].northEast();///
+                players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
+                selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);///
+            }
+            //SPECIAL MOVE
+            else if (( (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() && selected == 2)/*third player*/
+                    || (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() && selected == 3)/*fourth player*/
+                    || (players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1 && players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() && selected == 0)/*first player*/
+                    || (players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1 && players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() && selected == 1))/*second player*/
+                    && ((Field) e.getComponent()).freeField)
+            {
+                players[selected].special();///
+                players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
+                selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);///
+            }
+            else//When the player gives something that he cant do
+                System.out.println("Das darf deine Figur nicht!");
+
+            if (players[selected].player_value.intValue() == 4 / playerCount) {
+                JFrame f = new JFrame();
+                JPanel panel = new JPanel();
+                JTextArea win = new JTextArea("Herzlichen Glückwunsch der " + players[selected].toString()
+                        + "  Spieler hat mit " + players[selected].player_value.doubleValue() + " Punkten gewonnen!\n");
+                panel.add(win);
+                f.setSize(300, 300);
+                f.add(panel);
+                f.setVisible(true);
+                System.out.println("Win happened!");
+            }
+        }
+    };
 }
