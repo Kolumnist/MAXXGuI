@@ -1,3 +1,5 @@
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.math.BigInteger;
 
 /*
@@ -5,7 +7,7 @@ import java.math.BigInteger;
 * @version 1 20.12.2021
 * @author Michel Jouaux, Collin Hoss, Lara Mangi
 */
-public class Player implements PlayerEvent {
+public class Player implements PlayerEvent, MouseListener {
 
     public Fraction player_value;//Value is 0 in the beginning and who has 42 first wins
     public final byte player_ID;//for identification of the characters: 1 = white , 2 = black , 3 = red, 4 = yellow
@@ -123,32 +125,55 @@ public class Player implements PlayerEvent {
     }
 
     @Override
+    public void mouseEntered(MouseEvent e)
+    {
+
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e)
+    {
+        onPlayerMoves((Field)e.getComponent(), (Field)e.getComponent());
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {}
+
+    @Override
+    public void mouseReleased(MouseEvent e) {}
+
+    @Override
+    public void mouseExited(MouseEvent e) {}
+
+
+
+    @Override
     public void onButtonClick(Player player, Field field)
     {
-        if(player.getX_pos() == field.getX()+1 && player.getY_pos() == by_pos+1)
+        if(player.getX_pos() == field.getX()+1 && player.getY_pos() == field.getY()+1)
         {
             player.northWest();
-            player.player_value.add(this.value);
+            player.player_value.add(field.fieldValue);
         }
-        else if(player.getX_pos() == bx_pos-1 && player.getY_pos() == by_pos+1)
+        else if(player.getX_pos() == field.getX()-1 && player.getY_pos() == field.getY()+1)
         {
             player.southWest();
-            player.player_value.add(this.value);
+            player.player_value.add(field.fieldValue);
         }
-        else if(player.getX_pos() == bx_pos-1 && player.getY_pos() == by_pos-1)
+        else if(player.getX_pos() == field.getX()-1 && player.getY_pos() == field.getY()-1)
         {
             player.southEast();
-            player.player_value.add(this.value);
+            player.player_value.add(field.fieldValue);
         }
-        else if(player.getX_pos() == bx_pos+1 && player.getY_pos() == by_pos-1)
+        else if(player.getX_pos() == field.getX()+1 && player.getY_pos() == field.getY()-1)
         {
             player.northEast();
-            player.player_value.add(this.value);
+            player.player_value.add(field.fieldValue);
         }
         else if()
         {
             player.special();
-            player.player_value.add(this.value);
+            player.player_value.add(field.fieldValue);
         }
         else
             System.out.println("\n  Das darf deine Figur nicht!");
