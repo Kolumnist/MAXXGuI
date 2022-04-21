@@ -13,7 +13,7 @@ public class Field extends JButton {
     private Random rnd = new Random();
     private int positionX, positionY;
     private BigInteger numerator, denominator;
-    private Fraction fieldValue = new Fraction(new BigInteger("0"), new BigInteger("1"));
+    public Fraction fieldValue = new Fraction(new BigInteger("0"), new BigInteger("1"));
     private boolean notInteger = false;
 
     public Field(int pPositionX, int pPositionY) {

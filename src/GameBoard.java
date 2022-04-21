@@ -17,10 +17,18 @@ public class GameBoard extends JFrame {
 		setSize(500, 500);
 		setTitle("MaXX" + (count++));
 
+
+
 		for(int j = 0; j < 8; j++){
 			for(int k = 0; k < 8; k++){
-				boardFields[j][k] = new Field();
-				g.add(boardFields[j][k]);
+				if((j==2&&k==2) || (j==2&&k==5) || (j==5&&k==2) || (j==5&&k==5)){
+
+				}else{
+					boardFields[j][k] = new Field(j, k);
+					add(boardFields[j][k]);
+				}
+
+
 			}
 		}
 
