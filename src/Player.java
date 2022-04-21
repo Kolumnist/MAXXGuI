@@ -88,9 +88,15 @@ public class Player {
         x_pos += x_v; y_pos += y_v;
     }
 
-    public int onPlayerMoves(Field before, Field after, int selected)//the fields get renewed and the players go to the new field
+    public int onPlayerMoves(Field before, Field after, int selected, int playerCount)//the fields get renewed and the players go to the new field
     {
-        if(selected == 3) selected = -1;
+        switch(playerCount)
+        {
+            case 2: selected = ((selected+1) % 2)-1;
+            case 3: selected = ((selected+1) % 3)-1;
+            case 4: selected = ((selected+1) % 4)-1;
+        }
+
         after.setPlayerOnField(this);
         this.players_field = after;
 

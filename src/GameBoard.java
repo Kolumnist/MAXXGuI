@@ -14,6 +14,7 @@ public class GameBoard extends JFrame {
     private int playerCount = 0;
 
     public GameBoard(int pPlayerNumber, Player[] pPlayer) {
+        playerCount = pPlayerNumber;
         setSize(700, 700);
         setVisible(true);
         setTitle("MaXX" + (programCount++));
@@ -126,7 +127,7 @@ public class GameBoard extends JFrame {
         for (int t = 0; t < 8; t++) {
             for (int z = 0; z < 8; z++) {
                 add(boardFields[t][z]);
-                boardFields[t][z].addMouseListener(new MAXX());
+                boardFields[t][z].addMouseListener(new MAXX(playerCount));
             }
         }
     }
