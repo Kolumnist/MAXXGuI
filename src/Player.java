@@ -43,7 +43,6 @@ public class Player {
 
     public boolean special() //Move Action that is special for every player
     {
-        System.out.println("Buh");
         switch(player_ID)
         {
             case(1):/*first Player*/
@@ -96,7 +95,7 @@ public class Player {
 
     public int onPlayerMoves(Field before, Field after, int selected)//the fields get renewed and the players go to the new field
     {
-        //if(selected == 3) selected = -1;
+        if(selected == 3) selected = -1;
         after.setPlayerOnField(this);
         this.players_field = after;
 
@@ -105,6 +104,6 @@ public class Player {
         before.setText("x");
         before.setName("x");
         before.fieldValue = new Fraction(new BigInteger("0"), new BigInteger("1"));
-        return selected;
+        return ++selected;
     }
 }

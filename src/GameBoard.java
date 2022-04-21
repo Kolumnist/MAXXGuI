@@ -83,7 +83,7 @@ public class GameBoard extends JFrame {
         Field white = new Field(2, 2, pPlayer[0]);
         Field black = new Field(5, 5, pPlayer[1]);
         Field red = new Field(2, 5, pPlayer[2]);
-        Field yellow = new Field(2, 5, pPlayer[3]);
+        Field yellow = new Field(5, 2, pPlayer[3]);
 
         //setting 2-4 player on the board and giving the players their field
         switch (pPlayerNumber) {
