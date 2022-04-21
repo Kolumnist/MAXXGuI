@@ -6,12 +6,10 @@
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class GameBoard extends JFrame {
     private Field[][] boardFields = new Field[8][8];
-    private double boardsum;
+    private double boardSum;
     private static int programCount;
     private int playerCount = 0;
 
@@ -76,10 +74,10 @@ public class GameBoard extends JFrame {
                     Field field = new Field(g, h);
                     boardFields[g][h] = field;
 
-                    boardsum += field.fieldValue.doubleValue();
+                    boardSum += field.fieldValue.doubleValue();
                 }
             }
-        } while (boardsum == 84);
+        } while (boardSum == 84);
 
         //creating the fields for the players
         Field white = new Field(2, 2, pPlayer[0]);
