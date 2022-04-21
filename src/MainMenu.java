@@ -9,21 +9,23 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainMenu extends JFrame implements Runnable, ActionListener {
+public class MainMenu extends JFrame implements Runnable {
 
     private JButton play;
     private JComboBox playerSelection;
-    private Player[] players;
+    //private Player[] players;
 
     public MainMenu(Player[] players) {
         setTitle("MAXXGuI");
         setLayout(new FlowLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
+/*
         for (Player p : players) {
             this.players = players;
         }
 
+
+ */
         // create and add JMenuBar
         JMenuBar menuBar = new JMenuBar();
         JMenu info = new JMenu("More Information");
@@ -33,7 +35,7 @@ public class MainMenu extends JFrame implements Runnable, ActionListener {
 
         //create and add JMenu
         JMenuItem manual = new JMenuItem("Manual");
-        JMenuItem close = new JMenuItem("Close all Window");
+        JMenuItem close = new JMenuItem("Close all Windows");
         info.add(manual);
         exit.add(close);
 
@@ -73,7 +75,6 @@ public class MainMenu extends JFrame implements Runnable, ActionListener {
         play.setVisible(true);
         play.setBackground(Color.LIGHT_GRAY);
         play.setLocation(650, 650);
-        play.addActionListener(this);
         add(play);
 
         //this ActionListener shows the manual
@@ -106,50 +107,21 @@ public class MainMenu extends JFrame implements Runnable, ActionListener {
             }
         });
 
-        Thread thread = new Thread(this);
+        Thread thread = new Thread(()->run());
         thread.start();
-
     }
-    public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals(play)) {
-            if (playerSelection.getSelectedIndex() == 0) {
-                GameBoard myBoard0 = new GameBoard(2, players);
-            } else if (playerSelection.getSelectedIndex() == 1) {
-                GameBoard myBoard1 = new GameBoard(3, players);
-            } else if (playerSelection.getSelectedIndex() == 2) {
-                GameBoard myBoard2 = new GameBoard(4, players);
-            }
-        }
-    }
-
 
     @Override
     public void run() {
-
-
-    }
-
-
-    public void win(Player[] p) {
-        int z = 0;
-        if (p.length == 2) {
-            z = 2;
-        } else if (p.length == 3) {
-            z = 3;
-        } else if (p.length == 4) {
-            z = 4;
-        }
-        for (int i = 0; i <= p.length; i++) {
-            if (p[i].player_ID == 84 / z) {
-                JFrame f = new JFrame();
-                JPanel panel = new JPanel();
-                JTextArea win = new JTextArea("Herzlichen Glückwunsch der " + p[i].toString() + "  Spieler hat mit " + p[i].player_value.doubleValue() + " Punkten gewonnen!\n");
-                panel.add(win);
-                f.setSize(300, 300);
-                f.add(panel);
-                f.setVisible(true);
+        play.addActionListener(e -> {
+            if (playerSelection.getSelectedIndex() == 0) {
+                GameBoard myBoard0 = new GameBoard(2);
+            } else if (playerSelection.getSelectedIndex() == 1) {
+                GameBoard myBoard1 = new GameBoard(3);
+            } else if (playerSelection.getSelectedIndex() == 2) {
+                GameBoard myBoard2 = new GameBoard(4);
             }
-        }
+        });
     }
 }
 

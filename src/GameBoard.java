@@ -6,18 +6,86 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class GameBoard extends JFrame {
     private Field[][] boardFields = new Field[8][8];
     private double boardSum;
     private static int programCount;
     private int playerCount = 0;
+    private int selected = 0;
+    public Player[] pPlayer;
 
-    public GameBoard(int pPlayerNumber, Player[] pPlayer) {
+    MouseAdapter m = new MouseAdapter() {
+        public void mouseReleased(MouseEvent e) {
+            //NORTH WEST MOVE
+            if (pPlayer[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && pPlayer[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1
+                    && ((Field) e.getComponent()).freeField)
+            {
+                pPlayer[selected].northWest();///
+                pPlayer[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
+                selected = pPlayer[selected].onPlayerMoves(pPlayer[selected].players_field, (Field) e.getComponent(), selected, playerCount);///
+            }
+            //SOUTH WEST MOVE
+            else if (pPlayer[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && pPlayer[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1
+                    && ((Field) e.getComponent()).freeField)
+            {
+                pPlayer[selected].southWest();///
+                pPlayer[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
+                selected = pPlayer[selected].onPlayerMoves(pPlayer[selected].players_field, (Field) e.getComponent(), selected, playerCount);///
+            }
+            //SOUTH EAST MOVE
+            else if (pPlayer[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && pPlayer[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1
+                    && ((Field) e.getComponent()).freeField)
+            {
+                pPlayer[selected].southEast();///
+                pPlayer[selected].player_value = pPlayer[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
+                selected = pPlayer[selected].onPlayerMoves(pPlayer[selected].players_field, (Field) e.getComponent(), selected, playerCount);///
+            }
+            //NORTH EAST MOVE
+            else if (pPlayer[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && pPlayer[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1
+                    && ((Field) e.getComponent()).freeField)
+            {
+                pPlayer[selected].northEast();///
+                pPlayer[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
+                selected = pPlayer[selected].onPlayerMoves(pPlayer[selected].players_field, (Field) e.getComponent(), selected, playerCount);///
+            }
+            //SPECIAL MOVE
+            else if (( (pPlayer[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && pPlayer[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() && selected == 2)/*third player*/
+                    || (pPlayer[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && pPlayer[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() && selected == 3)/*fourth player*/
+                    || (pPlayer[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1 && pPlayer[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() && selected == 0)/*first player*/
+                    || (pPlayer[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1 && pPlayer[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() && selected == 1))/*second player*/
+                    && ((Field) e.getComponent()).freeField)
+            {
+                pPlayer[selected].special();///
+                pPlayer[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
+                selected = pPlayer[selected].onPlayerMoves(pPlayer[selected].players_field, (Field) e.getComponent(), selected, playerCount);///
+            }
+            else//When the player gives something that he cant do
+                System.out.println("Das darf deine Figur nicht!");
+
+            if (pPlayer[selected].player_ID == 84 / playerCount) {
+                JFrame f = new JFrame();
+                JPanel panel = new JPanel();
+                JTextArea win = new JTextArea("Herzlichen Glückwunsch der " + pPlayer[selected].toString()
+                        + "  Spieler hat mit " + pPlayer[selected].player_value.doubleValue() + " Punkten gewonnen!\n");
+                panel.add(win);
+                f.setSize(300, 300);
+                f.add(panel);
+                f.setVisible(true);
+            }
+        }
+    };
+
+    public GameBoard(int pPlayerNumber) {
         playerCount = pPlayerNumber;
         setSize(700, 700);
         setVisible(true);
         setTitle("MaXX" + (programCount++));
+
+        pPlayer = new Player[]{new Player(2, 2, 'W'), new Player(5, 5, 'B'),
+                new Player(5, 2, 'R'), new Player(2, 5, 'Y')};
 
         // create and add JMenuBar
         JMenuBar menuBar = new JMenuBar();
@@ -127,7 +195,7 @@ public class GameBoard extends JFrame {
         for (int t = 0; t < 8; t++) {
             for (int z = 0; z < 8; z++) {
                 add(boardFields[t][z]);
-                boardFields[t][z].addMouseListener(new MAXX(playerCount));
+                boardFields[t][z].addMouseListener(m);
             }
         }
     }
