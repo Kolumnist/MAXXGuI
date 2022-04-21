@@ -99,7 +99,7 @@ public class GameBoard extends JFrame {
                 pPlayer[2].players_field = red;
                 boardFields[2][2] = white;
                 boardFields[5][5] = black;
-                boardFields[2][5] = red;
+                boardFields[5][2] = red;
                 break;
             case 4:
                 pPlayer[0].players_field = white;
@@ -108,8 +108,8 @@ public class GameBoard extends JFrame {
                 pPlayer[3].players_field = yellow;
                 boardFields[2][2] = white;
                 boardFields[5][5] = black;
-                boardFields[2][5] = red;
-                boardFields[5][2] = yellow;
+                boardFields[5][2] = red;
+                boardFields[2][5] = yellow;
                 break;
         }
 

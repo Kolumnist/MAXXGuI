@@ -122,11 +122,11 @@ public class MainMenu extends JFrame implements Runnable {
     public void run() {
         play.addActionListener(e -> {
             if (playerSelection.getSelectedIndex() == 0) {
-                //GameBoard myBoard0 = new GameBoard(2, players);
+                GameBoard myBoard0 = new GameBoard(2, players);
             } else if (playerSelection.getSelectedIndex() == 1) {
-                //GameBoard myBoard1 = new GameBoard(3, players);
+                GameBoard myBoard1 = new GameBoard(3, players);
             } else if (playerSelection.getSelectedIndex() == 2) {
-                //GameBoard myBoard2 = new GameBoard(4, players);
+                GameBoard myBoard2 = new GameBoard(4, players);
             }
         });
     }

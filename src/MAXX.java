@@ -17,25 +17,25 @@ public class MAXX implements MouseListener {
                 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1
                 && ((Field) e.getComponent()).freeField)
         {
-            players[selected].northWest();
-            players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
-            selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected);
+            players[selected].northWest();///
+            players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
+            selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected);///
         }
         else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() - 1
                 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1
                 && ((Field) e.getComponent()).freeField)
         {
-            players[selected].southWest();
-            players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
-            selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected );
+            players[selected].southWest();///
+            players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
+            selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected );///
         }
         else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() - 1
                 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1
                 && ((Field) e.getComponent()).freeField)
         {
-            players[selected].southEast();
-            players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
-            selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected);
+            players[selected].southEast();///
+            players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
+            selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected);///
         }
         else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1
                 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1
@@ -45,11 +45,13 @@ public class MAXX implements MouseListener {
             players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
             selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected);///
         }
-        /*else if (players[selected].special() && ((Field) e.getComponent()).freeField)
+        else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX()
+                && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() && players[selected].getX_pos() == ((Field) e.getComponent()).getPositionY()
+                && ((Field) e.getComponent()).freeField)
         {
             players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
             players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent(), selected);///
-        }*/
+        }
         else//When the player gives something that he cant do
             System.out.println("Das darf deine Figur nicht!");
     }
@@ -57,7 +59,7 @@ public class MAXX implements MouseListener {
     public static void main(String[] args)
     {
         players = new Player[]{new Player(2, 2, 'W'), new Player(5, 5, 'B'),
-                new Player(5, 2, 'Y'), new Player(2, 5, 'R')};
+                new Player(5, 2, 'R'), new Player(2, 5, 'Y')};
         mm = new MainMenu(players);
     }
     /*if (p.player_value.intValue() >= (84 / playerNumber)) {
@@ -70,7 +72,6 @@ public class MAXX implements MouseListener {
             }
 
          ("Spieler" + p.toString() + " gebe einen Befehl für deinen Zug ein.");
-    //System.out.print("Dieses Programm schließt sich jetzt auf euer Geheiß hin");
     */
 
     @Override
