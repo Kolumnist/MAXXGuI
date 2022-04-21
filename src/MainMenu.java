@@ -20,8 +20,7 @@ public class MainMenu extends JFrame implements Runnable {
         setLayout(new FlowLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        for(Player p : players)
-        {
+        for (Player p : players) {
             this.players = players;
         }
 
@@ -83,12 +82,15 @@ public class MainMenu extends JFrame implements Runnable {
 
             JTextArea manual1 = new JTextArea("Hallo! Herzlich willkommen zu 'MAXX'!"
                     + "\nIn unserem Spiel können vier Spieler abwechselnd miteinander spielen. Diese Spieler sind als 'black', 'white', 'red' und 'yellow' konfiguriert."
-                    + "\nAlle Spieler haben einen Spielstein, welchen sie auf dem Spielfeld hin und her bewegen können."
-                    + "\n\nAber Achtung!!"
-                    + "\nDer Spielstein kann nur in 4 bestimmte Richtungen bewegt werden. Nämlich nach: 'NW' 'NO' 'SO' und 'SW'."
-                    + "\nZudem hat jeder Spieler noch einen special move, welcher dem Schwarzen Spieler erlaubt seinen Spielstein nach rechts zu bewegen, "
-                    + "\ndem weißen Spieler ist es erlaubt, seinen nach links zu bewegen, der rote Spieler kann seinen nach oben und der gelbe Spieler seinen nach unten bewegen."
-                    + "\nDieser move wird unter 'SPECIAL' abgerufen!"
+                    + "\nAlle Spieler fangen an einem unterschiedlichen Punkt des Spielfeldes an."
+                    + "\nZiel des Spieles ist es, so viele Punkte wie möglich abzustauben."
+                    + "\nDie Punkte setzen sich aus den Brüchen in den insgesamt 60-62 Buttons zusammen."
+                    + "\nDamit der Spieler auf einen Button springen kann, muss einfacherweise nur auf den Button geklickt werden."
+                    + "\n\nABER ACHTUNG!"
+                    + "\nDie Spieler können sich nur schräg über das Spielfeld bewegen."
+                    + "\n Desweiteren gibt es noch einen SPECIAL MOVE, welcher den Spieler eine bestimmte Bewegung ermöglicht, die den anderen Spielern nicht vergönnt ist."
+                    + "\nSo kann sich der weiße Spieler beispielsweise mithilfe des SPECIAL MOVES nach links bewegen, der rote Spieler kann sich nach oben und der gelbe Spieler nach unten bewegen."
+                    + "\n\n
                     + "\nGewinner des Spiels ist derjenige, der mehr oder gleich 42 Punkte hat!\n");
             panel.add(manual1);
             myJFrame.setSize(900, 300);
@@ -105,11 +107,11 @@ public class MainMenu extends JFrame implements Runnable {
 
         play.addActionListener(e -> {
             if (playerSelection.getSelectedIndex() == 0) {
-                GameBoard myBoard0 = new GameBoard(2,players);
+                GameBoard myBoard0 = new GameBoard(2, players);
             } else if (playerSelection.getSelectedIndex() == 1) {
-                GameBoard myBoard1 = new GameBoard(3,players);
+                GameBoard myBoard1 = new GameBoard(3, players);
             } else if (playerSelection.getSelectedIndex() == 2) {
-                GameBoard myBoard2 = new GameBoard(4,players);
+                GameBoard myBoard2 = new GameBoard(4, players);
             }
         });
         Thread thread = new Thread(this);
