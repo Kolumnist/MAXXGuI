@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainMenu extends JFrame implements Runnable, ActionListener {
+public class MainMenu extends JFrame implements Runnable {
 
     private JButton play;
     private JComboBox playerSelection;
@@ -73,7 +73,6 @@ public class MainMenu extends JFrame implements Runnable, ActionListener {
         play.setVisible(true);
         play.setBackground(Color.LIGHT_GRAY);
         play.setLocation(650, 650);
-        play.addActionListener(this);
         add(play);
 
         //this ActionListener shows the manual
@@ -99,6 +98,18 @@ public class MainMenu extends JFrame implements Runnable, ActionListener {
             myJFrame.setVisible(true);
         });
 
+        play.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (playerSelection.getSelectedIndex() == 0) {
+                    GameBoard myBoard0 = new GameBoard(2, players);
+                } else if (playerSelection.getSelectedIndex() == 1) {
+                    GameBoard myBoard1 = new GameBoard(3, players);
+                } else if (playerSelection.getSelectedIndex() == 2) {
+                    GameBoard myBoard2 = new GameBoard(4, players);
+                }
+            }
+        });
+
         //this ActionListener close the whole program
         close.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -110,8 +121,10 @@ public class MainMenu extends JFrame implements Runnable, ActionListener {
         thread.start();
 
     }
-    public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals(play)) {
+
+    @Override
+    public void run() {
+        play.addActionListener(e -> {
             if (playerSelection.getSelectedIndex() == 0) {
                 GameBoard myBoard0 = new GameBoard(2, players);
             } else if (playerSelection.getSelectedIndex() == 1) {
@@ -119,13 +132,7 @@ public class MainMenu extends JFrame implements Runnable, ActionListener {
             } else if (playerSelection.getSelectedIndex() == 2) {
                 GameBoard myBoard2 = new GameBoard(4, players);
             }
-        }
-    }
-
-
-    @Override
-    public void run() {
-
+        });
 
     }
 
@@ -152,4 +159,11 @@ public class MainMenu extends JFrame implements Runnable, ActionListener {
         }
     }
 }
+
+
+    /*    if (player_value.intValue() >= (84 / 2)) {
+            System.out.println("Herzlichen Glückwunsch der" + p.toString() + "  Spieler hat mit " + p.player_value.doubleValue() + " Punkten gewonnen!");
+            repeat = false;
+        }*/
+
 
