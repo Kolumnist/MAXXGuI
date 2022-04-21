@@ -8,21 +8,21 @@ import java.math.BigInteger;
 public class Player {
 
     public Fraction player_value;//Value is 0 in the beginning and who has 42 first wins
-    public final byte character;//for identification of the characters: 1 = white , 2 = black , 3 = red, 4 = yellow
+    public final byte player_ID;//for identification of the characters: 1 = white , 2 = black , 3 = red, 4 = yellow
+    private char name; //for the playing field
 
-    private int x_pos = 0, y_pos = 0; //position of the character
+    private int px_pos = 0, py_pos = 0; //position of the character
     private int x_v, y_v; //vector movement variables
 
     private static byte identifier = 1; // helps with the identification of a created character
-    private char name; //for the playing field
 
-    public Player(int x_pos, int y_pos, char name)//Constructor for Player, it needs a position and a name(black/white etc.)
+    public Player(int px_pos, int py_pos, char name)//Constructor for Player, it needs a position and a name(black/white etc.)
     {
-        this.x_pos = x_pos;
-        this.y_pos = y_pos;
+        this.px_pos = px_pos;
+        this.py_pos = py_pos;
         this.name = name;
 
-        character = identifier++;//sets character to identifier and then counts the identifier up
+        player_ID = identifier++;//sets character to identifier and then counts the identifier up
         player_value = new Fraction(new BigInteger("0"), new BigInteger("1"));
     }
 
@@ -31,12 +31,12 @@ public class Player {
         return " " + name;
     }
 
-    public int getX_pos() {
-        return x_pos;
+    public int getPX_pos() {
+        return px_pos;
     }
 
-    public int getY_pos() {
-        return y_pos;
+    public int getPY_pos() {
+        return py_pos;
     }
 
     public int getX_v() {
@@ -49,38 +49,38 @@ public class Player {
 
     public void resetTurn()
     {
-        x_pos -= x_v;
-        y_pos -= y_v;
+        px_pos -= x_v;
+        py_pos -= y_v;
     }
 
     private void special() //Move Action that is special for every player
     {
-        if (character%4 == 1 && x_pos != 7) {/*first Player*/
+        if (character%4 == 1 && px_pos != 7) {/*first Player*/
             x_v = 0;
             y_v = 1;
-            x_pos += x_v;
-            y_pos += y_v;
-        } else if (character%4 == 2 && x_pos != 0) {/*second Player*/
+            px_pos += x_v;
+            py_pos += y_v;
+        } else if (character%4 == 2 && px_pos != 0) {/*second Player*/
             x_v = 0;
             y_v = -1;
-            x_pos += x_v;
-            y_pos += y_v;
-        } else if (character%4 == 3 && y_pos != 7) {/*third Player*/
+            px_pos += x_v;
+            py_pos += y_v;
+        } else if (character%4 == 3 && py_pos != 7) {/*third Player*/
             x_v = 1;
             y_v = 0;
-            x_pos += x_v;
-            y_pos += y_v;
-        } else if (character%4 == 0 && y_pos != 0) {/*fourth Player*/
+            px_pos += x_v;
+            py_pos += y_v;
+        } else if (character%4 == 0 && py_pos != 0) {/*fourth Player*/
             x_v = -1;
             y_v = 0;
-            x_pos += x_v;
-            y_pos += y_v;
+            px_pos += x_v;
+            py_pos += y_v;
         }
         else{
             x_v = 0;
             y_v = 0;
-            x_pos += x_v;
-            y_pos += y_v;
+            px_pos += x_v;
+            py_pos += y_v;
         }
     }
 
@@ -88,31 +88,31 @@ public class Player {
     {
         x_v = -1;
         y_v = -1;
-        x_pos += x_v;
-        y_pos += y_v;
+        px_pos += x_v;
+        py_pos += y_v;
     }
 
     public void northEast() /*Northeast movement*/
     {
         x_v = -1;
         y_v = 1;
-        x_pos += x_v;
-        y_pos += y_v;
+        px_pos += x_v;
+        py_pos += y_v;
     }
 
     public void southWest() /*Southwest movement*/
     {
         x_v = 1;
         y_v = -1;
-        x_pos += x_v;
-        y_pos += y_v;
+        px_pos += x_v;
+        py_pos += y_v;
     }
 
     public void southEast() /*Southeast movement*/
     {
         x_v = 1;
         y_v = 1;
-        x_pos += x_v;
-        y_pos += y_v;
+        px_pos += x_v;
+        py_pos += y_v;
     }
 }

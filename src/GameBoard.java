@@ -77,8 +77,8 @@ public class GameBoard {
 		//Drawing the players into the board
 		fraction = new Fraction(new BigInteger("0"),new BigInteger("1"));
 		for(int k = 0; k < pPlayer.length; k++) {
-			board[pPlayer[k].getX_pos()][pPlayer[k].getY_pos()] = pPlayer[k].toString();
-			fractionBoard[pPlayer[k].getX_pos()][pPlayer[k].getY_pos()] = fraction;
+			board[pPlayer[k].getX_pos()][pPlayer[k].getPy_pos()] = pPlayer[k].toString();
+			fractionBoard[pPlayer[k].getX_pos()][pPlayer[k].getPy_pos()] = fraction;
 		}
 	}
 
@@ -111,10 +111,10 @@ public class GameBoard {
 		}
 		//Drawing the players into the board
 		fraction = new Fraction(new BigInteger("0"),new BigInteger("1"));
-		board[pPlayer1.getX_pos()][pPlayer1.getY_pos()] = pPlayer1.toString();
-		fractionBoard[pPlayer1.getX_pos()][pPlayer1.getY_pos()] = fraction;
-		board[pPlayer2.getX_pos()][pPlayer2.getY_pos()] = pPlayer2.toString();
-		fractionBoard[pPlayer2.getX_pos()][pPlayer2.getY_pos()] = fraction;
+		board[pPlayer1.getX_pos()][pPlayer1.getPy_pos()] = pPlayer1.toString();
+		fractionBoard[pPlayer1.getX_pos()][pPlayer1.getPy_pos()] = fraction;
+		board[pPlayer2.getX_pos()][pPlayer2.getPy_pos()] = pPlayer2.toString();
+		fractionBoard[pPlayer2.getX_pos()][pPlayer2.getPy_pos()] = fraction;
 	}
 
 	//Creates the board with fractions and four players
@@ -146,22 +146,22 @@ public class GameBoard {
 		}
 		//Drawing the players into the board
 		fraction = new Fraction(new BigInteger("0"),new BigInteger("1"));
-		board[pPlayer1.getX_pos()][pPlayer1.getY_pos()] = pPlayer1.toString();
-		fractionBoard[pPlayer1.getX_pos()][pPlayer1.getY_pos()] = fraction;
+		board[pPlayer1.getX_pos()][pPlayer1.getPy_pos()] = pPlayer1.toString();
+		fractionBoard[pPlayer1.getX_pos()][pPlayer1.getPy_pos()] = fraction;
 		
-		board[pPlayer2.getX_pos()][pPlayer2.getY_pos()] = pPlayer2.toString();
-		fractionBoard[pPlayer2.getX_pos()][pPlayer2.getY_pos()] = fraction;
+		board[pPlayer2.getX_pos()][pPlayer2.getPy_pos()] = pPlayer2.toString();
+		fractionBoard[pPlayer2.getX_pos()][pPlayer2.getPy_pos()] = fraction;
 		
-		board[pPlayer3.getX_pos()][pPlayer3.getY_pos()] = pPlayer3.toString();
-		fractionBoard[pPlayer3.getX_pos()][pPlayer3.getY_pos()] = fraction;
+		board[pPlayer3.getX_pos()][pPlayer3.getPy_pos()] = pPlayer3.toString();
+		fractionBoard[pPlayer3.getX_pos()][pPlayer3.getPy_pos()] = fraction;
 		
-		board[pPlayer4.getX_pos()][pPlayer4.getY_pos()] = pPlayer4.toString();
-		fractionBoard[pPlayer4.getX_pos()][pPlayer4.getY_pos()] = fraction;
+		board[pPlayer4.getX_pos()][pPlayer4.getPy_pos()] = pPlayer4.toString();
+		fractionBoard[pPlayer4.getX_pos()][pPlayer4.getPy_pos()] = fraction;
 	}
 
 	//Sets the player on his new position on the board and adds the fraction to his value
 	public void setPlayer(Player player) {
-		playerPosY = player.getY_pos();
+		playerPosY = player.getPy_pos();
 		playerPosX = player.getX_pos();
 
 		board[playerPosX][playerPosY] = player.toString();
