@@ -1,7 +1,8 @@
-/**This is a class for fractions which inherits form Number.
-* @version 1 22.11.2021
-* @author Michel Jouaux, Collin Hoss, Lara Mangi
-*/
+/**
+ * @author Michel Jouaux, Collin Hoss, Lara Mangi
+ * @Matrikelnummer: 212455 [mjouaux], 212848 [choss], 212467 [lmangi]
+ * @version 2 21.04.2022
+ */
 import java.math.*;
 
 public class Fraction extends Number implements Comparable {
