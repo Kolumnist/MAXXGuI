@@ -127,7 +127,7 @@ public class GameBoard extends JFrame {
         for (int t = 0; t < 8; t++) {
             for (int z = 0; z < 8; z++) {
                 add(boardFields[t][z]);
-                boardFields[t][z].addMouseListener(new MAXX(playerCount));
+                boardFields[t][z].addMouseListener(new MAXX(playerCount, players));
             }
         }
     }

@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="90f7b3b1-23da-4309-85c2-9ae872df7694" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/MAXX.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/MAXX.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/MainMenu$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/MainMenu$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/MainMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/MainMenu.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MAXX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MAXX.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

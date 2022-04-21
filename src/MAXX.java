@@ -14,9 +14,10 @@ public class MAXX implements MouseListener {
 
     public int playerCount;
 
-    public MAXX(int playerCount)
+    public MAXX(Player[] players, int playerCount)
     {
         this.playerCount = playerCount;
+        this.players = players;
     }
 
     public void mouseReleased(MouseEvent e) {
@@ -81,8 +82,6 @@ public class MAXX implements MouseListener {
 
     public static void main(String[] args)
     {
-        players = new Player[]{new Player(2, 2, 'W'), new Player(5, 5, 'B'),
-                new Player(5, 2, 'R'), new Player(2, 5, 'Y')};
         mm = new MainMenu(players);
     }
 
