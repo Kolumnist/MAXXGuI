@@ -15,7 +15,7 @@ public class MAXX implements MouseListener {
                                       new Player(5, 2, 'R'), new Player(2, 5, 'Y')};
     public static MainMenu mm; // gameboard object
 
-    public void mouseClicked(MouseEvent e) {
+    public void mouseReleased(MouseEvent e) {
         if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() + 1
                 && players[selected].getY_pos() == ((Field) e.getComponent()).getY() + 1)
         {
@@ -74,7 +74,7 @@ public class MAXX implements MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {}
     @Override
-    public void mouseReleased(MouseEvent e) {}
+    public void mouseClicked(MouseEvent e) {}
     @Override
     public void mouseEntered(MouseEvent e) {}
     @Override
