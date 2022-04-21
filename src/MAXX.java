@@ -2,6 +2,7 @@
  * @version 1 20.12.2021
  * @author Michel Jouaux, Collin Hoss, Lara Mangi
  */
+import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -64,6 +65,17 @@ public class MAXX implements MouseListener {
         }
         else//When the player gives something that he cant do
             System.out.println("Das darf deine Figur nicht!");
+
+        if (players[selected].player_ID == 84 / playerCount) {
+            JFrame f = new JFrame();
+            JPanel panel = new JPanel();
+            JTextArea win = new JTextArea("Herzlichen Glückwunsch der " + players[selected].toString()
+                    + "  Spieler hat mit " + players[selected].player_value.doubleValue() + " Punkten gewonnen!\n");
+            panel.add(win);
+            f.setSize(300, 300);
+            f.add(panel);
+            f.setVisible(true);
+        }
     }
 
     public static void main(String[] args)
