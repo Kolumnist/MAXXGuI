@@ -4,26 +4,37 @@
  * @version 1 21.04.2022
  */
 
+import javax.swing.*;
 import java.awt.*;
 import java.math.BigInteger;
 import java.util.Random;
 
-public class Field {
+public class Field extends JButton {
     private Random rnd = new Random();
+    private int postionX, postionY;
     private BigInteger numerator, denominator;
     private Fraction fieldValue = new Fraction(new BigInteger("0"), new BigInteger("1"));
-    private Color playerColor;
     private boolean notInteger = false;
+<<<<<<< Updated upstream
     private EventHandler button;
 
     public Field(){
         button = new EventHandler(createValue());
         button.setSize(10, 10);
+=======
+    //private JButton field;
+
+    public Field(){
+        setName(createValue());
+        setSize(10, 10);
+        setVisible(true);
+>>>>>>> Stashed changes
     }
 
     public void setPlayerOnField(Player pPlayer){
         switch (pPlayer.toString()){
             case "w":
+<<<<<<< Updated upstream
                 button = new EventHandler("w");
                 playerColor = Color.WHITE;
                 break;
@@ -38,6 +49,22 @@ public class Field {
             case "y":
                 button = new EventHandler("y");
                 playerColor = Color.YELLOW;
+=======
+                setName("w");
+                setBackground(Color.WHITE);
+                break;
+            case "b":
+                setName("b");
+                setBackground(Color.BLACK);
+                break;
+            case "r":
+                setName("r");
+                setBackground(Color.RED);
+                break;
+            case "y":
+                setName("y");
+                setBackground(Color.YELLOW);
+>>>>>>> Stashed changes
                 break;
         }
     }
@@ -60,13 +87,5 @@ public class Field {
             }
         }
         return fieldValue.toString();
-    }
-    
-    public Fraction getFieldValue(){
-        return fieldValue;
-    }
-
-    public void setFieldValue(Fraction pValue){
-        fieldValue = pValue;
     }
 }
