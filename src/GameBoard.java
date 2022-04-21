@@ -70,16 +70,23 @@ public class GameBoard extends JFrame {
         //this nested for-loop creates fields and puts them into "boardFields"
         for (int g = 0; g < 8; g++){
             for (int h = 0; h < 8; h++){
-                Field f = new Field(g,h);
-                boardFields[g][h] = f;
+                Field field = new Field(g,h);
+                boardFields[g][h] = field;
             }
         }
 
+        //creating the fields for the players
         Field white = new Field(2,2,pPlayer[0]);
         Field black = new Field(5,5,pPlayer[1]);
         Field red = new Field(2,5,pPlayer[2]);
         Field yellow = new Field(2,5,pPlayer[3]);
+        //giving the playerfield to the player
+        pPlayer[0].players_field = white;
+        pPlayer[1].players_field = black;
+        pPlayer[2].players_field = red;
+        pPlayer[3].players_field = yellow;
 
+        //setting 2-4 player on the board
         switch (pPlayerNumber){
             case 2:
                 boardFields[2][2] = white;
