@@ -14,42 +14,48 @@ public class MAXX implements MouseListener {
 
     public void mouseReleased(MouseEvent e) {
 
-        if(( (Field)e.getComponent()) == players[selected].players_field)
-        if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() + 1
-                && players[selected].getY_pos() == ((Field) e.getComponent()).getY() + 1)
+        if(e.getComponent() != players[0].players_field && e.getComponent() != players[1].players_field
+                && e.getComponent() != players[2].players_field && e.getComponent() != players[3].players_field)
         {
-            players[selected].northWest();
-            players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
-            players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent(), selected);
+            if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() + 1
+                    && players[selected].getY_pos() == ((Field) e.getComponent()).getY() + 1)
+            {
+                players[selected].northWest();
+                players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
+                players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent(), selected);
+            }
+            else if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() - 1
+                    && players[selected].getY_pos() == ((Field) e.getComponent()).getY() + 1)
+            {
+                players[selected].southWest();
+                players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
+                players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent(), selected);
+            }
+            else if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() - 1
+                    && players[selected].getY_pos() == ((Field) e.getComponent()).getY() - 1)
+            {
+                players[selected].southEast();
+                players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
+                players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent(), selected);
+            }
+            else if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() + 1
+                    && players[selected].getY_pos() == ((Field) e.getComponent()).getY() - 1)
+            {
+                players[selected].northEast();///
+                players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
+                players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent(), selected);///
+            }
+            else if (players[selected].special()) //checks if the special action is allowed
+            {
+                players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
+                players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent(), selected);///
+            }
+            else//When the player gives something that he cant do
+                System.out.println("Das darf deine Figur nicht!");
         }
-        else if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() - 1
-                && players[selected].getY_pos() == ((Field) e.getComponent()).getY() + 1)
-        {
-            players[selected].southWest();
-            players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
-            players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent(), selected);
+        else{
+            System.out.println("Du kannst keine Spieler zerstampfen!");
         }
-        else if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() - 1
-                && players[selected].getY_pos() == ((Field) e.getComponent()).getY() - 1)
-        {
-            players[selected].southEast();
-            players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
-            players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent(), selected);
-        }
-        else if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() + 1
-                && players[selected].getY_pos() == ((Field) e.getComponent()).getY() - 1)
-        {
-            players[selected].northEast();///
-            players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
-            players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent(), selected);///
-        }
-        else if (players[selected].special()) //checks if the special action is allowed
-        {
-            players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
-            players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent(), selected);///
-        }
-        else//When the player gives something that he cant do
-            System.out.println("Das darf deine Figur nicht!");
     }
 
     public static void main(String[] args)

@@ -102,6 +102,6 @@ public class Player {
         before.setText("x");
         before.setName("x");
         before.fieldValue = new Fraction(new BigInteger("0"), new BigInteger("1"));
-        return selected++;
+        return ++selected;
     }
 }
