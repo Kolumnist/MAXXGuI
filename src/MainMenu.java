@@ -1,9 +1,12 @@
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainMenu extends JFrame {
+
+    private String player;
 
     public MainMenu() {
         setTitle("MAXXGuI");
@@ -92,9 +95,14 @@ public class MainMenu extends JFrame {
 
         play.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
+                if (playerSelection.getSelectedIndex() == 0) {
+                    GameBoard myBoard = new GameBoard(2);
+                } else if (playerSelection.getSelectedIndex() == 1) {
+                    GameBoard myBoard = new GameBoard(3);
+                } else if (playerSelection.getSelectedIndex() == 2) {
+                    GameBoard myBoard = new GameBoard(4);
+                }
             }
-
         });
     }
 
@@ -105,4 +113,3 @@ public class MainMenu extends JFrame {
         //thread erstellen-> damit mehrere Fenster unabhängig voneinander geöffnet werden können
     }
 }
-
