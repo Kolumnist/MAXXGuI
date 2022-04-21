@@ -30,7 +30,7 @@ public class Player {
 
     public String toString()//gives only the name of the player as string
     {
-        return " " + name;
+        return name+"";
     }
 
     public int getX_pos() {
@@ -109,6 +109,7 @@ public class Player {
         after.setPlayerOnField(this);
 
         before.setBackground(Color.cyan);
+        before.setText("x");
         before.setName("x");
         before.fieldValue = new Fraction(new BigInteger("0"), new BigInteger("1"));
         return selected++;
