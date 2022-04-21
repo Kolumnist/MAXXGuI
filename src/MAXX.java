@@ -13,8 +13,7 @@ public class MAXX implements MouseListener {
 
     public static Player[] players = {new Player(2, 2, 'W'), new Player(5, 5, 'B'),
                                       new Player(5, 2, 'R'), new Player(2, 5, 'Y')};
-
-    public static MainMenu mm = new MainMenu(players); // gameboard object
+    public static MainMenu mm; // gameboard object
 
     public void mouseClicked(MouseEvent e) {
         if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() + 1
@@ -54,33 +53,21 @@ public class MAXX implements MouseListener {
             System.out.println("Das darf deine Figur nicht!");
     }
 
-    public static void main(String[] args) throws Exception {
-
-        gb.createBoard(players);
-        gb.drawBoard();
-
-        while (repeat) {
-            for (int i = 0; i < playerNumber && repeat; i++) {
-                phase(players[i]);
-            }
-            for (Player value : players) {
-                System.out.println("Spieler: " + value.toString() + " hat " + value.player_value + " Punkte.");
-            }
-        }
-    }
-
-}
-
-    // this method organizate the whole game history: With this method a player can walk/ he can stop the game or the method prints the victory of an player
-    public static void phase(Player p) throws InterruptedException
+    public static void main(String[] args) throws Exception
     {
-        s = readString("Spieler" + p.toString() + " gebe einen Befehl für deinen Zug ein.");
-    }
+        mm = new MainMenu(players);
 
+    }
     /*if (p.player_value.intValue() >= (84 / playerNumber)) {
         System.out.println("Herzlichen Glückwunsch der" + p.toString() + "  Spieler hat mit " + p.player_value.doubleValue() + " Punkten gewonnen!");
         repeat = false;
         }
+
+         for (Player value : players) {
+                System.out.println("Spieler: " + value.toString() + " hat " + value.player_value + " Punkte.");
+            }
+
+         ("Spieler" + p.toString() + " gebe einen Befehl für deinen Zug ein.");
     //System.out.print("Dieses Programm schließt sich jetzt auf euer Geheiß hin");
     */
 

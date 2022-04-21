@@ -17,10 +17,10 @@ public class Player {
     private int x_v, y_v; //vector movement variables
 
 
-    public Player(int px_pos, int py_pos, char name)//Constructor for Player, it needs a position and a name(black/white etc.)
+    public Player(int x_pos, int y_pos, char name)//Constructor for Player, it needs a position and a name(black/white etc.)
     {
-        this.x_pos = px_pos;
-        this.y_pos = py_pos;
+        this.x_pos = x_pos;
+        this.y_pos = y_pos;
         this.name = name;
 
         player_ID = identifier++;//sets character to identifier and then counts the identifier up
