@@ -147,48 +147,10 @@ public class Player implements PlayerEvent, MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {}
 
-
-
-    @Override
-    public void onButtonClick(Player player, Field field)
-    {
-        if(player.getX_pos() == field.getX()+1 && player.getY_pos() == field.getY()+1)
-        {
-            player.northWest();
-            player.player_value.add(field.fieldValue);
-        }
-        else if(player.getX_pos() == field.getX()-1 && player.getY_pos() == field.getY()+1)
-        {
-            player.southWest();
-            player.player_value.add(field.fieldValue);
-        }
-        else if(player.getX_pos() == field.getX()-1 && player.getY_pos() == field.getY()-1)
-        {
-            player.southEast();
-            player.player_value.add(field.fieldValue);
-        }
-        else if(player.getX_pos() == field.getX()+1 && player.getY_pos() == field.getY()-1)
-        {
-            player.northEast();
-            player.player_value.add(field.fieldValue);
-        }
-        else if()
-        {
-            player.special();
-            player.player_value.add(field.fieldValue);
-        }
-        else
-            System.out.println("\n  Das darf deine Figur nicht!");
-        //When the player gives something that he cant do
-
-
-    }
-
     @Override
     public void onPlayerMoves(Field before, Field after)//the fields get renewed and the players go to the new field
     {
         after.setPlayerOnField(this);
-        after.setBackground(this.color);
 
         before.setBackground(Color.cyan);
         before.setName("x");

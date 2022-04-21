@@ -1,3 +1,5 @@
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Scanner;
 
 /*
@@ -5,13 +7,48 @@ import java.util.Scanner;
  * @version 1 20.12.2021
  * @author Michel Jouaux, Collin Hoss, Lara Mangi
  */
-public class MAXX {
+public class MAXX implements MouseListener {
 
     public static Scanner sc = new Scanner(System.in); // create a scanner, so people can enter a text by the keyboard
     public static GameBoard gb = new GameBoard(8, 8); // gameboard object
     public static int playerNumber = 2;  // create a player number -> at the beginn no players are selected so the number is 0
     public static boolean repeat = true; // create a boolean variable
     public static String s;  // create a String named s
+
+
+    public void mouseClicked(MouseEvent e)
+    {
+        if(player.getX_pos() == field.getX()+1 && player.getY_pos() == field.getY()+1)
+        {
+            player.northWest();
+            player.player_value.add(field.fieldValue);
+        }
+        else if(player.getX_pos() == field.getX()-1 && player.getY_pos() == field.getY()+1)
+        {
+            player.southWest();
+            player.player_value.add(field.fieldValue);
+        }
+        else if(player.getX_pos() == field.getX()-1 && player.getY_pos() == field.getY()-1)
+        {
+            player.southEast();
+            player.player_value.add(field.fieldValue);
+        }
+        else if(player.getX_pos() == field.getX()+1 && player.getY_pos() == field.getY()-1)
+        {
+            player.northEast();
+            player.player_value.add(field.fieldValue);
+        }
+        else if()
+        {
+            player.special();
+            player.player_value.add(field.fieldValue);
+        }
+        else
+            System.out.println("\n  Das darf deine Figur nicht!");
+        //When the player gives something that he cant do
+
+        onPlayerMoves((Field)e.getComponent(), (Field)e.getComponent());
+    }
 
     // This method shows the instruction and create a gameboard with 2/ 3 or 4 Players
     public static void main(String[] args) throws Exception {
@@ -155,4 +192,26 @@ public class MAXX {
     public static void setPlayerNumber(int pNumber) {
         playerNumber = pNumber;
     }
+
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
 }
