@@ -1,10 +1,10 @@
-import java.awt.*;
-import java.math.BigInteger;
-
 /**
 * @version 1 20.12.2021
 * @author Michel Jouaux, Collin Hoss, Lara Mangi
 */
+import java.awt.*;
+import java.math.BigInteger;
+
 public class Player {
 
     public Fraction player_value;//Value is 0 in the beginning and who has 42 first wins

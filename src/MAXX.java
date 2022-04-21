@@ -1,9 +1,9 @@
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 /**
  * @version 1 20.12.2021
  * @author Michel Jouaux, Collin Hoss, Lara Mangi
  */
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class MAXX implements MouseListener {
 
