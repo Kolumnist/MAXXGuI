@@ -8,6 +8,7 @@ import java.math.BigInteger;
 public class Player {
 
     public Fraction player_value;//Value is 0 in the beginning and who has 42 first wins
+    public Field players_field;//The field the player is on atm
     public final byte player_ID;//for identification of the characters: 1 = white , 2 = black , 3 = red, 4 = yellow
 
     private char name; //for the playing field
@@ -15,7 +16,6 @@ public class Player {
 
     private int x_pos = 0, y_pos = 0; //position of the character
     private int x_v, y_v; //vector movement variables
-
 
     public Player(int x_pos, int y_pos, char name)//Constructor for Player, it needs a position and a name(B or W etc.)
     {
@@ -41,12 +41,12 @@ public class Player {
         return y_pos;
     }
 
-    public int getX_v() {
-        return x_v;
+    public Field getPlayers_field() {
+        return players_field;
     }
 
-    public int getY_v() {
-        return y_v;
+    public void setPlayers_field(Field players_field) {
+        this.players_field = players_field;
     }
 
     public boolean special() //Move Action that is special for every player

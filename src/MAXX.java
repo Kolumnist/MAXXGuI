@@ -7,15 +7,14 @@ import java.awt.event.MouseListener;
 
 public class MAXX implements MouseListener {
 
-    public static boolean repeat = true; // create a boolean variable
-    public static String s;  // create a String named s
     public static int selected = 0; //0-3 First to Last Player
-
     public static Player[] players = {new Player(2, 2, 'W'), new Player(5, 5, 'B'),
                                       new Player(5, 2, 'R'), new Player(2, 5, 'Y')};
     public static MainMenu mm; // gameboard object
 
     public void mouseReleased(MouseEvent e) {
+
+        if(( (Field)e.getComponent()) == players[selected].players_field)
         if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() + 1
                 && players[selected].getY_pos() == ((Field) e.getComponent()).getY() + 1)
         {
@@ -53,10 +52,9 @@ public class MAXX implements MouseListener {
             System.out.println("Das darf deine Figur nicht!");
     }
 
-    public static void main(String[] args) throws Exception
+    public static void main(String[] args)
     {
         mm = new MainMenu(players);
-
     }
     /*if (p.player_value.intValue() >= (84 / playerNumber)) {
         System.out.println("Herzlichen Glückwunsch der" + p.toString() + "  Spieler hat mit " + p.player_value.doubleValue() + " Punkten gewonnen!");
