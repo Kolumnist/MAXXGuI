@@ -13,48 +13,42 @@ public class MAXX implements MouseListener {
 
     public void mouseReleased(MouseEvent e) {
 
-        if(e.getComponent() != players[0].players_field && e.getComponent() != players[1].players_field
-                && e.getComponent() != players[2].players_field && e.getComponent() != players[3].players_field)
+        if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1
+                && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1
+                && ((Field) e.getComponent()).freeField)
         {
-            if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() + 1
-                    && players[selected].getY_pos() == ((Field) e.getComponent()).getY() + 1)
-            {
-                players[selected].northWest();
-                players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
-                players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent(), selected);
-            }
-            else if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() - 1
-                    && players[selected].getY_pos() == ((Field) e.getComponent()).getY() + 1)
-            {
-                players[selected].southWest();
-                players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
-                players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent(), selected);
-            }
-            else if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() - 1
-                    && players[selected].getY_pos() == ((Field) e.getComponent()).getY() - 1)
-            {
-                players[selected].southEast();
-                players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
-                players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent(), selected);
-            }
-            else if (players[selected].getX_pos() == ((Field) e.getComponent()).getX() + 1
-                    && players[selected].getY_pos() == ((Field) e.getComponent()).getY() - 1)
+            players[selected].northWest();
+            players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
+            players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected);
+        }
+        else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() - 1
+                && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1 && ((Field) e.getComponent()).freeField)
+        {
+            players[selected].southWest();
+            players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
+            players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected );
+        }
+        else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() - 1
+                && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1 && ((Field) e.getComponent()).freeField)
+        {
+            players[selected].southEast();
+            players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);
+            players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected);
+        }
+            else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1
+                    && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1 && ((Field) e.getComponent()).freeField)
             {
                 players[selected].northEast();///
                 players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
-                players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent(), selected);///
+                players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected);///
             }
-            else if (players[selected].special()) //checks if the special action is allowed
+            else if (players[selected].special() && ((Field) e.getComponent()).freeField) //checks if the special action is allowed
             {
                 players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
                 players[selected].onPlayerMoves((Field) e.getComponent(), (Field) e.getComponent(), selected);///
             }
             else//When the player gives something that he cant do
                 System.out.println("Das darf deine Figur nicht!");
-        }
-        else{
-            System.out.println("Du kannst keine Spieler zerstampfen!");
-        }
     }
 
     public static void main(String[] args)
