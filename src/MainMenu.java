@@ -23,7 +23,7 @@ public class MainMenu extends JFrame implements Runnable {
 
         //create and add JMenu
         JMenuItem manual = new JMenuItem("Manual");
-        JMenuItem close = new JMenuItem("Close Window");
+        JMenuItem close = new JMenuItem("Close all Windows");
         info.add(manual);
         exit.add(close);
 
