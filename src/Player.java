@@ -8,12 +8,12 @@ import java.math.BigInteger;
 public class Player {
 
     public Fraction player_value;//Value is 0 in the beginning and who has 42 first wins
-    public final byte character;//for identification of the characters: 0 = white , 1 = black , 2 = ? could add more players
+    public final byte character;//for identification of the characters: 1 = white , 2 = black , 3 = red, 4 = yellow
 
     private int x_pos = 0, y_pos = 0; //position of the character
     private int x_v, y_v; //vector movement variables
 
-    private static byte identifier = 0; // helps with the identification of a created character
+    private static byte identifier = 1; // helps with the identification of a created character
     private char name; //for the playing field
 
     public Player(int x_pos, int y_pos, char name)//Constructor for Player, it needs a position and a name(black/white etc.)
@@ -105,22 +105,22 @@ public class Player {
 
     private void Special() //Move Action that is special for every player
     {
-        if (character == 0 && x_pos != 7) {/*first Player*/
+        if (character%4 == 1 && x_pos != 7) {/*first Player*/
             x_v = 0;
             y_v = 1;
             x_pos += x_v;
             y_pos += y_v;
-        } else if (character == 1 && x_pos != 0) {/*second Player*/
+        } else if (character%4 == 2 && x_pos != 0) {/*second Player*/
             x_v = 0;
             y_v = -1;
             x_pos += x_v;
             y_pos += y_v;
-        } else if (character == 2 && y_pos != 7) {/*third Player*/
+        } else if (character%4 == 3 && y_pos != 7) {/*third Player*/
             x_v = 1;
             y_v = 0;
             x_pos += x_v;
             y_pos += y_v;
-        } else if (character == 3 && y_pos != 0) {/*fourth Player*/
+        } else if (character%4 == 0 && y_pos != 0) {/*fourth Player*/
             x_v = -1;
             y_v = 0;
             x_pos += x_v;
