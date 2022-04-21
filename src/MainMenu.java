@@ -89,6 +89,13 @@ public class MainMenu extends JFrame {
                 System.exit(0);
             }
         });
+
+        play.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+            }
+
+        });
     }
 
     public static void main(String[] args) {
