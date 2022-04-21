@@ -26,56 +26,6 @@ public class Player {
         player_value = new Fraction(new BigInteger("0"), new BigInteger("1"));
     }
 
-    public boolean walk(String direction) //The normal Walk move, needs the input of the player to work, if wrong input then it returns false
-    {
-        switch (direction.toUpperCase())
-        {
-            case "NW":
-                if(x_pos == 0 || y_pos == 0)
-                {
-                    System.out.println("Hey, du kannst nicht außerhalb des Bildschirms laufen!!!");
-                    return false;
-                }
-                NorthWest();
-                return true;
-            case "NO":
-                if(x_pos == 0 || y_pos == 7)
-                {
-                    System.out.println("Hey, du kannst nicht außerhalb des Bildschirms laufen!!!");
-                    return false;
-                }
-                NorthEast();
-                return true;
-            case "SW":
-                if(x_pos == 7 || y_pos == 0)
-                {
-                    System.out.println("Hey, du kannst nicht außerhalb des Bildschirms laufen!!!");
-                    return false;
-                }
-                SouthWest();
-                return true;
-            case "SO":
-                if(x_pos == 7 || y_pos == 7)
-                {
-                    System.out.println("Hey, du kannst nicht außerhalb des Bildschirms laufen!!!");
-                    return false;
-                }
-                SouthEast();
-                return true;
-            case "SPECIAL":
-                Special();
-                if(x_v == 0 && y_v == 0){
-                    System.out.println("Hey, du kannst nicht außerhalb des Bildschirms laufen!!!");
-                    return false;
-                }
-                System.out.println("\n\n\n\n\n\n\n\n\n");
-                return true;
-            default:
-                System.out.println("\n  Das ist kein vorhandener Befehl!");
-                return false; //When the player gives something that doesn't exist
-        }
-    }
-
     public String toString()//gives only the name of the player as string
     {
         return " " + name;
@@ -103,7 +53,7 @@ public class Player {
         y_pos -= y_v;
     }
 
-    private void Special() //Move Action that is special for every player
+    private void special() //Move Action that is special for every player
     {
         if (character%4 == 1 && x_pos != 7) {/*first Player*/
             x_v = 0;
@@ -134,38 +84,34 @@ public class Player {
         }
     }
 
-    private void NorthWest() /*Northwest movement*/
+    public void northWest() /*Northwest movement*/
     {
         x_v = -1;
         y_v = -1;
-        System.out.println("\n\n\n\n\n\n\n\n\n");
         x_pos += x_v;
         y_pos += y_v;
     }
 
-    private void NorthEast() /*Northeast movement*/
+    public void northEast() /*Northeast movement*/
     {
         x_v = -1;
         y_v = 1;
-        System.out.println("\n\n\n\n\n\n\n\n\n");
         x_pos += x_v;
         y_pos += y_v;
     }
 
-    private void SouthWest() /*Southwest movement*/
+    public void southWest() /*Southwest movement*/
     {
         x_v = 1;
         y_v = -1;
-        System.out.println("\n\n\n\n\n\n\n\n\n");
         x_pos += x_v;
         y_pos += y_v;
     }
 
-    private void SouthEast() /*Southeast movement*/
+    public void southEast() /*Southeast movement*/
     {
         x_v = 1;
         y_v = 1;
-        System.out.println("\n\n\n\n\n\n\n\n\n");
         x_pos += x_v;
         y_pos += y_v;
     }
