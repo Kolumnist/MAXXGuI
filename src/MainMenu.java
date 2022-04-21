@@ -4,9 +4,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainMenu extends JFrame {
+public class MainMenu extends JFrame implements Runnable {
 
-    private String player;
+    private JButton play;
+    private JComboBox playerSelection;
 
     public MainMenu() {
         setTitle("MAXXGuI");
@@ -42,7 +43,7 @@ public class MainMenu extends JFrame {
         add(question);
 
         //create JComboBox with all the players
-        JComboBox playerSelection = new JComboBox(comboBoxListe);
+        playerSelection = new JComboBox(comboBoxListe);
         add(playerSelection);
         setVisible(true);
 
@@ -56,7 +57,7 @@ public class MainMenu extends JFrame {
         // picture.setLocation(50,50);
 
         //create a button
-        JButton play = new JButton();
+        play = new JButton();
         play.setText("Game Start");
         play.setSize(200, 200);
         play.setVisible(true);
@@ -96,20 +97,40 @@ public class MainMenu extends JFrame {
         play.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (playerSelection.getSelectedIndex() == 0) {
-                    GameBoard myBoard0 = new GameBoard(2);
+                    //GameBoard myBoard0 = new GameBoard(2);
                 } else if (playerSelection.getSelectedIndex() == 1) {
-                    GameBoard myBoard1 = new GameBoard(3);
+                    //  GameBoard myBoard1 = new GameBoard(3);
                 } else if (playerSelection.getSelectedIndex() == 2) {
-                    GameBoard myBoard2 = new GameBoard(4);
+                    // GameBoard myBoard2 = new GameBoard(4);
                 }
             }
         });
+        Thread thread = new Thread(() -> run());
+        thread.start();
     }
+
+
 
     public static void main(String[] args) {
         new MainMenu();
 
+
         //Game Start (button) -> soll überprüfen, was in der Combo ausgewählt wird und ruft dann den Konstruktor des Gameboards auf (-> dort wird die Anzahl der Spieler die man benötigt übergeben
         //thread erstellen-> damit mehrere Fenster unabhängig voneinander geöffnet werden können
     }
+    @Override
+    public void run() {
+        play.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (playerSelection.getSelectedIndex() == 0) {
+                    //GameBoard myBoard0 = new GameBoard(2);
+                } else if (playerSelection.getSelectedIndex() == 1) {
+                    //  GameBoard myBoard1 = new GameBoard(3);
+                } else if (playerSelection.getSelectedIndex() == 2) {
+                    // GameBoard myBoard2 = new GameBoard(4);
+                }
+            }
+        });
+    }
 }
+
