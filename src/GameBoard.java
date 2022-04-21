@@ -9,11 +9,15 @@ import java.awt.*;
 
 public class GameBoard extends JFrame {
     private Field[][] boardFields = new Field[8][8];
+    private Player[] players;
     private double boardSum;
     private static int programCount;
     private int playerCount = 0;
 
-    public GameBoard(int pPlayerNumber, Player[] pPlayer) {
+    public GameBoard(int pPlayerNumber) {
+
+        players = new Player[] {new Player(2, 2, 'W'), new Player(5, 5, 'B'),  new Player(5, 2, 'R'), new Player(2, 5, 'Y')};
+
         playerCount = pPlayerNumber;
         setSize(700, 700);
         setVisible(true);
@@ -89,33 +93,33 @@ public class GameBoard extends JFrame {
         //setting 2-4 player on the board and giving the players their field
         switch (pPlayerNumber) {
             case 2:
-                white = new Field(pPlayer[0].getX_pos(), pPlayer[0].getY_pos(), pPlayer[0]);
-                black = new Field(pPlayer[1].getX_pos(), pPlayer[1].getY_pos(), pPlayer[1]);
-                pPlayer[0].players_field = white;
-                pPlayer[1].players_field = black;
+                white = new Field(players[0].getX_pos(), players[0].getY_pos(), players[0]);
+                black = new Field(players[1].getX_pos(), players[1].getY_pos(), players[1]);
+                players[0].players_field = white;
+                players[1].players_field = black;
                 boardFields[2][2] = white;
                 boardFields[5][5] = black;
                 break;
             case 3:
-                white = new Field(pPlayer[0].getX_pos(), pPlayer[0].getY_pos(), pPlayer[0]);
-                black = new Field(pPlayer[1].getX_pos(), pPlayer[1].getY_pos(), pPlayer[1]);
-                red = new Field(pPlayer[2].getX_pos(), pPlayer[2].getY_pos(), pPlayer[2]);
-                pPlayer[0].players_field = white;
-                pPlayer[1].players_field = black;
-                pPlayer[2].players_field = red;
+                white = new Field(players[0].getX_pos(), players[0].getY_pos(), players[0]);
+                black = new Field(players[1].getX_pos(), players[1].getY_pos(), players[1]);
+                red = new Field(players[2].getX_pos(), players[2].getY_pos(), players[2]);
+                players[0].players_field = white;
+                players[1].players_field = black;
+                players[2].players_field = red;
                 boardFields[2][2] = white;
                 boardFields[5][5] = black;
                 boardFields[5][2] = red;
                 break;
             case 4:
-                white = new Field(pPlayer[0].getX_pos(), pPlayer[0].getY_pos(), pPlayer[0]);
-                black = new Field(pPlayer[1].getX_pos(), pPlayer[1].getY_pos(), pPlayer[1]);
-                red = new Field(pPlayer[2].getX_pos(), pPlayer[2].getY_pos(), pPlayer[2]);
-                yellow = new Field(pPlayer[3].getX_pos(), pPlayer[3].getY_pos(), pPlayer[3]);
-                pPlayer[0].players_field = white;
-                pPlayer[1].players_field = black;
-                pPlayer[2].players_field = red;
-                pPlayer[3].players_field = yellow;
+                white = new Field(players[0].getX_pos(), players[0].getY_pos(), players[0]);
+                black = new Field(players[1].getX_pos(), players[1].getY_pos(), players[1]);
+                red = new Field(players[2].getX_pos(), players[2].getY_pos(), players[2]);
+                yellow = new Field(players[3].getX_pos(), players[3].getY_pos(), players[3]);
+                players[0].players_field = white;
+                players[1].players_field = black;
+                players[2].players_field = red;
+                players[3].players_field = yellow;
                 boardFields[2][2] = white;
                 boardFields[5][5] = black;
                 boardFields[5][2] = red;
@@ -127,7 +131,7 @@ public class GameBoard extends JFrame {
         for (int t = 0; t < 8; t++) {
             for (int z = 0; z < 8; z++) {
                 add(boardFields[t][z]);
-                boardFields[t][z].addMouseListener(new MAXX(playerCount, players));
+                boardFields[t][z].addMouseListener(new MAXX(players, playerCount));
             }
         }
     }

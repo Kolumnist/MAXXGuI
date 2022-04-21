@@ -13,16 +13,11 @@ public class MainMenu extends JFrame implements Runnable {
 
     private JButton play;
     private JComboBox playerSelection;
-    private Player[] players;
 
     public MainMenu(Player[] players) {
         setTitle("MAXXGuI");
         setLayout(new FlowLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-        for (Player p : players) {
-            this.players = players;
-        }
 
         // create and add JMenuBar
         JMenuBar menuBar = new JMenuBar();
@@ -126,11 +121,11 @@ public class MainMenu extends JFrame implements Runnable {
     public void run() {
         play.addActionListener(e -> {
             if (playerSelection.getSelectedIndex() == 0) {
-                GameBoard myBoard0 = new GameBoard(2, players);
+                GameBoard myBoard0 = new GameBoard(2);
             } else if (playerSelection.getSelectedIndex() == 1) {
-                GameBoard myBoard1 = new GameBoard(3, players);
+                GameBoard myBoard1 = new GameBoard(3);
             } else if (playerSelection.getSelectedIndex() == 2) {
-                GameBoard myBoard2 = new GameBoard(4, players);
+                GameBoard myBoard2 = new GameBoard(4);
             }
         });
 
