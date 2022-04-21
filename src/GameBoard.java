@@ -18,7 +18,6 @@ public class GameBoard extends JFrame {
         setSize(700, 700);
         setVisible(true);
         setTitle("MaXX" + (programCount++));
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         // create and add JMenuBar
         JMenuBar menuBar = new JMenuBar();
@@ -37,7 +36,7 @@ public class GameBoard extends JFrame {
         setJMenuBar(menuBar);
 
         //Container container = getContentPane();
-        setLayout(new GridLayout(9, 9));
+        setLayout(new GridLayout(8, 8));
 
         //this ActionListener shows the manual_JMenuItem
         manual_JMenuItem.addActionListener(new ActionListener() {
@@ -68,6 +67,7 @@ public class GameBoard extends JFrame {
             }
         });
 
+        /*
         for (int j = 0; j < 8; j++) {
             for (int k = 0; k < 8; k++) {
                 if (((j == 2 && k == 2) || (j == 2 && k == 5) || (j == 5 && k == 2) || (j == 5 && k == 5)) && (playerCount < pPlayerNumber)) {
@@ -80,6 +80,44 @@ public class GameBoard extends JFrame {
                     add(boardFields[j][k]);
                 }
                 boardFields[j][k].addMouseListener(new MAXX());
+            }
+        }
+         */
+
+        for (int g = 0; g < 8; g++){
+            for (int h = 0; h < 8; h++){
+                Field f = new Field(g,h);
+                boardFields[g][h] = f;
+            }
+        }
+
+        Field white = new Field(2,2,pPlayer[0]);
+        Field black = new Field(5,5,pPlayer[1]);
+        Field red = new Field(2,5,pPlayer[2]);
+        Field yellow = new Field(2,5,pPlayer[3]);
+
+        switch (pPlayerNumber){
+            case 2:
+                boardFields[2][2] = white;
+                boardFields[5][5] = black;
+                break;
+            case 3:
+                boardFields[2][2] = white;
+                boardFields[5][5] = black;
+                boardFields[2][5] = red;
+                break;
+            case 4:
+                boardFields[2][2] = white;
+                boardFields[5][5] = black;
+                boardFields[2][5] = red;
+                boardFields[5][2] = yellow;
+                break;
+        }
+
+        for (int t = 0; t < 8; t++){
+            for(int z = 0; z < 8; z++){
+                add(boardFields[t][z]);
+                boardFields[t][z].addMouseListener(new MAXX());
             }
         }
     }
