@@ -66,7 +66,7 @@ public class MAXX implements MouseListener {
         else//When the player gives something that he cant do
             System.out.println("Das darf deine Figur nicht!");
 
-        if (players[selected].player_ID == 84 / playerCount) {
+        if (players[selected].player_value.intValue() == 4 / playerCount) {
             JFrame f = new JFrame();
             JPanel panel = new JPanel();
             JTextArea win = new JTextArea("Herzlichen Glückwunsch der " + players[selected].toString()
@@ -84,17 +84,6 @@ public class MAXX implements MouseListener {
                 new Player(5, 2, 'R'), new Player(2, 5, 'Y')};
         mm = new MainMenu(players);
     }
-    /*if (p.player_value.intValue() >= (84 / playerNumber)) {
-        System.out.println("Herzlichen Glückwunsch der" + p.toString() + "  Spieler hat mit " + p.player_value.doubleValue() + " Punkten gewonnen!");
-        repeat = false;
-        }
-
-         for (Player value : players) {
-                System.out.println("Spieler: " + value.toString() + " hat " + value.player_value + " Punkte.");
-            }
-
-         ("Spieler" + p.toString() + " gebe einen Befehl für deinen Zug ein.");
-    */
 
     @Override
     public void mousePressed(MouseEvent e) {}

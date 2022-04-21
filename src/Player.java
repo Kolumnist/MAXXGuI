@@ -50,19 +50,19 @@ public class Player {
         switch(player_ID)
         {
             case(1):/*first Player*/
-                x_v = 1; y_v = 0;
+                x_v = 0; y_v = -1;
                 x_pos += x_v; y_pos += y_v;
                 break;
             case(2):/*second Player*/
-                x_v = -1; y_v = 0;
-                x_pos += x_v; y_pos += y_v;
-                break;
-            case(3):/*third Player*/
                 x_v = 0; y_v = 1;
                 x_pos += x_v; y_pos += y_v;
                 break;
+            case(3):/*third Player*/
+                x_v = -1; y_v = 0;
+                x_pos += x_v; y_pos += y_v;
+                break;
             case(4):/*fourth Player*/
-                x_v = 0; y_v = -1;
+                x_v = 1; y_v = 0;
                 x_pos += x_v; y_pos += y_v;
                 break;
             default:
