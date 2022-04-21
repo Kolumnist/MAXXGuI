@@ -30,44 +30,32 @@ public class Button extends JButton implements ActionListener {
         if(player.getPX_pos() == bx_pos+1 && player.getPY_pos() == by_pos+1)
         {
             player.northWest();
+            player_value.add(this.getName());
         }
         else if(player.getPX_pos() == bx_pos-1 && player.getPY_pos() == by_pos+1)
         {
             player.southWest();
+            player_value.add(this.getName());
         }
         else if(player.getPX_pos() == bx_pos-1 && player.getPY_pos() == by_pos-1)
         {
+            player.southEast();
+            player_value.add(this.getName());
+        }
+        else if(player.getPX_pos() == bx_pos+1 && player.getPY_pos() == by_pos-1)
+        {
             player.northEast();
+            player_value.add(this.getName());
         }
         else if()
-
-        switch (e.getActionCommand())
         {
-            case direction[0]:
-                northWest();
-                player_value.add(this.getName());
-                break;
-            case direction[1]:
-                northEast();
-                player_value.add(this.getName());
-                break;
-            case direction[2]:
-                southWest();
-                player_value.add(this.getName());
-                break;
-            case direction[3]:
-                southEast();
-                player_value.add(this.getName());
-                break;
-            case direction[4]:
-                special();
-                System.out.println("\n\n\n\n\n\n\n\n\n");
-                player_value.add(this.getName());
-                break;
-            default:
-                System.out.println("\n  Das darf deine Figur nicht!");
-                //When the player gives something that he cant do
+            player.special();
+            player_value.add(this.getName());
         }
-        redraw(); //drawboard wird aufgerufen um das Feld zu erfrischen
+        else
+            System.out.println("\n  Das darf deine Figur nicht!");
+        //When the player gives something that he cant do
+
+        redraw();//drawboard wird aufgerufen um das Feld zu erfrischen
     }
 }

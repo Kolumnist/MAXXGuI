@@ -53,34 +53,40 @@ public class Player {
         py_pos -= y_v;
     }
 
-    private void special() //Move Action that is special for every player
+    public void special() //Move Action that is special for every player
     {
-        if (character%4 == 1 && px_pos != 7) {/*first Player*/
-            x_v = 0;
-            y_v = 1;
-            px_pos += x_v;
-            py_pos += y_v;
-        } else if (character%4 == 2 && px_pos != 0) {/*second Player*/
-            x_v = 0;
-            y_v = -1;
-            px_pos += x_v;
-            py_pos += y_v;
-        } else if (character%4 == 3 && py_pos != 7) {/*third Player*/
-            x_v = 1;
-            y_v = 0;
-            px_pos += x_v;
-            py_pos += y_v;
-        } else if (character%4 == 0 && py_pos != 0) {/*fourth Player*/
-            x_v = -1;
-            y_v = 0;
-            px_pos += x_v;
-            py_pos += y_v;
-        }
-        else{
-            x_v = 0;
-            y_v = 0;
-            px_pos += x_v;
-            py_pos += y_v;
+        switch(player_ID%4)
+        {
+            case(1):/*first Player*/
+                x_v = 0;
+                y_v = 1;
+                px_pos += x_v;
+                py_pos += y_v;
+                break;
+            case(2):/*second Player*/
+                x_v = 0;
+                y_v = -1;
+                px_pos += x_v;
+                py_pos += y_v;
+                break;
+            case(3):/*third Player*/
+                x_v = 1;
+                y_v = 0;
+                px_pos += x_v;
+                py_pos += y_v;
+                break;
+            case(0):/*fourth Player*/
+                x_v = -1;
+                y_v = 0;
+                px_pos += x_v;
+                py_pos += y_v;
+                break;
+            default:
+                x_v = 0;
+                y_v = 0;
+                px_pos += x_v;
+                py_pos += y_v;
+
         }
     }
 
