@@ -38,6 +38,7 @@ public class Field extends JButton {
 
     //sets a player on a button
     public void setPlayerOnField(Player pPlayer){
+        System.out.println(this.fieldValue + " X: " + positionX + " Y: " + positionY);
         switch (pPlayer.toString().trim()){
             case "W":
                 setText("W");

@@ -28,7 +28,7 @@ public class MAXX implements MouseListener {
             selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);///
         }
         //SOUTH WEST MOVE
-        else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1
+        else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1
                 && ((Field) e.getComponent()).freeField)
         {
             players[selected].southWest();///
@@ -44,7 +44,7 @@ public class MAXX implements MouseListener {
             selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);///
         }
         //NORTH EAST MOVE
-        else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1
+        else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1
                 && ((Field) e.getComponent()).freeField)
         {
             players[selected].northEast();///

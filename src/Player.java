@@ -24,7 +24,11 @@ public class Player {
         this.name = name;
 
         player_ID = identifier++;//sets character to identifier and then counts the identifier up
-        if(identifier == 5) identifier = 1;
+        if(identifier == 5)
+        {
+            System.out.println("buh");
+            identifier = 1;
+        }
         player_value = new Fraction(new BigInteger("0"), new BigInteger("1"));
     }
 
@@ -46,19 +50,19 @@ public class Player {
         switch(player_ID)
         {
             case(1):/*first Player*/
-                x_v = 0; y_v = 1;
-                x_pos += x_v; y_pos += y_v;
-                break;
-            case(2):/*second Player*/
-                x_v = 0; y_v = -1;
-                x_pos += x_v; y_pos += y_v;
-                break;
-            case(3):/*third Player*/
                 x_v = 1; y_v = 0;
                 x_pos += x_v; y_pos += y_v;
                 break;
-            case(4):/*fourth Player*/
+            case(2):/*second Player*/
                 x_v = -1; y_v = 0;
+                x_pos += x_v; y_pos += y_v;
+                break;
+            case(3):/*third Player*/
+                x_v = 0; y_v = 1;
+                x_pos += x_v; y_pos += y_v;
+                break;
+            case(4):/*fourth Player*/
+                x_v = 0; y_v = -1;
                 x_pos += x_v; y_pos += y_v;
                 break;
             default:
@@ -74,12 +78,12 @@ public class Player {
     }
     public void northEast() /*Northeast movement*/
     {
-        x_v = -1; y_v = 1;
+        x_v = 1; y_v = -1;
         x_pos += x_v; y_pos += y_v;
     }
     public void southWest() /*Southwest movement*/
     {
-        x_v = 1; y_v = -1;
+        x_v = -1; y_v = 1;
         x_pos += x_v; y_pos += y_v;
     }
     public void southEast() /*Southeast movement*/
@@ -90,21 +94,24 @@ public class Player {
 
     public int onPlayerMoves(Field before, Field after, int selected, int playerCount)//the fields get renewed and the players go to the new field
     {
-        switch(playerCount)
-        {
-            case 2: selected = ((selected+1) % 2)-1;
-            case 3: selected = ((selected+1) % 3)-1;
-            case 4: selected = ((selected+1) % 4)-1;
-        }
-
-        after.setPlayerOnField(this);
-        this.players_field = after;
-
         before.freeField = true;
         before.setBackground(Color.cyan);
         before.setText("x");
         before.setName("x");
         before.fieldValue = new Fraction(new BigInteger("0"), new BigInteger("1"));
+
+        System.out.println(this + " X: " + x_pos + " Y: " + y_pos);
+
+        switch(playerCount)
+        {
+            case 2: selected = ((selected+1) % 2)-1; break;
+            case 3: selected = ((selected+1) % 3)-1; break;
+            case 4: selected = ((selected+1) % 4)-1; break;
+            default: selected = -1; break;
+        }
+        this.players_field = after;
+        this.players_field.setPlayerOnField(this);
+
         return ++selected;
     }
 }

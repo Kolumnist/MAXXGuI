@@ -89,17 +89,17 @@ public class GameBoard extends JFrame {
         //setting 2-4 player on the board and giving the players their field
         switch (pPlayerNumber) {
             case 2:
-                white = new Field(2, 2, pPlayer[0]);
-                black = new Field(5, 5, pPlayer[1]);
+                white = new Field(pPlayer[0].getX_pos(), pPlayer[0].getY_pos(), pPlayer[0]);
+                black = new Field(pPlayer[1].getX_pos(), pPlayer[1].getY_pos(), pPlayer[1]);
                 pPlayer[0].players_field = white;
                 pPlayer[1].players_field = black;
                 boardFields[2][2] = white;
                 boardFields[5][5] = black;
                 break;
             case 3:
-                white = new Field(2, 2, pPlayer[0]);
-                black = new Field(5, 5, pPlayer[1]);
-                red = new Field(2, 5, pPlayer[2]);
+                white = new Field(pPlayer[0].getX_pos(), pPlayer[0].getY_pos(), pPlayer[0]);
+                black = new Field(pPlayer[1].getX_pos(), pPlayer[1].getY_pos(), pPlayer[1]);
+                red = new Field(pPlayer[2].getX_pos(), pPlayer[2].getY_pos(), pPlayer[2]);
                 pPlayer[0].players_field = white;
                 pPlayer[1].players_field = black;
                 pPlayer[2].players_field = red;
@@ -108,10 +108,10 @@ public class GameBoard extends JFrame {
                 boardFields[5][2] = red;
                 break;
             case 4:
-                white = new Field(2, 2, pPlayer[0]);
-                black = new Field(5, 5, pPlayer[1]);
-                red = new Field(2, 5, pPlayer[2]);
-                yellow = new Field(5, 2, pPlayer[3]);
+                white = new Field(pPlayer[0].getX_pos(), pPlayer[0].getY_pos(), pPlayer[0]);
+                black = new Field(pPlayer[1].getX_pos(), pPlayer[1].getY_pos(), pPlayer[1]);
+                red = new Field(pPlayer[2].getX_pos(), pPlayer[2].getY_pos(), pPlayer[2]);
+                yellow = new Field(pPlayer[3].getX_pos(), pPlayer[3].getY_pos(), pPlayer[3]);
                 pPlayer[0].players_field = white;
                 pPlayer[1].players_field = black;
                 pPlayer[2].players_field = red;
