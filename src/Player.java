@@ -1,7 +1,8 @@
 /**
-* @version 1 20.12.2021
-* @author Michel Jouaux, Collin Hoss, Lara Mangi
-*/
+ * @author Michel Jouaux, Collin Hoss, Lara Mangi
+ * @Matrikelnummer: 212455 [mjouaux], 212848 [choss], 212467 [lmangi]
+ * @version 2 21.04.2022
+ */
 import java.awt.*;
 import java.math.BigInteger;
 
@@ -26,7 +27,6 @@ public class Player {
         player_ID = identifier++;//sets character to identifier and then counts the identifier up
         if(identifier == 5)
         {
-            System.out.println("buh");
             identifier = 1;
         }
         player_value = new Fraction(new BigInteger("0"), new BigInteger("1"));
@@ -92,8 +92,10 @@ public class Player {
         x_pos += x_v; y_pos += y_v;
     }
 
-    public int onPlayerMoves(Field before, Field after, int selected, int playerCount)//the fields get renewed and the players go to the new field
+    /*It happens when the player is moving from one field to another and handles this action accordingly*/
+    public int onPlayerMoves(Field before, Field after, int selected, int playerCount)
     {
+        //Where the player was
         before.freeField = true;
         before.setBackground(Color.cyan);
         before.setText("x");
@@ -102,13 +104,14 @@ public class Player {
 
         System.out.println(this + " X: " + x_pos + " Y: " + y_pos);
 
-        switch(playerCount)
+        switch(playerCount)//checks if, depending on the playerCount, the selected value is at its max or not
         {
             case 2: selected = ((selected+1) % 2)-1; break;
             case 3: selected = ((selected+1) % 3)-1; break;
             case 4: selected = ((selected+1) % 4)-1; break;
             default: selected = -1; break;
         }
+        //where the player is now
         this.players_field = after;
         this.players_field.setPlayerOnField(this);
 

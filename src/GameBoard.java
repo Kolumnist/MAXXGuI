@@ -162,33 +162,33 @@ public class GameBoard extends JFrame {
             if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1
                     && ((Field) e.getComponent()).freeField)
             {
-                players[selected].northWest();///
-                players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
-                selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);///
+                players[selected].northWest();
+                players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
+                selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);//player gets moved to the next field and the next player gets selected
             }
             //SOUTH WEST MOVE
             else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1
                     && ((Field) e.getComponent()).freeField)
             {
-                players[selected].southWest();///
-                players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
-                selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);///
+                players[selected].southWest();
+                players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
+                selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);//player gets moved to the next field and the next player gets selected
             }
             //SOUTH EAST MOVE
             else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1
                     && ((Field) e.getComponent()).freeField)
             {
-                players[selected].southEast();///
-                players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
-                selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);///
+                players[selected].southEast();
+                players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
+                selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);//player gets moved to the next field and the next player gets selected
             }
             //NORTH EAST MOVE
             else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1
                     && ((Field) e.getComponent()).freeField)
             {
-                players[selected].northEast();///
-                players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
-                selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);///
+                players[selected].northEast();
+                players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
+                selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);//player gets moved to the next field and the next player gets selected
             }
             //SPECIAL MOVE
             else if (( (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() && selected == 2)/*third player*/
@@ -197,9 +197,9 @@ public class GameBoard extends JFrame {
                     || (players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1 && players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() && selected == 1))/*second player*/
                     && ((Field) e.getComponent()).freeField)
             {
-                players[selected].special();///
-                players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
-                selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);///
+                players[selected].special();
+                players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
+                selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);//player gets moved to the next field and the next player gets selected
             }
             else//When the player gives something that he cant do
                 System.out.println("Das darf deine Figur nicht!");
@@ -208,7 +208,8 @@ public class GameBoard extends JFrame {
         }
     };
 
-    public synchronized void win(){
+    //checks for the winner unfortunately it doesn't stop the game yet it just tells who won!
+    public void win(){
         JFrame f = new JFrame();
         JPanel panel = new JPanel();
         JTextArea win = new JTextArea("Herzlichen Glückwunsch der " + players[selected].toString()
