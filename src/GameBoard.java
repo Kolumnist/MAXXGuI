@@ -16,9 +16,9 @@ public class GameBoard extends JFrame {
     private static int programCount;
     private int playerCount = 0;
     private int selected = 0;
-    private JTextField nextPlayer_JTextField = new JTextField();
+    private JTextField currentPlayer_JTextField = new JTextField();
     private JTextField playerMoves_JTextField = new JTextField();
-    private JLabel nextPlayer_JLabel = new JLabel("Next Player:");
+    private JLabel currentPlayer_JLabel = new JLabel("Current Player:");
     private JLabel playerMoves_JLabel = new JLabel("Moves of current player:");
 
     public GameBoard(int pPlayerNumber) {
@@ -28,7 +28,7 @@ public class GameBoard extends JFrame {
         playerCount = pPlayerNumber;
         setSize(700, 700);
         setVisible(true);
-        setTitle("MaXX" + (programCount++));
+        setTitle("MAXX" + (programCount++));
 
         // create and add JMenuBar
         JMenuBar menuBar = new JMenuBar();
@@ -42,20 +42,20 @@ public class GameBoard extends JFrame {
         JMenuItem close_JMenuItem = new JMenuItem("Close all Window");
         info_JMenu.add(manual_JMenuItem);
         exit_JMenu.add(close_JMenuItem);
-
         //set JMenuBar into JFrame
         setJMenuBar(menuBar);
 
-        //Container container = getContentPane();
+        //layout of the frame
         setLayout(new BorderLayout());
-
+        //GridLayout for the gameboard
         JPanel board_JPanel = new JPanel(new GridLayout(8,8));
         add(board_JPanel, BorderLayout.CENTER);
 
+        //creating a little console with JTextFields and JLabels to show the current player and it's moves
         JPanel terminal_JPanel = new JPanel(new GridLayout(2,2));
-        terminal_JPanel.add(nextPlayer_JLabel);
+        terminal_JPanel.add(currentPlayer_JLabel);
         terminal_JPanel.add(playerMoves_JLabel);
-        terminal_JPanel.add(nextPlayer_JTextField);
+        terminal_JPanel.add(currentPlayer_JTextField);
         terminal_JPanel.add(playerMoves_JTextField);
         add(terminal_JPanel, BorderLayout.SOUTH);
 
@@ -95,7 +95,6 @@ public class GameBoard extends JFrame {
                 for (int h = 0; h < 8; h++) {
                     Field field = new Field(h, g);
                     boardFields[g][h] = field;
-
                     boardSum += field.fieldValue.doubleValue();
                 }
             }
@@ -155,12 +154,16 @@ public class GameBoard extends JFrame {
 
     MouseAdapter mouseAdapter = new MouseAdapter() {
         public void mouseReleased(MouseEvent e) {
+            if (players[selected].player_value.intValue() == 84 / playerCount) {
+                win();
+            }
+
             //NORTH WEST MOVE
             if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1
                     && ((Field) e.getComponent()).freeField)
             {
                 players[selected].northWest();///
-                players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
+                players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
                 selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);///
             }
             //SOUTH WEST MOVE
@@ -168,7 +171,7 @@ public class GameBoard extends JFrame {
                     && ((Field) e.getComponent()).freeField)
             {
                 players[selected].southWest();///
-                players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
+                players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
                 selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);///
             }
             //SOUTH EAST MOVE
@@ -184,7 +187,7 @@ public class GameBoard extends JFrame {
                     && ((Field) e.getComponent()).freeField)
             {
                 players[selected].northEast();///
-                players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
+                players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
                 selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);///
             }
             //SPECIAL MOVE
@@ -195,31 +198,36 @@ public class GameBoard extends JFrame {
                     && ((Field) e.getComponent()).freeField)
             {
                 players[selected].special();///
-                players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
+                players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);///
                 selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);///
             }
             else//When the player gives something that he cant do
                 System.out.println("Das darf deine Figur nicht!");
 
-            terminal();
-
-            if (players[selected].player_value.intValue() == 4 / playerCount) {
-                JFrame f = new JFrame();
-                JPanel panel = new JPanel();
-                JTextArea win = new JTextArea("Herzlichen Glückwunsch der " + players[selected].toString()
-                        + "  Spieler hat mit " + players[selected].player_value.doubleValue() + " Punkten gewonnen!\n");
-                panel.add(win);
-                f.setSize(300, 300);
-                f.add(panel);
-                f.setVisible(true);
-                System.out.println("Win happened!");
-            }
+            console(); //Updating the console
         }
     };
 
-    public void terminal(){
-        String specialMove = "";
+    public synchronized void win(){
+        JFrame f = new JFrame();
+        JPanel panel = new JPanel();
+        JTextArea win = new JTextArea("Herzlichen Glückwunsch der " + players[selected].toString()
+                + "  Spieler hat mit " + players[selected].player_value.doubleValue() + " Punkten gewonnen!\n");
+        win.setSize(500,200);
+        win.setFont(new Font("Serif",Font.PLAIN,14));
+        panel.add(win);
+        f.setSize(500, 200);
+        f.add(panel);
+        f.setVisible(true);
+        f.setTitle("MAXX Win" + (programCount-1));
+        f.setLayout(new FlowLayout());
+        System.out.println("Win happened!");
+    }
 
+    //Method for the output at the bottem of the frame like a console
+    public void console(){
+        String specialMove = "";
+        //determines the special move of the player
         switch (selected){
             case 0:
                 specialMove = "Up";
@@ -235,10 +243,6 @@ public class GameBoard extends JFrame {
                 break;
         }
         playerMoves_JTextField.setText("Northwest \nNortheast, \nSouthwest, \nSoutheast, \n Special: " + specialMove);
-
-
-        nextPlayer_JTextField.setText("Spieler: "+players[selected]+" ist am zug.\nNächster Spieler ist: "+players[selected+1]);
-
+        currentPlayer_JTextField.setText("Spieler: "+players[selected]+" ist am zug.");
     }
-
 }
