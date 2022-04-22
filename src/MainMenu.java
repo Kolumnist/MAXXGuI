@@ -160,5 +160,3 @@ public class MainMenu extends JFrame implements Runnable {
             System.out.println("Herzlichen Glückwunsch der" + p.toString() + "  Spieler hat mit " + p.player_value.doubleValue() + " Punkten gewonnen!");
             repeat = false;
         }*/
-
-

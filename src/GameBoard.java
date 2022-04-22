@@ -126,7 +126,7 @@ public class GameBoard extends JFrame {
                 players[2].players_field = red;
                 boardFields[2][2] = white;
                 boardFields[5][5] = black;
-                boardFields[5][2] = red;
+                boardFields[2][5] = red;
                 break;
             case 4:
                 white = new Field(players[0].getX_pos(), players[0].getY_pos(), players[0]);
@@ -139,8 +139,8 @@ public class GameBoard extends JFrame {
                 players[3].players_field = yellow;
                 boardFields[2][2] = white;
                 boardFields[5][5] = black;
-                boardFields[5][2] = red;
-                boardFields[2][5] = yellow;
+                boardFields[2][5] = red;
+                boardFields[5][2] = yellow;
                 break;
         }
 
@@ -235,7 +235,6 @@ public class GameBoard extends JFrame {
                 break;
         }
         playerMoves_JTextField.setText("Northwest \nNortheast, \nSouthwest, \nSoutheast, \n Special: " + specialMove);
-
 
 
         nextPlayer_JTextField.setText("Spieler: "+players[selected]+" ist am zug.\nNächster Spieler ist: "+players[selected+1]);
