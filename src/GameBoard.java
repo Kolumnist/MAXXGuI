@@ -16,6 +16,10 @@ public class GameBoard extends JFrame {
     private static int programCount;
     private int playerCount = 0;
     private int selected = 0;
+    private JTextField nextPlayer_JTextField = new JTextField();
+    private JTextField playerMoves_JTextField = new JTextField();
+    private JLabel nextPlayer_JLabel = new JLabel("Next Player:");
+    private JLabel playerMoves_JLabel = new JLabel("Moves of current player:");
 
     public GameBoard(int pPlayerNumber) {
 
@@ -43,7 +47,17 @@ public class GameBoard extends JFrame {
         setJMenuBar(menuBar);
 
         //Container container = getContentPane();
-        setLayout(new GridLayout(8, 8));
+        setLayout(new BorderLayout());
+
+        JPanel board_JPanel = new JPanel(new GridLayout(8,8));
+        add(board_JPanel, BorderLayout.CENTER);
+
+        JPanel terminal_JPanel = new JPanel(new GridLayout(2,2));
+        terminal_JPanel.add(nextPlayer_JLabel);
+        terminal_JPanel.add(playerMoves_JLabel);
+        terminal_JPanel.add(nextPlayer_JTextField);
+        terminal_JPanel.add(playerMoves_JTextField);
+        add(terminal_JPanel, BorderLayout.SOUTH);
 
         //this ActionListener shows the manual_JMenuItem
         manual_JMenuItem.addActionListener(e -> {
@@ -79,7 +93,7 @@ public class GameBoard extends JFrame {
             //this nested for-loop creates fields and puts them into "boardFields"
             for (int g = 0; g < 8; g++) {
                 for (int h = 0; h < 8; h++) {
-                    Field field = new Field(g, h);
+                    Field field = new Field(h, g);
                     boardFields[g][h] = field;
 
                     boardSum += field.fieldValue.doubleValue();
@@ -133,7 +147,7 @@ public class GameBoard extends JFrame {
         //this nested for-loop adds every "field" of "boardFields" to the frame
         for (int t = 0; t < 8; t++) {
             for (int z = 0; z < 8; z++) {
-                add(boardFields[t][z]);
+                board_JPanel.add(boardFields[t][z]);
                 boardFields[t][z].addMouseListener(mouseAdapter);
             }
         }
@@ -187,6 +201,8 @@ public class GameBoard extends JFrame {
             else//When the player gives something that he cant do
                 System.out.println("Das darf deine Figur nicht!");
 
+            terminal();
+
             if (players[selected].player_value.intValue() == 4 / playerCount) {
                 JFrame f = new JFrame();
                 JPanel panel = new JPanel();
@@ -200,4 +216,30 @@ public class GameBoard extends JFrame {
             }
         }
     };
+
+    public void terminal(){
+        String specialMove = "";
+
+        switch (selected){
+            case 0:
+                specialMove = "Up";
+                break;
+            case 1:
+                specialMove = "Down";
+                break;
+            case 2:
+                specialMove = "Left";
+                break;
+            case 3:
+                specialMove = "Right";
+                break;
+        }
+        playerMoves_JTextField.setText("Northwest \nNortheast, \nSouthwest, \nSoutheast, \n Special: " + specialMove);
+
+
+
+        nextPlayer_JTextField.setText("Spieler: "+players[selected]+" ist am zug.\nNächster Spieler ist: "+players[selected+1]);
+
+    }
+
 }
