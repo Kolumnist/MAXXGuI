@@ -24,6 +24,7 @@ public class MAXX implements Runnable {
                     + "\nSo kann sich der weiße Spieler nach unten, der rote Spieler nach rechts, der gelbe Spieler nach links und der schwarze Spieler nach oben bewegen."
                     + "\n\n"
                     + "\nGewinner des Spiels ist derjenige, der mehr oder gleich 42 Punkte hat!\n";
+    //File erstellen für Text mit for-schleife dann ausgeben in dem neuen Fenster!
 
     private JButton play = new JButton();
     private JComboBox playerSelection;
