@@ -111,6 +111,8 @@ public class Player {
             case 4: selected = ((selected+1) % 4)-1; break;
             default: selected = -1; break;
         }
+        //Put this in the Button thing with a boolean instead of the two parameters
+
         //where the player is now
         this.players_field = after;
         this.players_field.setPlayerOnField(this);
