@@ -1,4 +1,3 @@
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,7 +17,7 @@ public class Savegame extends JFrame {
     JButton save = new JButton("Speichern");
 
     // Start-Directory
-    JFileChooser c = new JFileChooser(new File("c://MAXXGuI_Game"));
+    JFileChooser c = new JFileChooser(new File("C://MAXXGuI_Game"));
 
     // Konstruktor
     public Savegame() {
@@ -40,6 +39,8 @@ public class Savegame extends JFrame {
         p.add(isdir);                                                // Feld isdir hinzufügen
         cp.add(p, BorderLayout.CENTER);
         c.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);  // Sel.-Modus
+        setVisible(true);
+        setSize(500,500);
     }
 
 
@@ -80,9 +81,4 @@ public class Savegame extends JFrame {
             }
         }
     }
-
-    public static void main(String[] args) {
-        new Savegame();
-    }
 }
-

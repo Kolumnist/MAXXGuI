@@ -58,8 +58,8 @@ public class MainMenu extends JFrame implements Runnable, Serializable {
         // Array for the player selection
         String comboBoxListe[] = {"2 Spieler", "3 Spieler", "4 Spieler"};
 
-                //create an Label so people will know what they can select with the JComboBox
-                JLabel question = new JLabel("Wie viele Spieler?");
+        //create an Label so people will know what they can select with the JComboBox
+        JLabel question = new JLabel("Wie viele Spieler?");
         add(question);
 
         //create JComboBox with all the players
@@ -107,18 +107,12 @@ public class MainMenu extends JFrame implements Runnable, Serializable {
             myJFrame.add(panel);
             myJFrame.setVisible(true);
         });
-
-       /* play.addActionListener(new ActionListener() {
+        
+        save.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (playerSelection.getSelectedIndex() == 0) {
-                    GameBoard myBoard0 = new GameBoard(2, players);
-                } else if (playerSelection.getSelectedIndex() == 1) {
-                    GameBoard myBoard1 = new GameBoard(3, players);
-                } else if (playerSelection.getSelectedIndex() == 2) {
-                    GameBoard myBoard2 = new GameBoard(4, players);
-                }
+                Savegame myGame = new Savegame();
             }
-        });*/
+        });
 
         //this ActionListener close the whole program
         close.addActionListener(new ActionListener() {

@@ -65,6 +65,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Savegame" />
+      <item itemvalue="Application.MAXX" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Savegame" />
