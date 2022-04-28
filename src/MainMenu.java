@@ -15,6 +15,7 @@ public class MainMenu extends JFrame implements Runnable, Serializable {
     private JButton play;
     private JComboBox playerSelection;
     private String gameName, gameDelete;
+    private GameBoard gb;
 
     public MainMenu() {
         setTitle("MAXXGuI");
@@ -140,11 +141,11 @@ public class MainMenu extends JFrame implements Runnable, Serializable {
     public void run() {
         play.addActionListener(e -> {
             if (playerSelection.getSelectedIndex() == 0) {
-                GameBoard myBoard0 = new GameBoard(2);
+                gb = new GameBoard(2);
             } else if (playerSelection.getSelectedIndex() == 1) {
-                GameBoard myBoard1 = new GameBoard(3);
+                gb = new GameBoard(3);
             } else if (playerSelection.getSelectedIndex() == 2) {
-                GameBoard myBoard2 = new GameBoard(4);
+                gb = new GameBoard(4);
             }
         });
 
