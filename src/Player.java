@@ -4,6 +4,7 @@
  * @version 2 21.04.2022
  */
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.io.Serializable;
 import java.math.BigInteger;
 
@@ -26,10 +27,6 @@ public class Player implements Serializable {
         this.name = name;
 
         player_ID = identifier++;//sets character to identifier and then counts the identifier up
-        if(identifier == 5)
-        {
-            identifier = 1;
-        }
         player_value = new Fraction(new BigInteger("0"), new BigInteger("1"));
     }
 
@@ -46,7 +43,7 @@ public class Player implements Serializable {
         return y_pos;
     }
 
-    public void special() //Move Action that is special for every player
+    private void special() //Move Action that is special for every player
     {
         switch(player_ID)
         {
@@ -72,26 +69,75 @@ public class Player implements Serializable {
         }
     }
 
-    public void northWest() /*Northwest movement*/
+    private void northWest() /*Northwest movement*/
     {
         x_v = -1; y_v = -1;
         x_pos += x_v; y_pos += y_v;
     }
-    public void northEast() /*Northeast movement*/
+    private void northEast() /*Northeast movement*/
     {
         x_v = 1; y_v = -1;
         x_pos += x_v; y_pos += y_v;
     }
-    public void southWest() /*Southwest movement*/
+    private void southWest() /*Southwest movement*/
     {
         x_v = -1; y_v = 1;
         x_pos += x_v; y_pos += y_v;
     }
-    public void southEast() /*Southeast movement*/
+    private void southEast() /*Southeast movement*/
     {
         x_v = 1; y_v = 1;
         x_pos += x_v; y_pos += y_v;
     }
+
+    public int move(MouseEvent e, int selected, int playerCount)
+    {
+        //NORTH WEST MOVE
+        if (this.getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && this.getY_pos() == ((Field) e.getComponent()).getPositionY() + 1
+                && ((Field) e.getComponent()).freeField)
+        {
+            this.northWest();
+            this.player_value = this.player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
+            selected = this.onPlayerMoves(this.players_field, (Field) e.getComponent(), selected, playerCount);
+        }
+        //SOUTH WEST MOVE
+        else if (this.getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && this.getY_pos() == ((Field) e.getComponent()).getPositionY() - 1
+                && ((Field) e.getComponent()).freeField) {
+            this.southWest();
+            this.player_value = this.player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
+            selected = this.onPlayerMoves(this.players_field, (Field) e.getComponent(), selected, playerCount);
+        }
+        //SOUTH EAST MOVE
+        else if (this.getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && this.getY_pos() == ((Field) e.getComponent()).getPositionY() - 1
+                && ((Field) e.getComponent()).freeField)
+        {
+            this.southEast();
+            this.player_value = this.player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
+            selected = this.onPlayerMoves(this.players_field, (Field) e.getComponent(), selected, playerCount);
+        }
+        //NORTH EAST MOVE
+        else if (this.getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && this.getY_pos() == ((Field) e.getComponent()).getPositionY() + 1
+                && ((Field) e.getComponent()).freeField)
+        {
+            this.northEast();
+            this.player_value = this.player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
+            selected = this.onPlayerMoves(this.players_field, (Field) e.getComponent(), selected, playerCount);
+        }
+        //SPECIAL MOVE
+        else if (((this.getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && this.getY_pos() == ((Field) e.getComponent()).getPositionY() && selected == 2)/*third player*/
+                || (this.getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && this.getY_pos() == ((Field) e.getComponent()).getPositionY() && selected == 3)/*fourth player*/
+                || (this.getY_pos() == ((Field) e.getComponent()).getPositionY() + 1 && this.getX_pos() == ((Field) e.getComponent()).getPositionX() && selected == 0)/*first player*/
+                || (this.getY_pos() == ((Field) e.getComponent()).getPositionY() - 1 && this.getX_pos() == ((Field) e.getComponent()).getPositionX() && selected == 1))/*second player*/
+                && ((Field) e.getComponent()).freeField)
+        {
+            this.special();
+            this.player_value = this.player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
+            selected = this.onPlayerMoves(this.players_field, (Field) e.getComponent(), selected, playerCount);//player gets moved to the next field and the next player gets selected
+        } else//When the player gives something that he cant do
+            System.out.println("Das darf deine Figur nicht!");
+        return selected;
+    }
+
 
     /*It happens when the player is moving from one field to another and handles this action accordingly*/
     public int onPlayerMoves(Field before, Field after, int selected, int playerCount)
@@ -105,6 +151,7 @@ public class Player implements Serializable {
 
         System.out.println(this + " X: " + x_pos + " Y: " + y_pos);
 
+        //Put this in the Button thing with a boolean instead of the two parameters
         switch(playerCount)//checks if, depending on the playerCount, the selected value is at its max or not
         {
             case 2: selected = ((selected+1) % 2)-1; break;
@@ -112,12 +159,10 @@ public class Player implements Serializable {
             case 4: selected = ((selected+1) % 4)-1; break;
             default: selected = -1; break;
         }
-        //Put this in the Button thing with a boolean instead of the two parameters
 
         //where the player is now
         this.players_field = after;
         this.players_field.setPlayerOnField(this);
-
         return ++selected;
     }
 }

@@ -10,7 +10,6 @@ public class MAXX implements Runnable {
 
     private GUI gui;
     private GameBoard board;
-    private Player[] players;
 
     String manual_text = "Hallo! Herzlich willkommen zu 'MAXX'!"
                     + "\nIn unserem Spiel können vier Spieler abwechselnd miteinander spielen. Diese Spieler sind als 'black', 'white', 'red' und 'yellow' konfiguriert."

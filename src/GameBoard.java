@@ -52,14 +52,6 @@ public class GameBoard extends JFrame implements Serializable {
             }
         } while (boardSum == 84);
 
-        //this nested for-loop adds every "field" of "boardFields" to the frame
-        for (int t = 0; t < 8; t++) {
-            for (int z = 0; z < 8; z++) {
-                board_JPanel.add(boardFields[t][z]);
-                boardFields[t][z].addMouseListener(mouseAdapter);
-            }
-        }
-
         //setting 2-4 player on the board and giving the players their field
         switch (pPlayerNumber) {
             case 2:
@@ -97,6 +89,14 @@ public class GameBoard extends JFrame implements Serializable {
                 break;
         }
 
+        //this nested for-loop adds every "field" of "boardFields" to the frame
+        for (int t = 0; t < 8; t++) {
+            for (int z = 0; z < 8; z++) {
+                board_JPanel.add(boardFields[t][z]);
+                boardFields[t][z].addMouseListener(mouseAdapter);
+            }
+        }
+
         new GUI("MAXX" + (programCount++), board_JPanel, terminal_JPanel);
         console();
     }
@@ -108,46 +108,7 @@ public class GameBoard extends JFrame implements Serializable {
                 win();
             }
 
-            //NORTH WEST MOVE
-            if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1
-                    && ((Field) e.getComponent()).freeField) {
-                players[selected].northWest();
-                players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
-                selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);//player gets moved to the next field and the next player gets selected
-            }
-            //SOUTH WEST MOVE
-            else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1
-                    && ((Field) e.getComponent()).freeField) {
-                players[selected].southWest();
-                players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
-                selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);//player gets moved to the next field and the next player gets selected
-            }
-            //SOUTH EAST MOVE
-            else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1
-                    && ((Field) e.getComponent()).freeField) {
-                players[selected].southEast();
-                players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
-                selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);//player gets moved to the next field and the next player gets selected
-            }
-            //NORTH EAST MOVE
-            else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1
-                    && ((Field) e.getComponent()).freeField) {
-                players[selected].northEast();
-                players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
-                selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);//player gets moved to the next field and the next player gets selected
-            }
-            //SPECIAL MOVE
-            else if (((players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() && selected == 2)/*third player*/
-                    || (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() && selected == 3)/*fourth player*/
-                    || (players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1 && players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() && selected == 0)/*first player*/
-                    || (players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1 && players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() && selected == 1))/*second player*/
-                    && ((Field) e.getComponent()).freeField) {
-                players[selected].special();
-                players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
-                selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);//player gets moved to the next field and the next player gets selected
-            } else//When the player gives something that he cant do
-                System.out.println("Das darf deine Figur nicht!");
-
+            selected = players[selected].move(e, selected, playerCount);
             console(); //Updating the console
         }
     };
