@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
+import java.io.*;
 
 public class Savegame extends JFrame {
 
@@ -11,6 +11,7 @@ public class Savegame extends JFrame {
     JTextField dir = new JTextField();        // Directory
     JTextField exits = new JTextField();      // Existenz-Abfrage
     JTextField isdir = new JTextField();      // Directory-Abfrage
+    String dateiname;
 
     // Knöpfe für Öffnen und Speichern
     JButton open = new JButton("Öffnen");
@@ -40,7 +41,7 @@ public class Savegame extends JFrame {
         cp.add(p, BorderLayout.CENTER);
         c.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);  // Sel.-Modus
         setVisible(true);
-        setSize(500,500);
+        setSize(500, 500);
     }
 
 
@@ -60,9 +61,20 @@ public class Savegame extends JFrame {
                 exits.setText("");                                                 // Texte löschen
                 isdir.setText("");
             }
+            open(new Object(), dateiname);
+        }
+
+        public void open(Object o, String dateiname) {
+            try {
+                ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(dateiname));
+                stream.writeObject(o);
+                stream.close();
+            } catch (IOException ioex) {
+                System.err.println("Fehler beim Schreiben des Objekts aufgetreten.");
+                ioex.printStackTrace();
+            }
         }
     }
-
     class SaveL implements ActionListener {                                        // AL für Speichern-Knopf
 
         public void actionPerformed(ActionEvent e) {
@@ -73,12 +85,28 @@ public class Savegame extends JFrame {
                 exits.setText("Existiert? " + c.getSelectedFile().exists());
                 isdir.setText("Ist Directory? " + c.getSelectedFile().isDirectory());
             }
-            if(rVal == JFileChooser.CANCEL_OPTION) {                              // falls abgebrochen:
+            if (rVal == JFileChooser.CANCEL_OPTION) {                              // falls abgebrochen:
                 filename.setText("Es wurde Abbrechen gedrückt!");
                 dir.setText("");
                 exits.setText("");
                 isdir.setText("");
             }
+            saveme(dateiname);
+        }
+
+        public static Savegame saveme(String dateiname) {
+            try {
+                ObjectInputStream stream = new ObjectInputStream(new FileInputStream(dateiname));
+                Savegame myGame = (Savegame) stream.readObject();
+                stream.close();
+                return myGame;
+            } catch (ClassNotFoundException cnfex) {
+                System.err.println("Die Klasse des geladenen Objekts konnte nicht gefunden werden.");
+            } catch (IOException ioex) {
+                System.err.println("Das Objekt konnte nicht geladen werden.");
+                ioex.printStackTrace();
+            }
+            return null;
         }
     }
 }
