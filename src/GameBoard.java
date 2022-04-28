@@ -23,10 +23,7 @@ public class GameBoard extends JFrame implements Serializable {
     private JTextField playerMoves_JTextField = new JTextField();
     private JLabel currentPlayer_JLabel = new JLabel("Current Player:");
     private JLabel playerMoves_JLabel = new JLabel("Moves of current player:");
-    public Field white;
-    public Field black;
-    public Field red;
-    public Field yellow;
+    public Field white, black, red, yellow;
 
     public GameBoard(int pPlayerNumber) {
         players = new Player[]{new Player(2, 2, 'W'), new Player(5, 5, 'B'), new Player(5, 2, 'R'), new Player(2, 5, 'Y')};
@@ -101,8 +98,10 @@ public class GameBoard extends JFrame implements Serializable {
         }
 
         new GUI("MAXX" + (programCount++), board_JPanel, terminal_JPanel);
+        console();
     }
 
+    //region MousAdapter
     MouseAdapter mouseAdapter = new MouseAdapter() {
         public void mouseReleased(MouseEvent e) {
             if (players[selected].player_value.intValue() == 84 / playerCount) {
@@ -152,6 +151,7 @@ public class GameBoard extends JFrame implements Serializable {
             console(); //Updating the console
         }
     };
+    //endregion
 
     //checks for the winner unfortunately it doesn't stop the game yet it just tells who won!
     public void win() {
