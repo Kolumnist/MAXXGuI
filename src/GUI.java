@@ -35,11 +35,11 @@ public class GUI extends JFrame implements Serializable {
         JMenuBar menuBar_JMenuBar = new JMenuBar();
         JMenu[] menus_JMenu = {new JMenu("More Information"), new JMenu("Game"), new JMenu("Exit")};
 
-        for (int i = 0; i <= menus_JMenu.length; i++){
+        for (int i = 0; i < menus_JMenu.length; i++){
             menuBar_JMenuBar.add(menus_JMenu[i]);
         }
 
-        for (int i = 0; i <= pJMenuItem.length; i++){
+        for (int i = 0; i < pJMenuItem.length; i++){
             menus_JMenu[(i<1)?0:(i<4)?1:2].add(pJMenuItem[i]);
         }
 
