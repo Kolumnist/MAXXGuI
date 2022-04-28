@@ -6,10 +6,11 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Random;
 
-public class Field extends JButton {
+public class Field extends JButton implements Serializable {
     private Random rnd = new Random();
     private int positionX, positionY;
     private BigInteger numerator, denominator;

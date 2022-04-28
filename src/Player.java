@@ -4,9 +4,10 @@
  * @version 2 21.04.2022
  */
 import java.awt.*;
+import java.io.Serializable;
 import java.math.BigInteger;
 
-public class Player {
+public class Player implements Serializable {
 
     public Fraction player_value;//Value is 0 in the beginning and who has 42 first wins
     public final byte player_ID;//for identification of the characters: 1 = white , 2 = black , 3 = red, 4 = yellow

@@ -4,9 +4,10 @@
  * @version 2 21.04.2022
  */
 
+import java.io.Serializable;
 import java.math.BigInteger;
 
-public class Fraction extends Number implements Comparable {
+public class Fraction extends Number implements Comparable, Serializable {
 
 	BigInteger numerator; //Zähler
 	BigInteger denominator; //Nenner

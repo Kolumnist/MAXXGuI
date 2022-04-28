@@ -8,8 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 
-public class MainMenu extends JFrame implements Runnable {
+public class MainMenu extends JFrame implements Runnable, Serializable {
 
     private JButton play;
     private JComboBox playerSelection;
@@ -56,8 +57,8 @@ public class MainMenu extends JFrame implements Runnable {
         // Array for the player selection
         String comboBoxListe[] = {"2 Spieler", "3 Spieler", "4 Spieler"};
 
-        //create an Label so people will know what they can select with the JComboBox
-        JLabel question = new JLabel("Wie viele Spieler?");
+                //create an Label so people will know what they can select with the JComboBox
+                JLabel question = new JLabel("Wie viele Spieler?");
         add(question);
 
         //create JComboBox with all the players
