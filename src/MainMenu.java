@@ -108,6 +108,7 @@ public class MainMenu extends JFrame implements Runnable, Serializable {
             myJFrame.setVisible(true);
         });
 
+        //this ActionListener call the Savegame class
         save.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Savegame myGame = new Savegame();

@@ -6,6 +6,8 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.Serializable;
@@ -25,7 +27,7 @@ public class GameBoard extends JFrame implements Serializable {
 
     public GameBoard(int pPlayerNumber) {
 
-        players = new Player[] {new Player(2, 2, 'W'), new Player(5, 5, 'B'),  new Player(5, 2, 'R'), new Player(2, 5, 'Y')};
+        players = new Player[]{new Player(2, 2, 'W'), new Player(5, 5, 'B'), new Player(5, 2, 'R'), new Player(2, 5, 'Y')};
 
         playerCount = pPlayerNumber;
         setSize(700, 700);
@@ -63,11 +65,11 @@ public class GameBoard extends JFrame implements Serializable {
         //layout of the frame
         setLayout(new BorderLayout());
         //GridLayout for the gameboard
-        JPanel board_JPanel = new JPanel(new GridLayout(8,8));
+        JPanel board_JPanel = new JPanel(new GridLayout(8, 8));
         add(board_JPanel, BorderLayout.CENTER);
 
         //creating a little console with JTextFields and JLabels to show the current player and it's moves
-        JPanel terminal_JPanel = new JPanel(new GridLayout(2,2));
+        JPanel terminal_JPanel = new JPanel(new GridLayout(2, 2));
         terminal_JPanel.add(currentPlayer_JLabel);
         terminal_JPanel.add(playerMoves_JLabel);
         terminal_JPanel.add(currentPlayer_JTextField);
@@ -97,11 +99,19 @@ public class GameBoard extends JFrame implements Serializable {
             myJFrame.setVisible(true);
         });
 
-        //this ActionListener close_JMenuItem the whole program
-        close_JMenuItem.addActionListener(e -> {
-                    System.exit(0);
-                }
-        );
+        //this ActionListener call the Savegame class
+        save_JMenuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Savegame myGame = new Savegame();
+            }
+        });
+
+        //this ActionListener close the whole program
+        close_JMenuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
 
         //do-while-loop to create a field with a sum of 84
         do {
@@ -175,48 +185,42 @@ public class GameBoard extends JFrame implements Serializable {
 
             //NORTH WEST MOVE
             if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1
-                    && ((Field) e.getComponent()).freeField)
-            {
+                    && ((Field) e.getComponent()).freeField) {
                 players[selected].northWest();
                 players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
                 selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);//player gets moved to the next field and the next player gets selected
             }
             //SOUTH WEST MOVE
             else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1
-                    && ((Field) e.getComponent()).freeField)
-            {
+                    && ((Field) e.getComponent()).freeField) {
                 players[selected].southWest();
                 players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
                 selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);//player gets moved to the next field and the next player gets selected
             }
             //SOUTH EAST MOVE
             else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1
-                    && ((Field) e.getComponent()).freeField)
-            {
+                    && ((Field) e.getComponent()).freeField) {
                 players[selected].southEast();
                 players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
                 selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);//player gets moved to the next field and the next player gets selected
             }
             //NORTH EAST MOVE
             else if (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1
-                    && ((Field) e.getComponent()).freeField)
-            {
+                    && ((Field) e.getComponent()).freeField) {
                 players[selected].northEast();
                 players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
                 selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);//player gets moved to the next field and the next player gets selected
             }
             //SPECIAL MOVE
-            else if (( (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() && selected == 2)/*third player*/
+            else if (((players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() && selected == 2)/*third player*/
                     || (players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() && selected == 3)/*fourth player*/
                     || (players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() + 1 && players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() && selected == 0)/*first player*/
                     || (players[selected].getY_pos() == ((Field) e.getComponent()).getPositionY() - 1 && players[selected].getX_pos() == ((Field) e.getComponent()).getPositionX() && selected == 1))/*second player*/
-                    && ((Field) e.getComponent()).freeField)
-            {
+                    && ((Field) e.getComponent()).freeField) {
                 players[selected].special();
                 players[selected].player_value = players[selected].player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
                 selected = players[selected].onPlayerMoves(players[selected].players_field, (Field) e.getComponent(), selected, playerCount);//player gets moved to the next field and the next player gets selected
-            }
-            else//When the player gives something that he cant do
+            } else//When the player gives something that he cant do
                 System.out.println("Das darf deine Figur nicht!");
 
             console(); //Updating the console
@@ -224,27 +228,27 @@ public class GameBoard extends JFrame implements Serializable {
     };
 
     //checks for the winner unfortunately it doesn't stop the game yet it just tells who won!
-    public void win(){
+    public void win() {
         JFrame f = new JFrame();
         JPanel panel = new JPanel();
         JTextArea win = new JTextArea("Herzlichen Glückwunsch der " + players[selected].toString()
                 + "  Spieler hat mit " + players[selected].player_value.doubleValue() + " Punkten gewonnen!\n");
-        win.setSize(500,200);
-        win.setFont(new Font("Serif",Font.PLAIN,14));
+        win.setSize(500, 200);
+        win.setFont(new Font("Serif", Font.PLAIN, 14));
         panel.add(win);
         f.setSize(500, 200);
         f.add(panel);
         f.setVisible(true);
-        f.setTitle("MAXX Win" + (programCount-1));
+        f.setTitle("MAXX Win" + (programCount - 1));
         f.setLayout(new FlowLayout());
         System.out.println("Win happened!");
     }
 
     //Method for the output at the bottem of the frame like a console
-    public void console(){
+    public void console() {
         String specialMove = "";
         //determines the special move of the player
-        switch (selected){
+        switch (selected) {
             case 0:
                 specialMove = "Up";
                 break;
@@ -259,6 +263,6 @@ public class GameBoard extends JFrame implements Serializable {
                 break;
         }
         playerMoves_JTextField.setText("Northwest \nNortheast, \nSouthwest, \nSoutheast, \n Special: " + specialMove);
-        currentPlayer_JTextField.setText("Spieler: "+players[selected]+" ist am zug.");
+        currentPlayer_JTextField.setText("Spieler: " + players[selected] + " ist am zug.");
     }
 }
