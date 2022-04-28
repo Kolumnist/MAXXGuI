@@ -79,7 +79,7 @@ public class MAXX implements Serializable, Runnable {
         close.addActionListener(e -> System.exit(0));
         */
 
-        gui = new GUI(manual_frame);
+        gui = new GUI(menu_items);
         playerSelection = new JComboBox(new String[]{"2 Spieler", "3 Spieler", "4 Spieler"});
         gui.add(playerSelection);
         gui.add(play);
