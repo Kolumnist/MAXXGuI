@@ -148,27 +148,5 @@ public class MainMenu extends JFrame implements Runnable {
         });
 
     }
-
-
-    public void win(Player[] p) {
-        int z = 0;
-        if (p.length == 2) {
-            z = 2;
-        } else if (p.length == 3) {
-            z = 3;
-        } else if (p.length == 4) {
-            z = 4;
-        }
-        for (int i = 0; i <= p.length; i++) {
-            if (p[i].player_ID == 84 / z) {
-                JFrame f = new JFrame();
-                JPanel panel = new JPanel();
-                JTextArea win = new JTextArea("Herzlichen Glückwunsch der " + p[i].toString() + "  Spieler hat mit " + p[i].player_value.doubleValue() + " Punkten gewonnen!\n");
-                panel.add(win);
-                f.setSize(300, 300);
-                f.add(panel);
-                f.setVisible(true);
-            }
-        }
-    }
 }
+

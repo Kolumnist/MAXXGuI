@@ -20,6 +20,7 @@ public class GameBoard extends JFrame {
     private JTextField playerMoves_JTextField = new JTextField();
     private JLabel currentPlayer_JLabel = new JLabel("Current Player:");
     private JLabel playerMoves_JLabel = new JLabel("Moves of current player:");
+    private String gameName, gameDelete;
 
     public GameBoard(int pPlayerNumber) {
 
@@ -33,15 +34,28 @@ public class GameBoard extends JFrame {
         // create and add JMenuBar
         JMenuBar menuBar = new JMenuBar();
         JMenu info_JMenu = new JMenu("More Information");
+        JMenu game_JMenu = new JMenu("Game");
         JMenu exit_JMenu = new JMenu("Exit");
         menuBar.add(info_JMenu);
+        menuBar.add(game_JMenu);
         menuBar.add(exit_JMenu);
+
+        JMenu goTo_JMenu = new JMenu("GoTo");
+        JMenu delete_JMenu = new JMenu("delete");
 
         //create and add JMenu
         JMenuItem manual_JMenuItem = new JMenuItem("Manual");
         JMenuItem close_JMenuItem = new JMenuItem("Close all Window");
+        JMenuItem save_JMenuItem = new JMenuItem("Save");
+        JMenuItem name_JMenuItem = new JMenuItem(gameName);
+        JMenuItem away_JMenuItem = new JMenuItem(gameDelete);
         info_JMenu.add(manual_JMenuItem);
+        game_JMenu.add(save_JMenuItem);
+        game_JMenu.add(goTo_JMenu);
+        game_JMenu.add(delete_JMenu);
         exit_JMenu.add(close_JMenuItem);
+        delete_JMenu.add(away_JMenuItem);
+        goTo_JMenu.add(name_JMenuItem);
         //set JMenuBar into JFrame
         setJMenuBar(menuBar);
 
