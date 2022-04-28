@@ -13,6 +13,7 @@ public class MainMenu extends JFrame implements Runnable {
 
     private JButton play;
     private JComboBox playerSelection;
+    private String gameName;
 
     public MainMenu() {
         setTitle("MAXXGuI");
@@ -22,21 +23,30 @@ public class MainMenu extends JFrame implements Runnable {
         // create and add JMenuBar
         JMenuBar menuBar = new JMenuBar();
         JMenu info = new JMenu("More Information");
+        JMenu game = new JMenu("Game");
         JMenu exit = new JMenu("Exit");
         menuBar.add(info);
+        menuBar.add(game);
         menuBar.add(exit);
+
 
         //create and add JMenu
         JMenuItem manual = new JMenuItem("Manual");
+        JMenuItem save = new JMenuItem("Save");
+        JMenu goTo = new JMenu("GoTo");
         JMenuItem close = new JMenuItem("Close all Window");
         info.add(manual);
+        game.add(save);
+        game.add(goTo);
         exit.add(close);
+
+        JMenuItem name = new JMenuItem(gameName);
+        goTo.add(name);
 
         //set JMenuBar into JFrame
         setJMenuBar(menuBar);
 
         setSize(700, 700);
-        setLocation(700, 300);
         setVisible(true);
 
 
@@ -54,21 +64,21 @@ public class MainMenu extends JFrame implements Runnable {
 
         //create a picture
         JLabel picture;
-        Icon icon;
-        icon = new ImageIcon(getClass().getResource("pictureXX.png"));
+        Icon icon = new ImageIcon(new ImageIcon(getClass().getResource("MAXXGuI.png")).getImage().getScaledInstance(550, 550, Image.SCALE_DEFAULT));
         picture = new JLabel(icon);
-        picture.setSize(350, 350);
+        picture.setIcon(icon);
         add(picture);
+        setVisible(true);
         // picture.setLocation(50,50);
 
         //create a button
         play = new JButton();
         play.setText("Game Start");
-        play.setSize(200, 200);
+        play.setPreferredSize(new Dimension(100,30));
         play.setVisible(true);
         play.setBackground(Color.LIGHT_GRAY);
-        play.setLocation(650, 650);
         add(play);
+        setVisible(true);
 
         //this ActionListener shows the manual
         manual.addActionListener(e -> {
@@ -116,6 +126,11 @@ public class MainMenu extends JFrame implements Runnable {
         thread.start();
 
     }
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Images/icon.png")));
+    }
+
 
     @Override
     public void run() {
