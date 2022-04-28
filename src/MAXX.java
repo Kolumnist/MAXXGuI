@@ -15,12 +15,16 @@ public class MAXX implements Serializable, Runnable {
 
     private JButton play;
     private JComboBox playerSelection;
-    JMenuItem manual, save, name, away, close;
+    JMenuItem[] menu_items = {
+            new JMenuItem("Manual"), new JMenuItem("Save"),
+            new JMenuItem("Choose Game"), new JMenuItem("Delete Game"),
+            new JMenuItem("Close all Window")
+    };
 
     public MAXX() {
 
         ActionListener manual_frame = e -> {
-            if((JMenuItem) e.getSource() == manual)
+            if(((JMenuItem) e.getSource()) == menu_items[0])
             {
                 JFrame myJFrame = new JFrame();
                 JPanel panel = new JPanel();
@@ -42,7 +46,7 @@ public class MAXX implements Serializable, Runnable {
                 myJFrame.add(panel);
                 myJFrame.setVisible(true);
             }
-            else if((JMenuItem) e.getSource() == close)
+            else if(((JMenuItem) e.getSource()) == menu_items[1])
             {
                 System.exit(0);
             }
@@ -76,6 +80,9 @@ public class MAXX implements Serializable, Runnable {
         */
 
         gui = new GUI(manual_frame);
+        playerSelection = new JComboBox(new String[]{"2 Spieler", "3 Spieler", "4 Spieler"});
+        gui.add(playerSelection);
+        gui.add(play);
 
         Thread thread = new Thread(this);
         thread.start();

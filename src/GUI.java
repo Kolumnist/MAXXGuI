@@ -39,7 +39,6 @@ public class GUI extends JFrame {
     public JMenuBar createMenuBar(){
         JMenuBar menuBar_JMenuBar = new JMenuBar();
         JMenu[] menus_JMenu = {new JMenu("More Information"), new JMenu("Game"), new JMenu("Exit")};
-        JMenuItem[] items_JMenuItem = {new JMenuItem("Manual"), new JMenuItem("Save"), new JMenuItem("Choose Game"), new JMenuItem("Delete Game"), new JMenuItem("Close all Window")};
 
         for (int i = 0; i <= menus_JMenu.length; i++){
             menuBar_JMenuBar.add(menus_JMenu[i]);
