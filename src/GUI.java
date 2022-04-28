@@ -7,24 +7,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.Serializable;
 
 
-
-public class GUI extends JFrame {
-    private String[] comboBoxList = {"2 Spieler", "3 Spieler", "4 Spieler"};
+public class GUI extends JFrame implements Serializable {
     //Constructor for the MainMenu
-    public GUI(){
+    public GUI(JMenuItem[] pJMenuItem){
         setTitle("MAXXGuI");
         setSize(700,700);
         setVisible(true);
 
         setLayout(new FlowLayout());
-        setJMenuBar(createMenuBar());
-
-        //mabey change
-        add(new Label("Wie viele Spieler"));
-        add(new JComboBox(comboBoxList));
-
+        setJMenuBar(createMenuBar(pJMenuItem));
     }
 
     //Constructor for the Gameboard
@@ -34,20 +28,19 @@ public class GUI extends JFrame {
         setVisible(true);
 
         setLayout(new BorderLayout());
+        add(new JPanel(new GridLayout(8, 8)), BorderLayout.CENTER);
     }
 
-    public JMenuBar createMenuBar(){
+    public JMenuBar createMenuBar(JMenuItem[] pJMenuItem){
         JMenuBar menuBar_JMenuBar = new JMenuBar();
         JMenu[] menus_JMenu = {new JMenu("More Information"), new JMenu("Game"), new JMenu("Exit")};
-        JMenuItem[] items_JMenuItem = {new JMenuItem("Manual"), new JMenuItem("Save"), new JMenuItem("Choose Game"), new JMenuItem("Delete Game"), new JMenuItem("Close all Window")};
 
         for (int i = 0; i <= menus_JMenu.length; i++){
             menuBar_JMenuBar.add(menus_JMenu[i]);
         }
 
-        for (int i = 0; i <= items_JMenuItem.length; i++){
-            items_JMenuItem[i].addActionListener();
-            menus_JMenu[(i<1)?0:(i<4)?1:2].add(items_JMenuItem[i]);
+        for (int i = 0; i <= pJMenuItem.length; i++){
+            menus_JMenu[(i<1)?0:(i<4)?1:2].add(pJMenuItem[i]);
         }
 
         return  menuBar_JMenuBar;
