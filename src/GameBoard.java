@@ -23,50 +23,17 @@ public class GameBoard extends JFrame implements Serializable {
     private JTextField playerMoves_JTextField = new JTextField();
     private JLabel currentPlayer_JLabel = new JLabel("Current Player:");
     private JLabel playerMoves_JLabel = new JLabel("Moves of current player:");
-    private String gameName, gameDelete;
+    public Field white;
+    public Field black;
+    public Field red;
+    public Field yellow;
 
     public GameBoard(int pPlayerNumber) {
-
         players = new Player[]{new Player(2, 2, 'W'), new Player(5, 5, 'B'), new Player(5, 2, 'R'), new Player(2, 5, 'Y')};
-
         playerCount = pPlayerNumber;
-        setSize(700, 700);
-        setVisible(true);
-        setTitle("MAXX" + (programCount++));
 
-        // create and add JMenuBar
-        JMenuBar menuBar = new JMenuBar();
-        JMenu info_JMenu = new JMenu("More Information");
-        JMenu game_JMenu = new JMenu("Game");
-        JMenu exit_JMenu = new JMenu("Exit");
-        menuBar.add(info_JMenu);
-        menuBar.add(game_JMenu);
-        menuBar.add(exit_JMenu);
-
-        JMenu goTo_JMenu = new JMenu("GoTo");
-        JMenu delete_JMenu = new JMenu("delete");
-
-        //create and add JMenu
-        JMenuItem manual_JMenuItem = new JMenuItem("Manual");
-        JMenuItem close_JMenuItem = new JMenuItem("Close all Window");
-        JMenuItem save_JMenuItem = new JMenuItem("Save");
-        JMenuItem name_JMenuItem = new JMenuItem(gameName);
-        JMenuItem away_JMenuItem = new JMenuItem(gameDelete);
-        info_JMenu.add(manual_JMenuItem);
-        game_JMenu.add(save_JMenuItem);
-        game_JMenu.add(goTo_JMenu);
-        game_JMenu.add(delete_JMenu);
-        exit_JMenu.add(close_JMenuItem);
-        delete_JMenu.add(away_JMenuItem);
-        goTo_JMenu.add(name_JMenuItem);
-        //set JMenuBar into JFrame
-        setJMenuBar(menuBar);
-
-        //layout of the frame
-        setLayout(new BorderLayout());
-        //GridLayout for the gameboard
+        //GridLayout for the Gameboard
         JPanel board_JPanel = new JPanel(new GridLayout(8, 8));
-        add(board_JPanel, BorderLayout.CENTER);
 
         //creating a little console with JTextFields and JLabels to show the current player and it's moves
         JPanel terminal_JPanel = new JPanel(new GridLayout(2, 2));
@@ -75,43 +42,6 @@ public class GameBoard extends JFrame implements Serializable {
         terminal_JPanel.add(currentPlayer_JTextField);
         terminal_JPanel.add(playerMoves_JTextField);
         add(terminal_JPanel, BorderLayout.SOUTH);
-
-        //this ActionListener shows the manual_JMenuItem
-        manual_JMenuItem.addActionListener(e -> {
-            JFrame myJFrame = new JFrame();
-            JPanel panel = new JPanel();
-
-            JTextArea manual1 = new JTextArea("Hallo! Herzlich willkommen zu 'MAXX'!"
-                    + "\nIn unserem Spiel können vier Spieler abwechselnd miteinander spielen. Diese Spieler sind als 'black', 'white', 'red' und 'yellow' konfiguriert."
-                    + "\nAlle Spieler fangen an einem unterschiedlichen Punkt des Spielfeldes an."
-                    + "\nZiel des Spieles ist es, 21-42 Punkte zu ergattern."
-                    + "\nDie Punkte setzen sich aus den Brüchen in den insgesamt 60-62 Buttons zusammen."
-                    + "\nDamit der Spieler auf einen Button springen kann, muss einfacherweise nur auf den Button geklickt werden."
-                    + "\n\nABER ACHTUNG!"
-                    + "\nDie Spieler können sich nur schräg über das Spielfeld bewegen."
-                    + "\n Desweiteren gibt es noch einen SPECIAL MOVE, welcher den Spieler eine bestimmte Bewegung ermöglicht, die den anderen Spielern nicht vergönnt ist."
-                    + "\nSo kann sich der weiße Spieler nach unten, der rote Spieler nach rechts, der gelbe Spieler nach links und der schwarze Spieler nach oben bewegen."
-                    + "\n\n"
-                    + "\nGewinner des Spiels ist derjenige, der mehr oder gleich 42 Punkte hat!\n");
-            panel.add(manual1);
-            myJFrame.setSize(900, 300);
-            myJFrame.add(panel);
-            myJFrame.setVisible(true);
-        });
-
-        //this ActionListener call the Savegame class
-        save_JMenuItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Savegame myGame = new Savegame();
-            }
-        });
-
-        //this ActionListener close the whole program
-        close_JMenuItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
 
         //do-while-loop to create a field with a sum of 84
         do {
@@ -125,11 +55,13 @@ public class GameBoard extends JFrame implements Serializable {
             }
         } while (boardSum == 84);
 
-        //creating the fields for the players
-        Field white;
-        Field black;
-        Field red;
-        Field yellow;
+        //this nested for-loop adds every "field" of "boardFields" to the frame
+        for (int t = 0; t < 8; t++) {
+            for (int z = 0; z < 8; z++) {
+                board_JPanel.add(boardFields[t][z]);
+                boardFields[t][z].addMouseListener(mouseAdapter);
+            }
+        }
 
         //setting 2-4 player on the board and giving the players their field
         switch (pPlayerNumber) {
@@ -168,13 +100,7 @@ public class GameBoard extends JFrame implements Serializable {
                 break;
         }
 
-        //this nested for-loop adds every "field" of "boardFields" to the frame
-        for (int t = 0; t < 8; t++) {
-            for (int z = 0; z < 8; z++) {
-                board_JPanel.add(boardFields[t][z]);
-                boardFields[t][z].addMouseListener(mouseAdapter);
-            }
-        }
+        new GUI("MAXX" + (programCount++), board_JPanel, terminal_JPanel);
     }
 
     MouseAdapter mouseAdapter = new MouseAdapter() {

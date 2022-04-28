@@ -15,20 +15,28 @@ public class GUI extends JFrame implements Serializable {
     public GUI(JMenuItem[] pJMenuItem){
         setTitle("MAXXGuI");
         setSize(700,700);
-        setVisible(true);
 
         setLayout(new FlowLayout());
         setJMenuBar(createMenuBar(pJMenuItem));
+
+        //create a picture
+        JLabel picture;
+        Icon icon = new ImageIcon(new ImageIcon(getClass().getResource("MAXXGuI.png")).getImage().getScaledInstance(550, 550, Image.SCALE_DEFAULT));
+        picture = new JLabel(icon);
+        picture.setIcon(icon);
+        add(picture);
     }
 
     //Constructor for the Gameboard
-    public GUI(String pTitle){
+    public GUI(String pTitle, JPanel pBoard_JPanel, JPanel pTerminal_JPanel){
         setTitle(pTitle);
         setSize(700, 700);
-        setVisible(true);
 
         setLayout(new BorderLayout());
-        add(new JPanel(new GridLayout(8, 8)), BorderLayout.CENTER);
+
+        add(pBoard_JPanel, BorderLayout.CENTER);
+        add(pTerminal_JPanel, BorderLayout.SOUTH);
+        setVisible(true);
     }
 
     public JMenuBar createMenuBar(JMenuItem[] pJMenuItem){
