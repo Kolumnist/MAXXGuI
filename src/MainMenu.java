@@ -13,7 +13,7 @@ public class MainMenu extends JFrame implements Runnable {
 
     private JButton play;
     private JComboBox playerSelection;
-    private String gameName;
+    private String gameName, gameDelete;
 
     public MainMenu() {
         setTitle("MAXXGuI");
@@ -29,18 +29,21 @@ public class MainMenu extends JFrame implements Runnable {
         menuBar.add(game);
         menuBar.add(exit);
 
+        JMenu goTo = new JMenu("GoTo");
+        JMenu delete = new JMenu("delete");
 
         //create and add JMenu
         JMenuItem manual = new JMenuItem("Manual");
         JMenuItem save = new JMenuItem("Save");
-        JMenu goTo = new JMenu("GoTo");
+        JMenuItem name = new JMenuItem(gameName);
+        JMenuItem away = new JMenuItem(gameDelete);
         JMenuItem close = new JMenuItem("Close all Window");
         info.add(manual);
         game.add(save);
         game.add(goTo);
+        game.add(delete);
         exit.add(close);
-
-        JMenuItem name = new JMenuItem(gameName);
+        delete.add(away);
         goTo.add(name);
 
         //set JMenuBar into JFrame
@@ -74,7 +77,7 @@ public class MainMenu extends JFrame implements Runnable {
         //create a button
         play = new JButton();
         play.setText("Game Start");
-        play.setPreferredSize(new Dimension(100,30));
+        play.setPreferredSize(new Dimension(100, 30));
         play.setVisible(true);
         play.setBackground(Color.LIGHT_GRAY);
         add(play);
@@ -169,9 +172,3 @@ public class MainMenu extends JFrame implements Runnable {
         }
     }
 }
-
-
-    /*    if (player_value.intValue() >= (84 / 2)) {
-            System.out.println("Herzlichen Glückwunsch der" + p.toString() + "  Spieler hat mit " + p.player_value.doubleValue() + " Punkten gewonnen!");
-            repeat = false;
-        }*/

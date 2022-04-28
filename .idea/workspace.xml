@@ -30,7 +30,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="settings.editor.selected.configurable" value="advanced.settings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\laraj\OneDrive\Dokumente\MAXXGuI\MAXXGuI\src" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="MAXX" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -54,7 +60,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1650565092315</updated>
-      <workItem from="1651133185614" duration="841000" />
+      <workItem from="1651133185614" duration="1179000" />
     </task>
     <servers />
   </component>
