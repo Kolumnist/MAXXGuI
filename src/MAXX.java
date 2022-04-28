@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.event.ActionListener;
 import java.io.Serializable;
 
 /**
@@ -7,7 +6,7 @@ import java.io.Serializable;
  * @Matrikelnummer: 212455 [mjouaux], 212848 [choss], 212467 [lmangi]
  * @version 2 21.04.2022
  */
-public class MAXX implements Serializable, Runnable {
+public class MAXX implements Runnable {
 
     private GUI gui;
     private GameBoard board;
@@ -23,37 +22,8 @@ public class MAXX implements Serializable, Runnable {
 
     public MAXX() {
 
-        ActionListener manual_frame = e -> {
-            if(((JMenuItem) e.getSource()) == menu_items[0])
-            {
-                JFrame myJFrame = new JFrame();
-                JPanel panel = new JPanel();
-                panel.add(new JTextArea(
-                        "Hallo! Herzlich willkommen zu 'MAXX'!"
-                                + "\nIn unserem Spiel können vier Spieler abwechselnd miteinander spielen. Diese Spieler sind als 'black', 'white', 'red' und 'yellow' konfiguriert."
-                                + "\nAlle Spieler fangen an einem unterschiedlichen Punkt des Spielfeldes an."
-                                + "\nZiel des Spieles ist es, 21-42 Punkte zu ergattern."
-                                + "\nDie Punkte setzen sich aus den Brüchen in den insgesamt 60-62 Buttons zusammen."
-                                + "\nDamit der Spieler auf einen Button springen kann, muss einfacherweise nur auf den Button geklickt werden."
-                                + "\n\nABER ACHTUNG!"
-                                + "\nDie Spieler können sich nur schräg über das Spielfeld bewegen."
-                                + "\n Desweiteren gibt es noch einen SPECIAL MOVE, welcher den Spieler eine bestimmte Bewegung ermöglicht, die den anderen Spielern nicht vergönnt ist."
-                                + "\nSo kann sich der weiße Spieler nach unten, der rote Spieler nach rechts, der gelbe Spieler nach links und der schwarze Spieler nach oben bewegen."
-                                + "\n\n"
-                                + "\nGewinner des Spiels ist derjenige, der mehr oder gleich 42 Punkte hat!\n"
-                ));
-                myJFrame.setSize(900, 300);
-                myJFrame.add(panel);
-                myJFrame.setVisible(true);
-            }
-            else if(((JMenuItem) e.getSource()) == menu_items[1])
-            {
-                System.exit(0);
-            }
-        };
-
-        /*this ActionListener shows the manual
-        manual.addActionListener(e -> {
+        //this ActionListener shows the manual
+        menu_items[0].addActionListener(e -> {
             JFrame myJFrame = new JFrame();
             JPanel panel = new JPanel();
             panel.add(new JTextArea(
@@ -76,8 +46,7 @@ public class MAXX implements Serializable, Runnable {
         });
 
         //this ActionListener close the whole program
-        close.addActionListener(e -> System.exit(0));
-        */
+        menu_items[1].addActionListener(e -> System.exit(0));
 
         gui = new GUI(menu_items);
         playerSelection = new JComboBox(new String[]{"2 Spieler", "3 Spieler", "4 Spieler"});
@@ -103,6 +72,6 @@ public class MAXX implements Serializable, Runnable {
 
     public static void main(String[] args)
     {
-        MAXX x = new MAXX();
+        new MAXX();
     }
 }
