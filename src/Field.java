@@ -14,8 +14,8 @@ public class Field extends JButton implements Serializable {
     private Random rnd = new Random();
     private int positionX, positionY;
     private BigInteger numerator, denominator;
+    private final BigInteger comp = new BigInteger("9");
     public Fraction fieldValue = new Fraction(new BigInteger("0"), new BigInteger("1"));
-    private boolean notInteger = false;
     public boolean freeField = true;
 
     //constructor to create a field with a fraction
@@ -74,22 +74,16 @@ public class Field extends JButton implements Serializable {
 
     //creates a random fraction
     public String createValue(){
-        while (!notInteger){
+        do{
             numerator = BigInteger.valueOf(rnd.nextInt(10, 1000));
             denominator = BigInteger.valueOf(rnd.nextInt(10, 1000));
 
             fieldValue = new Fraction(numerator, denominator);
             fieldValue = fieldValue.shorten();
 
-            BigInteger comp = new BigInteger("9");
-            //Testing if the denominator and numerator are greater then 9
-            if(fieldValue.denominator.compareTo(comp) == 1 && fieldValue.numerator.compareTo(comp) == 1) {
-                //Testing if the fraction is an integer
-                if(!fieldValue.isInteger()) {
-                    notInteger = true;
-                }
-            }
-        }
+            //Testing if the denominator and numerator are greater then 9 and if the fraction is an integer
+        }while((!fieldValue.isInteger()) &&( fieldValue.denominator.compareTo(comp) == 1 && fieldValue.numerator.compareTo(comp) == 1));
+
         return fieldValue.toString();
     }
 
