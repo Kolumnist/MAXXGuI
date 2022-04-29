@@ -107,7 +107,7 @@ public class GameBoard extends JFrame implements Serializable {
     //region MousAdapter
     MouseAdapter mouseAdapter = new MouseAdapter() {
         public void mouseReleased(MouseEvent e) {
-            if (players[selected].player_value.intValue() == 84 / playerCount) {
+            if (players[selected].player_value.intValue() == (84 / playerCount)) {
                 win();
             }
 
