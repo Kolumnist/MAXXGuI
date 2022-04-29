@@ -40,7 +40,7 @@ public class Field extends JButton implements Serializable {
     //sets a player on a button
     public void setPlayerOnField(Player pPlayer){
         System.out.println(this.fieldValue + " X: " + positionX + " Y: " + positionY);
-        switch (pPlayer.toString().trim()){
+        switch (pPlayer.toString()){
             case "W":
                 setText("W");
                 setName("W");

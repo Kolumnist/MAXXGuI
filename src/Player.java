@@ -26,19 +26,6 @@ public class Player implements Serializable {
         player_value = new Fraction(new BigInteger("0"), new BigInteger("1"));
     }
 
-    public String toString()//gives only the name of the player as string
-    {
-        return name+"";
-    }
-
-    public int getX_pos() {
-        return x_pos;
-    }
-
-    public int getY_pos() {
-        return y_pos;
-    }
-
     private void special() //Move Action that is special for every player
     {
         switch(name)
@@ -94,14 +81,14 @@ public class Player implements Serializable {
         {
             this.northWest();
             this.player_value = this.player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
-            selected = this.onPlayerMoves(this.players_field, (Field) e.getComponent(), selected, playerCount);
+            this.onPlayerMoves(this.players_field, (Field) e.getComponent(), selected, playerCount);
         }
         //SOUTH WEST MOVE
         else if (this.getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && this.getY_pos() == ((Field) e.getComponent()).getPositionY() - 1
                 && ((Field) e.getComponent()).freeField) {
             this.southWest();
             this.player_value = this.player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
-            selected = this.onPlayerMoves(this.players_field, (Field) e.getComponent(), selected, playerCount);
+            this.onPlayerMoves(this.players_field, (Field) e.getComponent(), selected, playerCount);
         }
         //SOUTH EAST MOVE
         else if (this.getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && this.getY_pos() == ((Field) e.getComponent()).getPositionY() - 1
@@ -109,7 +96,7 @@ public class Player implements Serializable {
         {
             this.southEast();
             this.player_value = this.player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
-            selected = this.onPlayerMoves(this.players_field, (Field) e.getComponent(), selected, playerCount);
+            this.onPlayerMoves(this.players_field, (Field) e.getComponent(), selected, playerCount);
         }
         //NORTH EAST MOVE
         else if (this.getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && this.getY_pos() == ((Field) e.getComponent()).getPositionY() + 1
@@ -117,7 +104,7 @@ public class Player implements Serializable {
         {
             this.northEast();
             this.player_value = this.player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
-            selected = this.onPlayerMoves(this.players_field, (Field) e.getComponent(), selected, playerCount);
+            this.onPlayerMoves(this.players_field, (Field) e.getComponent(), selected, playerCount);
         }
         //SPECIAL MOVE
         else if (((this.getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && this.getY_pos() == ((Field) e.getComponent()).getPositionY() && selected == 2)/*third player*/
@@ -128,7 +115,7 @@ public class Player implements Serializable {
         {
             this.special();
             this.player_value = this.player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
-            selected = this.onPlayerMoves(this.players_field, (Field) e.getComponent(), selected, playerCount);//player gets moved to the next field and the next player gets selected
+            this.onPlayerMoves(this.players_field, (Field) e.getComponent(), selected, playerCount);//player gets moved to the next field and the next player gets selected
         } else//When the player gives something that he cant do
             System.out.println("Das darf deine Figur nicht!");
 
@@ -162,4 +149,18 @@ public class Player implements Serializable {
         this.players_field = after;
         this.players_field.setPlayerOnField(this);
     }
+
+    public String toString()//gives only the name of the player as string
+    {
+        return name+"";
+    }
+
+    public int getX_pos() {
+        return x_pos;
+    }
+
+    public int getY_pos() {
+        return y_pos;
+    }
+
 }

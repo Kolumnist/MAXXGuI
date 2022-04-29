@@ -98,6 +98,9 @@ public class GameBoard extends JFrame implements Serializable {
         }
 
         new GUI("MAXX" + (programCount++), board_JPanel, terminal_JPanel, pJMenuItem);
+        pJMenuItem[1].addActionListener(e -> {
+            GameSettings myGame = new GameSettings(this);
+        });
         console();
     }
 
