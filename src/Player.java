@@ -28,23 +28,43 @@ public class Player implements Serializable {
 
     public int move(Field field, int selected, int playerCount)
     {
-        if (field != this.player_field)
+        if (field.freeField)
         {
-            this.player_value = this.player_value.add(field.fieldValue);//adds the fieldvalue to the playervalue
-            selected = this.onPlayerMoves(this.player_field, field, selected, playerCount);
+            //NORTH WEST FIELD
+            if (player_field.getPosX() == field.getPosX() + 1 && player_field.getPosX() == field.getPosY() + 1)
+            {
+                player_value = player_value.add(field.fieldValue);//adds the fieldvalue to the playervalue
+                selected = onPlayerMoves(player_field, field, selected, playerCount);
+            }
+            //SOUTH WEST FIELD
+            else if (player_field.getPosX() == field.getPosX() + 1 && player_field.getPosY() == field.getPosY() - 1)
+            {
+                player_value = player_value.add(field.fieldValue);//adds the fieldvalue to the playervalue
+                selected = onPlayerMoves(player_field, field, selected, playerCount);
+            }
+            //SOUTH EAST FIELD
+            else if (player_field.getPosX() == field.getPosX() - 1 && player_field.getPosY() == field.getPosY() - 1)
+            {
+                player_value = player_value.add(field.fieldValue);//adds the fieldvalue to the playervalue
+                selected = onPlayerMoves(player_field, field, selected, playerCount);
+            }
+            //NORTH EAST FIELD
+            else if (player_field.getPosX() == field.getPosX() - 1 && player_field.getPosY() == field.getPosY() + 1)
+            {
+                player_value = player_value.add(field.fieldValue);//adds the fieldvalue to the playervalue
+                selected = onPlayerMoves(player_field, field, selected, playerCount);
+            }
+            //SPECIAL MOVE
+            else if ( (player_field.getPosX() == field.getPosX() + 1 && player_field.getPosY() == field.getPosY() && selected == 2)/*third player*/
+                    ||(player_field.getPosX() == field.getPosX() - 1 && player_field.getPosY() == field.getPosY() && selected == 3)/*fourth player*/
+                    ||(player_field.getPosY() == field.getPosY() + 1 && player_field.getPosX() == field.getPosX() && selected == 0)/*first player*/
+                    ||(player_field.getPosY() == field.getPosY() - 1 && player_field.getPosX() == field.getPosX() && selected == 1))/*second player*/
+            {
+                player_value = player_value.add(field.fieldValue);//adds the fieldvalue to the playervalue
+                selected = onPlayerMoves(player_field, field, selected, playerCount);//player gets moved to the next field and the next player gets selected
+            } else//When the player gives something that he cant do
+                System.out.println("Das darf deine Figur nicht!");
         }
-        //SPECIAL MOVE
-        else if (((this.player_field.getPositionX() == field.getPositionX() + 1 && this.player_field.getPositionY() == field.getPositionY() && selected == 2)/*third player*/
-                || (this.player_field.getPositionX() == field.getPositionX() - 1 && this.player_field.getPositionY() == field.getPositionY() && selected == 3)/*fourth player*/
-                || (this.player_field.getPositionY() == field.getPositionY() + 1 && this.player_field.getPositionX() == field.getPositionX() && selected == 0)/*first player*/
-                || (this.player_field.getPositionY() == field.getPositionY() - 1 && this.player_field.getPositionX() == field.getPositionX() && selected == 1))/*second player*/
-                && field.freeField)
-        {
-            this.player_value = this.player_value.add(field.fieldValue);//adds the fieldvalue to the playervalue
-            selected = this.onPlayerMoves(this.player_field, field, selected, playerCount);//player gets moved to the next field and the next player gets selected
-        } else//When the player gives something that he cant do
-            System.out.println("Das darf deine Figur nicht!");
-
         return selected;
     }
 

@@ -88,19 +88,19 @@ public class Field extends JButton implements Serializable {
     }
 
     //region Setter & Getter
-    public void setPositionX(int pPositionX){
+    public void setPosX(int pPositionX){
         positionX = pPositionX;
     }
 
-    public void setPositionY(int pPositionY){
+    public void setPosY(int pPositionY){
         positionY = pPositionY;
     }
 
-    public int getPositionX(){
+    public int getPosX(){
         return positionX;
     }
 
-    public int getPositionY(){
+    public int getPosY(){
         return positionY;
     }
     //endregion
