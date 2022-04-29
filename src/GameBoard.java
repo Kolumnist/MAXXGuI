@@ -23,7 +23,7 @@ public class GameBoard implements Serializable {
     private JTextField playerMoves_JTextField = new JTextField();
 
 
-    public Field[] importantFields = {new Field(players[0]), new Field(players[1]), new Field(players[2]), new Field(players[3]),
+    private Field[] importantFields = {new Field(players[0]), new Field(players[1]), new Field(players[2]), new Field(players[3]),
             new Field(0, 0), new Field(0, 0), new Field(0, 0), new Field(0, 0), new Field(0, 0)};
 
     /* Es gab nen Bug der nur mit dem hier: gefixt werden konnte*/
@@ -83,6 +83,11 @@ public class GameBoard implements Serializable {
                 boardFields[5][2] = importantFields[3];
                 break;
         }
+        importantFields[4].freeField = true;
+        importantFields[5].freeField = true;
+        importantFields[6].freeField = true;
+        importantFields[7].freeField = true;
+        importantFields[8].freeField = true;
 
         //this nested for-loop adds every "field" of "boardFields" to the frame
         for (int t = 0; t < 8; t++) {
@@ -105,7 +110,24 @@ public class GameBoard implements Serializable {
                 win();
             }
 
+            try{
+                boardFields[players[selected].getY_pos()+1][players[selected].getX_pos()+1].freeField = true;
+                boardFields[players[selected].getY_pos()+1][players[selected].getX_pos()-1].freeField = true;
+                boardFields[players[selected].getY_pos()-1][players[selected].getX_pos()-1].freeField = true;
+                boardFields[players[selected].getY_pos()-1][players[selected].getX_pos()+1].freeField = true;
+            }catch(ArrayIndexOutOfBoundsException AIE){
+                System.err.println("Damnit" + AIE);
+            }
             selected = players[selected].move(e, selected, playerCount);
+
+            try{
+                boardFields[players[selected-1].getY_pos()+1][players[selected-1].getX_pos()+1].freeField = false;
+                boardFields[players[selected-1].getY_pos()+1][players[selected-1].getX_pos()-1].freeField = false;
+                boardFields[players[selected-1].getY_pos()-1][players[selected-1].getX_pos()-1].freeField = false;
+                boardFields[players[selected-1].getY_pos()-1][players[selected-1].getX_pos()+1].freeField = false;
+            }catch(ArrayIndexOutOfBoundsException AIE){
+                System.err.println("Damnit" + AIE);
+            }
             console(); //Updating the console
         }
     };

@@ -92,31 +92,27 @@ public class Player implements Serializable {
     public int move(MouseEvent e, int selected, int playerCount)
     {
         //NORTH WEST MOVE
-        if (this.getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && this.getY_pos() == ((Field) e.getComponent()).getPositionY() + 1
-                && ((Field) e.getComponent()).freeField)
+        if (((Field) e.getComponent()).freeField)
         {
             this.northWest();
             this.player_value = this.player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
             selected = this.onPlayerMoves(this.players_field, (Field) e.getComponent(), selected, playerCount);
         }
         //SOUTH WEST MOVE
-        else if (this.getX_pos() == ((Field) e.getComponent()).getPositionX() + 1 && this.getY_pos() == ((Field) e.getComponent()).getPositionY() - 1
-                && ((Field) e.getComponent()).freeField) {
+        else if (((Field) e.getComponent()).freeField) {
             this.southWest();
             this.player_value = this.player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
             selected = this.onPlayerMoves(this.players_field, (Field) e.getComponent(), selected, playerCount);
         }
         //SOUTH EAST MOVE
-        else if (this.getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && this.getY_pos() == ((Field) e.getComponent()).getPositionY() - 1
-                && ((Field) e.getComponent()).freeField)
+        else if (((Field) e.getComponent()).freeField)
         {
             this.southEast();
             this.player_value = this.player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
             selected = this.onPlayerMoves(this.players_field, (Field) e.getComponent(), selected, playerCount);
         }
         //NORTH EAST MOVE
-        else if (this.getX_pos() == ((Field) e.getComponent()).getPositionX() - 1 && this.getY_pos() == ((Field) e.getComponent()).getPositionY() + 1
-                && ((Field) e.getComponent()).freeField)
+        else if (((Field) e.getComponent()).freeField)
         {
             this.northEast();
             this.player_value = this.player_value.add(((Field) e.getComponent()).fieldValue);//adds the fieldvalue to the playervalue
