@@ -111,7 +111,7 @@ public class MainMenu extends JFrame implements Runnable, Serializable {
         //this ActionListener call the Savegame class
         save.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Savegame myGame = new Savegame();
+                GameSettings myGame = new GameSettings();
             }
         });
 

@@ -3,18 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="90f7b3b1-23da-4309-85c2-9ae872df7694" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/Field.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/Field.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/GUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/GameBoard$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/GameBoard$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/GameBoard$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/GameBoard$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/GameBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/GameBoard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/MAXX.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/MAXX.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Field.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MAXX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MAXX.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/Field.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/Fraction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/GameBoard$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/GameBoard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/MAXX.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/MainMenu$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/MainMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/Player.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Savegame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameSettings.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +29,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$USER_HOME$/.jdks/corretto-1.8.0_332/src.zip!/java/util/Random.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -87,6 +88,10 @@
       <option name="presentableId" value="Default" />
       <updated>1650565092315</updated>
       <workItem from="1651133185614" duration="1844000" />
+      <workItem from="1651176408888" duration="661000" />
+      <workItem from="1651184491586" duration="533000" />
+      <workItem from="1651188751569" duration="614000" />
+      <workItem from="1651214130209" duration="573000" />
     </task>
     <servers />
   </component>
@@ -103,6 +108,5 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

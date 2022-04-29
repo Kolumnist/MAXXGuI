@@ -4,24 +4,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 
-public class Savegame extends JFrame {
+public class GameSettings extends JFrame implements Serializable {
+
+    String dateiname;
 
     // Textfelder für
     JTextField filename = new JTextField();   // Dateinamen
     JTextField dir = new JTextField();        // Directory
     JTextField exits = new JTextField();      // Existenz-Abfrage
     JTextField isdir = new JTextField();      // Directory-Abfrage
-    String dateiname;
+
 
     // Knöpfe für Öffnen und Speichern
     JButton open = new JButton("Öffnen");
     JButton save = new JButton("Speichern");
 
     // Start-Directory
-    JFileChooser c = new JFileChooser(new File("C://MAXXGuI_Game"));
+    JFileChooser c = new JFileChooser(new File("C://Users//laraj//OneDrive//Dokumente//MAXXGuI//neu"));
 
     // Konstruktor
-    public Savegame() {
+    public GameSettings() {
         setTitle("Save Game");               // Fenster Titel
         Container cp = getContentPane();     // Fenster-Container
         open.addActionListener(new OpenL()); // AL registrieren
@@ -33,7 +35,7 @@ public class Savegame extends JFrame {
         exits.setEditable(false);
         isdir.setEditable(false);
         JPanel p = new JPanel();
-        p.setLayout(new GridLayout(4, 1, 2, 2));   // Gridlayout für Textfelder-Panel
+        p.setLayout(new GridLayout(4, 1, 2, 2)); // Gridlayout für Textfelder-Panel
         p.add(filename);                                             // Feld filename hinzufügen
         p.add(dir);                                                  // Feld dir hinzufügen
         p.add(exits);                                                // Feld exits hinzufügen
@@ -48,9 +50,10 @@ public class Savegame extends JFrame {
     class OpenL implements ActionListener {                                         // AL. für Öfnnen Knopf
 
         public void actionPerformed(ActionEvent e) {
-            int rVal = c.showOpenDialog(Savegame.this);                      // Öffne-Dialog öffnen
-            if (rVal == JFileChooser.APPROVE_OPTION) {                             // falls bestätigt:
-                filename.setText("Filename: " + c.getSelectedFile().getName());
+            int rVal = c.showOpenDialog(GameSettings.this);                  // Öffne-Dialog öffnen
+            if (rVal == JFileChooser.APPROVE_OPTION) {// falls bestätigt:
+                dateiname = c.getSelectedFile().getName();
+                filename.setText("Filename: " + dateiname);
                 dir.setText("Akt.Directory: " + c.getCurrentDirectory());
                 exits.setText("Existiert? " + c.getSelectedFile().exists());
                 isdir.setText("Ist Directory? " + c.getSelectedFile().isDirectory());
@@ -61,26 +64,29 @@ public class Savegame extends JFrame {
                 exits.setText("");                                                 // Texte löschen
                 isdir.setText("");
             }
-            open(new Object(), dateiname);
+            loadGame(new Object());
         }
 
-        public void open(Object o, String dateiname) {
+        public void loadGame(Object o) {
             try {
-                ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(dateiname));
-                stream.writeObject(o);
+                FileInputStream fileIn = new FileInputStream(dateiname);
+                ObjectInputStream stream = new ObjectInputStream(fileIn);
+                o = stream.readObject();
                 stream.close();
-            } catch (IOException ioex) {
-                System.err.println("Fehler beim Schreiben des Objekts aufgetreten.");
-                ioex.printStackTrace();
+                System.out.println("\n---Game loaded ---\n");
+            } catch (Exception e) {
+                System.out.println("Serialization Error! Can't load data.\n" + e.getClass() + " : " + e.getMessage() + "\n");
             }
         }
     }
+
     class SaveL implements ActionListener {                                        // AL für Speichern-Knopf
 
         public void actionPerformed(ActionEvent e) {
-            int rVal = c.showSaveDialog(Savegame.this);                     // Speichern-Dialog öffnen
-            if (rVal == JFileChooser.APPROVE_OPTION) {                            // falls bestätigt:
-                filename.setText("Filename: " + c.getSelectedFile().getName());
+            int rVal = c.showSaveDialog(GameSettings.this);                     // Speichern-Dialog öffnen
+            if (rVal == JFileChooser.APPROVE_OPTION) {// falls bestätigt:
+                dateiname = c.getSelectedFile().getName();
+                filename.setText("Filename: " + dateiname);
                 dir.setText("Akt. Dictory: " + c.getCurrentDirectory());
                 exits.setText("Existiert? " + c.getSelectedFile().exists());
                 isdir.setText("Ist Directory? " + c.getSelectedFile().isDirectory());
@@ -91,22 +97,25 @@ public class Savegame extends JFrame {
                 exits.setText("");
                 isdir.setText("");
             }
-            saveme(dateiname);
+            try {
+                saveGame(new Object());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
 
-        public static Savegame saveme(String dateiname) {
+
+        public void saveGame(Object o) throws IOException {
             try {
-                ObjectInputStream stream = new ObjectInputStream(new FileInputStream(dateiname));
-                Savegame myGame = (Savegame) stream.readObject();
+                FileOutputStream fileOut = new FileOutputStream(dateiname);
+                ObjectOutputStream stream = new ObjectOutputStream(fileOut);
+                stream.writeObject(o);  // es geht nicht, da ich nicht die Datei an sich speicher!! -> was für ein object muss ich übergeben??? -> Datei per UIClass ID finden?
+                stream.flush();
                 stream.close();
-                return myGame;
-            } catch (ClassNotFoundException cnfex) {
-                System.err.println("Die Klasse des geladenen Objekts konnte nicht gefunden werden.");
-            } catch (IOException ioex) {
-                System.err.println("Das Objekt konnte nicht geladen werden.");
-                ioex.printStackTrace();
+                System.out.println("Game saved!");
+            } catch (Exception e) {
+                System.out.println("Serialization Error! Can't save data.\n" + e.getClass() + " : " + e.getMessage() + "\n");
             }
-            return null;
         }
     }
 }
