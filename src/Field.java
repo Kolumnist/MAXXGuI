@@ -30,10 +30,10 @@ public class Field extends JButton implements Serializable {
     }
 
     //constructor to create a field with a player
-    public Field(int pPositionX, int pPositionY, Player pPlayer){
+    public Field(Player pPlayer){
         setPlayerOnField(pPlayer);
-        positionX = pPositionX;
-        positionY = pPositionY;
+        positionX = pPlayer.getX_pos();
+        positionY = pPlayer.getY_pos();
         setFont(new Font("Serif",Font.PLAIN,14));
     }
 

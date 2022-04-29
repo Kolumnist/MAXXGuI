@@ -3,15 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="90f7b3b1-23da-4309-85c2-9ae872df7694" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/Field.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/Field.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/GUI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/GameBoard$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/GameBoard$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/GameBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/GameBoard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/MAXX.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/MAXX.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Field.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MAXX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MAXX.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

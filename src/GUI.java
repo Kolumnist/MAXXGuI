@@ -12,8 +12,9 @@ import java.io.Serializable;
 
 public class GUI extends JFrame implements Serializable {
 
-    JMenuBar menuBar_JMenuBar = new JMenuBar();
-    JMenu[] menus_JMenu = {new JMenu("More Information"), new JMenu("Game"), new JMenu("Exit")};
+    public JMenuBar menuBar_JMenuBar = new JMenuBar();
+    public JMenu[] menus_JMenu = {new JMenu("More Information"), new JMenu("Game"), new JMenu("Exit")};
+    public JPanel terminal_JPanel = new JPanel(new GridLayout(2, 2));
 
     //Constructor for the MainMenu
     public GUI(JMenuItem[] pJMenuItem){
@@ -25,15 +26,14 @@ public class GUI extends JFrame implements Serializable {
         setJMenuBar(createMenuBar(pJMenuItem));
 
         //create a picture
-        JLabel picture;
         Icon icon = new ImageIcon(new ImageIcon(getClass().getResource("MAXXGuI.png")).getImage().getScaledInstance(550, 550, Image.SCALE_DEFAULT));
-        picture = new JLabel(icon);
+        JLabel picture = new JLabel(icon);
         picture.setIcon(icon);
         add(picture);
     }
 
     //Constructor for the Gameboard
-    public GUI(String pTitle, JPanel pBoard_JPanel, JPanel pTerminal_JPanel, JMenuItem[] pJMenuItem){
+    public GUI(String pTitle, JPanel pBoard_JPanel, JMenuItem[] pJMenuItem){
         setTitle(pTitle);
         setSize(700, 700);
         setJMenuBar(createMenuBar(pJMenuItem));
@@ -41,7 +41,10 @@ public class GUI extends JFrame implements Serializable {
         setLayout(new BorderLayout());
 
         add(pBoard_JPanel, BorderLayout.CENTER);
-        add(pTerminal_JPanel, BorderLayout.SOUTH);
+        add(terminal_JPanel, BorderLayout.SOUTH);
+        terminal_JPanel.add(new JLabel("Current Player:"));
+        terminal_JPanel.add(new JLabel("Moves of current player:"));
+
         setVisible(true);
     }
 
