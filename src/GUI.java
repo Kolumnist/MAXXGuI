@@ -15,6 +15,7 @@ public class GUI extends JFrame implements Serializable {
     public GUI(JMenuItem[] pJMenuItem){
         setTitle("MAXXGuI");
         setSize(700,700);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         setLayout(new FlowLayout());
         setJMenuBar(createMenuBar(pJMenuItem));
