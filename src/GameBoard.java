@@ -95,9 +95,7 @@ public class GameBoard implements Serializable {
                 boardFields[t][z].addMouseListener(mouseAdapter);
             }
         }
-
         menu_items[1].addActionListener(e -> new GameSettings(this));
-
         console();
     }
 

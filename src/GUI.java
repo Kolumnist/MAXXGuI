@@ -62,6 +62,7 @@ public class GUI extends JFrame implements Serializable {
     public GUI(String pTitle, JPanel pBoard_JPanel, JMenuItem[] pJMenuItem){
         setTitle(pTitle);
         setSize(700, 700);
+        setLocation(700, 100);
         setJMenuBar(createMenuBar(pJMenuItem));
 
         setLayout(new BorderLayout());
@@ -77,10 +78,11 @@ public class GUI extends JFrame implements Serializable {
             myJFrame.setSize(1000, 300);myJFrame.setLocation(250, 100);
             myJFrame.setVisible(true);
         });
-        pJMenuItem[3].addActionListener(e -> System.exit(0));
+        pJMenuItem[4].addActionListener(e -> System.exit(0));
         setVisible(true);
     }
 
+    //MenuBar sollte verschieden für das Spiel und für das Main Menü implementiert werden glaube ich...
     private JMenuBar createMenuBar(JMenuItem[] pJMenuItem){
 
         for (int i = 0; i < menus_JMenu.length; i++){
