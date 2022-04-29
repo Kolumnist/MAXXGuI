@@ -9,7 +9,6 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.Serializable;
-import java.math.BigInteger;
 
 public class GameBoard implements Serializable {
     private Field[][] boardFields = new Field[8][8];
@@ -37,6 +36,8 @@ public class GameBoard implements Serializable {
         //GridLayout for the Gameboard
         JPanel board_JPanel = new JPanel(new GridLayout(8, 8));
         GUI gui = new GUI("MAXX" + (programCount++), board_JPanel, menu_items);
+
+        menu_items[4].addActionListener(e -> System.exit(0));
 
         //creating a little console with JTextFields and JLabels to show the current player and it's moves
         gui.terminal_JPanel.add(currentPlayer_JTextField);
@@ -87,7 +88,6 @@ public class GameBoard implements Serializable {
                 players[0].player_field = white; players[1].player_field = black; players[2].player_field = red; players[3].player_field = yellow;
                 break;
         }
-
         //this nested for-loop adds every "field" of "boardFields" to the frame
         for (int t = 0; t < 8; t++) {
             for (int z = 0; z < 8; z++) {
@@ -96,9 +96,8 @@ public class GameBoard implements Serializable {
             }
         }
 
-        menu_items[1].addActionListener(e -> {
-            GameSettings myGame = new GameSettings(this);
-        });
+        menu_items[1].addActionListener(e -> new GameSettings(this));
+
         console();
     }
 
@@ -159,7 +158,7 @@ public class GameBoard implements Serializable {
                 specialMove = "Right";
                 break;
         }
-        playerMoves_JTextField.setText("Northwest \nNortheast, \nSouthwest, \nSoutheast, \n Special: " + specialMove);
+        playerMoves_JTextField.setText("Special: " + specialMove + " | Basics: \nNW, \nNE, \nSW, \nSE");
         currentPlayer_JTextField.setText("Spieler: " + players[selected] + " ist am zug.");
     }
 }
