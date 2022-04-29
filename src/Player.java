@@ -131,12 +131,21 @@ public class Player implements Serializable {
             selected = this.onPlayerMoves(this.players_field, (Field) e.getComponent(), selected, playerCount);//player gets moved to the next field and the next player gets selected
         } else//When the player gives something that he cant do
             System.out.println("Das darf deine Figur nicht!");
-        return selected;
+
+        switch(playerCount)//checks if, depending on the playerCount, the selected value is at its max or not
+        {
+            case 2: selected = ((selected+1) % 2)-1; break;
+            case 3: selected = ((selected+1) % 3)-1; break;
+            case 4: selected = ((selected) % 4)-1; break;
+            default: selected = -1; break;
+        }
+
+        return ++selected;
     }
 
 
     /*It happens when the player is moving from one field to another and handles this action accordingly*/
-    public int onPlayerMoves(Field before, Field after, int selected, int playerCount)
+    public void onPlayerMoves(Field before, Field after, int selected, int playerCount) 
     {
         //Where the player was
         before.freeField = true;
@@ -148,17 +157,9 @@ public class Player implements Serializable {
         System.out.println(this + " X: " + x_pos + " Y: " + y_pos);
 
         //Put this in the Button thing with a boolean instead of the two parameters
-        switch(playerCount)//checks if, depending on the playerCount, the selected value is at its max or not
-        {
-            case 2: selected = ((selected+1) % 2)-1; break;
-            case 3: selected = ((selected+1) % 3)-1; break;
-            case 4: selected = ((selected+1) % 4)-1; break;
-            default: selected = -1; break;
-        }
 
         //where the player is now
         this.players_field = after;
         this.players_field.setPlayerOnField(this);
-        return ++selected;
     }
 }

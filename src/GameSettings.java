@@ -7,6 +7,7 @@ import java.io.*;
 public class GameSettings extends JFrame implements Serializable {
 
     String dateiname;
+    GameBoard gameboard;
 
     // Textfelder für
     JTextField filename = new JTextField();   // Dateinamen
@@ -23,7 +24,10 @@ public class GameSettings extends JFrame implements Serializable {
     JFileChooser c = new JFileChooser(new File("C://Users//laraj//OneDrive//Dokumente//MAXXGuI//neu"));
 
     // Konstruktor
-    public GameSettings() {
+    public GameSettings(GameBoard gameboard) {
+
+        this.gameboard = gameboard;
+
         setTitle("Save Game");               // Fenster Titel
         Container cp = getContentPane();     // Fenster-Container
         open.addActionListener(new OpenL()); // AL registrieren
