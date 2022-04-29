@@ -11,11 +11,9 @@ import java.math.BigInteger;
 public class Player implements Serializable {
 
     public Fraction player_value;//Value is 0 in the beginning and who has 42 first wins
-    public final byte player_ID;//for identification of the characters: 1 = white , 2 = black , 3 = red, 4 = yellow
     public Field players_field;//The field the player is on atm
 
     private char name; //for the playing field
-    private static byte identifier = 1; // helps with the identification of a created character
 
     private int x_pos = 0, y_pos = 0; //position of the character
     private int x_v, y_v; //vector movement variables
@@ -25,8 +23,6 @@ public class Player implements Serializable {
         this.x_pos = x_pos;
         this.y_pos = y_pos;
         this.name = name;
-
-        player_ID = identifier++;//sets character to identifier and then counts the identifier up
         player_value = new Fraction(new BigInteger("0"), new BigInteger("1"));
     }
 
@@ -45,13 +41,13 @@ public class Player implements Serializable {
 
     private void special() //Move Action that is special for every player
     {
-        switch(player_ID)
+        switch(name)
         {
-            case(1):/*first Player*/
+            case('W'):/*first Player*/
                 x_v = 0; y_v = -1;
                 x_pos += x_v; y_pos += y_v;
                 break;
-            case(2):/*second Player*/
+            case('B'):/*second Player*/
                 x_v = 0; y_v = 1;
                 x_pos += x_v; y_pos += y_v;
                 break;
