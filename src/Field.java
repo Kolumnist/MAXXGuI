@@ -82,7 +82,7 @@ public class Field extends JButton implements Serializable {
             fieldValue = fieldValue.shorten();
 
             //Testing if the denominator and numerator are greater than 9 and if the fraction is an integer
-        }while(fieldValue.isInteger() && ( (fieldValue.denominator.compareTo(comp) < 1) && (fieldValue.numerator.compareTo(comp) < 1)));
+        }while(((fieldValue.denominator.compareTo(comp) != 1) || (fieldValue.numerator.compareTo(comp) != 1)) || (fieldValue.isInteger()));
 
         return fieldValue.toString();
     }
