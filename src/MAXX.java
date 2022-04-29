@@ -28,9 +28,8 @@ public class MAXX implements Runnable {
     private JButton play = new JButton();
     private JComboBox playerSelection;
     JMenuItem[] menu_items = {
-            new JMenuItem("Manual"), new JMenuItem("Save"),
-            new JMenuItem("Choose Game"), new JMenuItem("Delete Game"),
-            new JMenuItem("Close all Window")
+            new JMenuItem("Manual"), new JMenuItem("Choose Game"),
+            new JMenuItem("Delete Game"), new JMenuItem("Close all Window")
     };
 
     public MAXX() {
@@ -42,7 +41,7 @@ public class MAXX implements Runnable {
             myJFrame.setVisible(true);
         });
         //this ActionListener close the whole program
-        menu_items[4].addActionListener(e -> System.exit(0));
+        menu_items[3].addActionListener(e -> System.exit(0));
 
         gui = new GUI(menu_items);
         playerSelection = new JComboBox(new String[]{"2 Spieler", "3 Spieler", "4 Spieler"});
@@ -60,9 +59,9 @@ public class MAXX implements Runnable {
         play.addActionListener(e -> {
             switch(playerSelection.getSelectedIndex()+2)
             {
-                case 2: board = new GameBoard(2, menu_items); break;
-                case 3: board = new GameBoard(3, menu_items); break;
-                case 4: board = new GameBoard(4, menu_items); break;
+                case 2: board = new GameBoard(2); break;
+                case 3: board = new GameBoard(3); break;
+                case 4: board = new GameBoard(4); break;
                 default: System.err.println("What the fck just happened? How did you do that, this shouldn't be possible!");
             } });
     }

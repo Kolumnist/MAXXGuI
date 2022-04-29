@@ -156,6 +156,7 @@ public class Player implements Serializable {
         //where the player is now
         this.players_field = after;
         this.players_field.setPlayerOnField(this);
+
         switch(playerCount)//checks if, depending on the playerCount, the selected value is at its max or not
         {
             case 2: selected = ((selected+1) % 2)-1; break;

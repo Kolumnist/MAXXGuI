@@ -25,7 +25,14 @@ public class GameBoard extends JFrame implements Serializable {
     private JLabel playerMoves_JLabel = new JLabel("Moves of current player:");
     public Field white, black, red, yellow;
 
-    public GameBoard(int pPlayerNumber, JMenuItem[] pJMenuItem) {
+    /* Es gab nen Bug der nur mit dem hier: gefixt werden konnte*/
+    JMenuItem[] menu_items = {
+            new JMenuItem("Manual"), new JMenuItem("Save"),
+            new JMenuItem("Choose Game"), new JMenuItem("Delete Game"),
+            new JMenuItem("Close all Window")
+    };
+
+    public GameBoard(int pPlayerNumber) {
         players = new Player[]{new Player(2, 2, 'W'), new Player(5, 5, 'B'), new Player(5, 2, 'R'), new Player(2, 5, 'Y')};
         playerCount = pPlayerNumber;
 
@@ -50,7 +57,7 @@ public class GameBoard extends JFrame implements Serializable {
                     boardSum += field.fieldValue.doubleValue();
                 }
             }
-        } while (boardSum == 84);
+        } while (boardSum == 84D);
 
         //setting 2-4 player on the board and giving the players their field
         switch (pPlayerNumber) {
@@ -97,8 +104,8 @@ public class GameBoard extends JFrame implements Serializable {
             }
         }
 
-        new GUI("MAXX" + (programCount++), board_JPanel, terminal_JPanel, pJMenuItem);
-        pJMenuItem[1].addActionListener(e -> {
+        new GUI("MAXX" + (programCount++), board_JPanel, terminal_JPanel, menu_items);
+        menu_items[1].addActionListener(e -> {
             GameSettings myGame = new GameSettings(this);
         });
         console();
