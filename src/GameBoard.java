@@ -9,10 +9,11 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.Serializable;
+import java.math.BigInteger;
 
 public class GameBoard implements Serializable {
     private Field[][] boardFields = new Field[8][8];
-    private Player[] players = {new Player('W'), new Player('B'), new Player('R'), new Player('Y')};
+    private Player[] players;
     private double boardSum;
     private static int programCount;
     private int playerCount = 0;
@@ -30,6 +31,7 @@ public class GameBoard implements Serializable {
     };
 
     public GameBoard(int pPlayerNumber) {
+        players = new Player[]{new Player('W'), new Player('B'), new Player('R'), new Player('Y')};
         playerCount = pPlayerNumber;
 
         //GridLayout for the Gameboard
@@ -68,7 +70,7 @@ public class GameBoard implements Serializable {
                 red = new Field(2, 5, players[2]);
                 boardFields[2][2] = white;
                 boardFields[5][5] = black;
-                boardFields[2][5] = red;
+                boardFields[5][2] = red;
 
                 players[0].player_field = white; players[1].player_field = black; players[2].player_field = red;
                 break;
@@ -79,8 +81,8 @@ public class GameBoard implements Serializable {
                 yellow = new Field(5, 2, players[3]);
                 boardFields[2][2] = white;
                 boardFields[5][5] = black;
-                boardFields[2][5] = red;
-                boardFields[5][2] = yellow;
+                boardFields[5][2] = red;
+                boardFields[2][5] = yellow;
 
                 players[0].player_field = white; players[1].player_field = black; players[2].player_field = red; players[3].player_field = yellow;
                 break;
