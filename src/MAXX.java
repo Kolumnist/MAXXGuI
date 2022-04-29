@@ -62,9 +62,9 @@ public class MAXX implements Runnable {
         play.addActionListener(e -> {
             switch(playerSelection.getSelectedIndex()+2)
             {
-                case 2: board = new GameBoard(2); break;
-                case 3: board = new GameBoard(3); break;
-                case 4: board = new GameBoard(4); break;
+                case 2: board = new GameBoard(2, menu_items); break;
+                case 3: board = new GameBoard(3, menu_items); break;
+                case 4: board = new GameBoard(4, menu_items); break;
                 default: System.err.println("What the fck just happened? How did you do that, this shouldn't be possible!");
             } });
     }

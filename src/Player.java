@@ -51,11 +51,11 @@ public class Player implements Serializable {
                 x_v = 0; y_v = 1;
                 x_pos += x_v; y_pos += y_v;
                 break;
-            case(3):/*third Player*/
+            case('R'):/*third Player*/
                 x_v = -1; y_v = 0;
                 x_pos += x_v; y_pos += y_v;
                 break;
-            case(4):/*fourth Player*/
+            case('Y'):/*fourth Player*/
                 x_v = 1; y_v = 0;
                 x_pos += x_v; y_pos += y_v;
                 break;
