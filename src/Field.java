@@ -91,15 +91,12 @@ public class Field extends JButton implements Serializable {
     public void setPosX(int pPositionX){
         positionX = pPositionX;
     }
-
     public void setPosY(int pPositionY){
         positionY = pPositionY;
     }
-
     public int getPosX(){
         return positionX;
     }
-
     public int getPosY(){
         return positionY;
     }

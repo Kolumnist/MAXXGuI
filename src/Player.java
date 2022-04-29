@@ -23,55 +23,57 @@ public class Player implements Serializable {
 
     public String toString()//gives only the name of the player as string
     {
-        return name+"";
+        return name + "";
     }
 
-    public int move(Field field, int selected, int playerCount)
-    {
-        if (field.freeField)
-        {
+    public boolean move(Field field) {
+        if (field.freeField) {
             //NORTH WEST FIELD
-            if (player_field.getPosX() == field.getPosX() + 1 && player_field.getPosX() == field.getPosY() + 1)
-            {
+            if (player_field.getPosX() == field.getPosX() + 1 && player_field.getPosX() == field.getPosY() + 1) {
                 player_value = player_value.add(field.fieldValue);//adds the fieldvalue to the playervalue
-                selected = onPlayerMoves(player_field, field, selected, playerCount);
+                onPlayerMoves(player_field, field);
+                return true;
             }
             //SOUTH WEST FIELD
-            else if (player_field.getPosX() == field.getPosX() + 1 && player_field.getPosY() == field.getPosY() - 1)
-            {
+            else if (player_field.getPosX() == field.getPosX() + 1 && player_field.getPosY() == field.getPosY() - 1) {
                 player_value = player_value.add(field.fieldValue);//adds the fieldvalue to the playervalue
-                selected = onPlayerMoves(player_field, field, selected, playerCount);
+                onPlayerMoves(player_field, field);
+                return true;
             }
             //SOUTH EAST FIELD
-            else if (player_field.getPosX() == field.getPosX() - 1 && player_field.getPosY() == field.getPosY() - 1)
-            {
+            else if (player_field.getPosX() == field.getPosX() - 1 && player_field.getPosY() == field.getPosY() - 1) {
                 player_value = player_value.add(field.fieldValue);//adds the fieldvalue to the playervalue
-                selected = onPlayerMoves(player_field, field, selected, playerCount);
+                onPlayerMoves(player_field, field);
+                return true;
             }
             //NORTH EAST FIELD
-            else if (player_field.getPosX() == field.getPosX() - 1 && player_field.getPosY() == field.getPosY() + 1)
-            {
+            else if (player_field.getPosX() == field.getPosX() - 1 && player_field.getPosY() == field.getPosY() + 1) {
                 player_value = player_value.add(field.fieldValue);//adds the fieldvalue to the playervalue
-                selected = onPlayerMoves(player_field, field, selected, playerCount);
+                onPlayerMoves(player_field, field);
+                return true;
             }
             //SPECIAL MOVE
-            else if ( (player_field.getPosX() == field.getPosX() + 1 && player_field.getPosY() == field.getPosY() && selected == 2)/*third player*/
-                    ||(player_field.getPosX() == field.getPosX() - 1 && player_field.getPosY() == field.getPosY() && selected == 3)/*fourth player*/
-                    ||(player_field.getPosY() == field.getPosY() + 1 && player_field.getPosX() == field.getPosX() && selected == 0)/*first player*/
-                    ||(player_field.getPosY() == field.getPosY() - 1 && player_field.getPosX() == field.getPosX() && selected == 1))/*second player*/
-            {
+            else if ((player_field.getPosX() == field.getPosX() + 1 && player_field.getPosY() == field.getPosY() && name == 'R')/*third player*/
+                    || (player_field.getPosX() == field.getPosX() - 1 && player_field.getPosY() == field.getPosY() && name == 'Y')/*fourth player*/
+                    || (player_field.getPosY() == field.getPosY() + 1 && player_field.getPosX() == field.getPosX() && name == 'W')/*first player*/
+                    || (player_field.getPosY() == field.getPosY() - 1 && player_field.getPosX() == field.getPosX() && name == 'B'))/*second player*/ {
                 player_value = player_value.add(field.fieldValue);//adds the fieldvalue to the playervalue
-                selected = onPlayerMoves(player_field, field, selected, playerCount);//player gets moved to the next field and the next player gets selected
+                onPlayerMoves(player_field, field);//player gets moved to the next field and the next player gets selected
+                return true;
             } else//When the player gives something that he cant do
+            {
                 System.out.println("Das darf deine Figur nicht!");
+                return false;
+            }
         }
-        return selected;
+        System.out.println("Du darfst nicht auf anderen Spielern stehen!");
+        return false;
     }
 
 
     /*It happens when the player is moving from one field to another and handles this action accordingly*/
-    public int onPlayerMoves(Field before, Field after, int selected, int playerCount)
-    {
+
+    private void onPlayerMoves(Field before, Field after) {
         //Where the player was
         before.freeField = true;
         before.setBackground(Color.cyan);
@@ -86,15 +88,5 @@ public class Player implements Serializable {
         //where the player is now
         this.player_field = after;
         this.player_field.setPlayerOnField(this);
-
-        switch(playerCount)//checks if, depending on the playerCount, the selected value is at its max or not
-        {
-            case 2: selected = ((selected+1) % 2)-1; break;
-            case 3: selected = ((selected+1) % 3)-1; break;
-            case 4: selected = ((selected+1) % 4)-1; break;
-            default: selected = -1; break;
-        }
-        return ++selected;
     }
-
 }

@@ -21,8 +21,7 @@ public class GameBoard implements Serializable {
     private JTextField playerMoves_JTextField = new JTextField();
 
     private Field white, black, red, yellow;
-    private Field[] playerFields = {new Field(2, 2, players[0]), new Field(5, 5, players[1]), new Field(2, 5, players[2]), new Field(5, 2, players[3])};
-
+    
     /* Es gab nen Bug der nur mit dem hier: gefixt werden konnte*/
     JMenuItem[] menu_items = {
             new JMenuItem("Manual"), new JMenuItem("Save"),
@@ -98,14 +97,24 @@ public class GameBoard implements Serializable {
         console();
     }
 
-    //region MousAdapter
+    //region MouseAdapter
     MouseAdapter mouseAdapter = new MouseAdapter() {
         public void mouseReleased(MouseEvent e) {
             if (players[selected].player_value.intValue() >= (84 / playerCount)) {
                 win();
             }
-            selected = players[selected].move((Field)e.getComponent(), selected, playerCount);
-            console(); //Updating the console
+            if(players[selected].move((Field)e.getComponent()))
+            {
+                switch(playerCount)//checks if, depending on the playerCount, the selected value is at its max or not
+                {
+                    case 2: selected = ((selected+1) % 2)-1; break;
+                    case 3: selected = ((selected+1) % 3)-1; break;
+                    case 4: selected = ((selected+1) % 4)-1; break;
+                    default: selected = -1; break;
+                }
+                selected++;
+                console(); //Updating the console
+            }
         }
     };
     //endregion
