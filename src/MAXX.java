@@ -34,13 +34,16 @@ public class MAXX implements Runnable {
     };
 
     public MAXX() {
-
         //this ActionListener shows the manual
         menu_items[0].addActionListener(e -> {
             JFrame myJFrame = new JFrame();
             myJFrame.add(new JTextArea(manual_text));
             myJFrame.setSize(900, 300);
             myJFrame.setVisible(true);
+        });
+
+        menu_items[1].addActionListener(e -> {
+            GameSettings myGame = new GameSettings(board);
         });
 
         //this ActionListener close the whole program
@@ -62,9 +65,9 @@ public class MAXX implements Runnable {
         play.addActionListener(e -> {
             switch(playerSelection.getSelectedIndex()+2)
             {
-                case 2: board = new GameBoard(2, menu_items); break;
-                case 3: board = new GameBoard(3, menu_items); break;
-                case 4: board = new GameBoard(4, menu_items); break;
+                case 2: board = new GameBoard(2); break;
+                case 3: board = new GameBoard(3); break;
+                case 4: board = new GameBoard(4); break;
                 default: System.err.println("What the fck just happened? How did you do that, this shouldn't be possible!");
             } });
     }
