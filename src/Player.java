@@ -11,8 +11,6 @@ public class Player implements Serializable {
 
     public Fraction player_value;//Value is 0 in the beginning and who has 42 first wins
     public Field player_field;//The field the player is on atm
-    public Field[] free_fields = new Field[5];
-
     private final char name; //for the playing field
 
     public Player(char name)//Constructor for Player, it needs a position and a name(B or W etc.)

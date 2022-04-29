@@ -55,31 +55,34 @@ public class GameBoard implements Serializable {
         //setting 2-4 player on the board and giving the players their field
         switch (pPlayerNumber) {
             case 2:
-                players[0].player_field = playerFields[0];
-                players[1].player_field = playerFields[1];
+                white = new Field(2, 2, players[0]);
+                black = new Field(5, 5, players[1]);
+                boardFields[2][2] = white;
+                boardFields[5][5] = black;
 
-                boardFields[2][2] = playerFields[0];
-                boardFields[5][5] = playerFields[1];
+                players[0].player_field = white; players[1].player_field = black;
                 break;
             case 3:
-                players[0].player_field = playerFields[0];
-                players[1].player_field = playerFields[1];
-                players[2].player_field = playerFields[2];
+                white = new Field(2, 2, players[0]);
+                black = new Field(5, 5, players[1]);
+                red = new Field(2, 5, players[2]);
+                boardFields[2][2] = white;
+                boardFields[5][5] = black;
+                boardFields[2][5] = red;
 
-                boardFields[2][2] = playerFields[0];
-                boardFields[5][5] = playerFields[1];
-                boardFields[2][5] = playerFields[2];
+                players[0].player_field = white; players[1].player_field = black; players[2].player_field = red;
                 break;
             case 4:
-                players[0].player_field = playerFields[0];
-                players[1].player_field = playerFields[1];
-                players[2].player_field = playerFields[2];
-                players[3].player_field = playerFields[3];
+                white = new Field(2, 2, players[0]);
+                black = new Field(5, 5, players[1]);
+                red = new Field(2, 5, players[2]);
+                yellow = new Field(5, 2, players[3]);
+                boardFields[2][2] = white;
+                boardFields[5][5] = black;
+                boardFields[2][5] = red;
+                boardFields[5][2] = yellow;
 
-                boardFields[2][2] = playerFields[0];
-                boardFields[5][5] = playerFields[1];
-                boardFields[2][5] = playerFields[2];
-                boardFields[5][2] = playerFields[3];
+                players[0].player_field = white; players[1].player_field = black; players[2].player_field = red; players[3].player_field = yellow;
                 break;
         }
 
