@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,12 +22,16 @@ public class GameSettings extends JFrame implements Serializable {
     JButton save = new JButton("Speichern");
 
     // Start-Directory
-    JFileChooser c = new JFileChooser(new File("C://Users//laraj//OneDrive//Dokumente//MAXXGuI//neu"));
+    JFileChooser c = new JFileChooser();
 
     // Konstruktor
     public GameSettings(GameBoard gameboard) {
 
         this.gameboard = gameboard;
+
+        c.setCurrentDirectory(new File(".\\saveFiles"));
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.lcm", "lcm");
+        c.setFileFilter(filter);
 
         setTitle("Save Game");               // Fenster Titel
         Container cp = getContentPane();     // Fenster-Container
@@ -68,7 +73,7 @@ public class GameSettings extends JFrame implements Serializable {
                 exits.setText("");                                                 // Texte löschen
                 isdir.setText("");
             }
-            loadGame(new Object());
+            loadGame(gameboard);
         }
 
         public void loadGame(Object o) {
@@ -102,17 +107,32 @@ public class GameSettings extends JFrame implements Serializable {
                 isdir.setText("");
             }
             try {
-                saveGame(new Object());
+                saveGame(gameboard);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
 
 
+        private static void saveGame(Object o) throws FileNotFoundException, IOException{
+            JFileChooser fileChooser = new JFileChooser();
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("*.json", "json");
+            fileChooser.setFileFilter(filter);
+            int returner = fileChooser.showOpenDialog(null);
+            if(returner == JFileChooser.APPROVE_OPTION){
+                try (FileOutputStream fos = new FileOutputStream("TestFile.txt");
+                     ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+                    oos.writeObject(o);
+                    oos.flush();
+                }
+            }
+        }
+
+/*
         public void saveGame(Object o) throws IOException {
-            try {
-                FileOutputStream fileOut = new FileOutputStream(dateiname);
-                ObjectOutputStream stream = new ObjectOutputStream(fileOut);
+            try (FileOutputStream fileOut = new FileOutputStream(c.getSelectedFile().getAbsolutePath()+".lcm");
+                 ObjectOutputStream stream = new ObjectOutputStream(fileOut)){
+                c.setDialogType(JFileChooser.SAVE_DIALOG);
                 stream.writeObject(o);  // es geht nicht, da ich nicht die Datei an sich speicher!! -> was für ein object muss ich übergeben??? -> Datei per UIClass ID finden?
                 stream.flush();
                 stream.close();
@@ -120,6 +140,6 @@ public class GameSettings extends JFrame implements Serializable {
             } catch (Exception e) {
                 System.out.println("Serialization Error! Can't save data.\n" + e.getClass() + " : " + e.getMessage() + "\n");
             }
-        }
+        }*/
     }
 }

@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @Matrikelnummer: 212455 [mjouaux], 212848 [choss], 212467 [lmangi]
  * @version 2 21.04.2022
  */
-public class MAXX implements Runnable {
+public class MAXX implements Runnable, Serializable{
 
     private GUI gui;
     private GameBoard board;
@@ -40,6 +40,9 @@ public class MAXX implements Runnable {
             myJFrame.setSize(900, 300);
             myJFrame.setVisible(true);
         });
+
+        //menu_items[1].addActionListener(e -> );
+
         //this ActionListener close the whole program
         menu_items[3].addActionListener(e -> System.exit(0));
 

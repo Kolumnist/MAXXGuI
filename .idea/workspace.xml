@@ -6,12 +6,12 @@
       <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/GUI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/GameBoard$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/GameBoard$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/GameBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/GameBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/GameSettings$OpenL.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/GameSettings$OpenL.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/GameSettings$SaveL.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/GameSettings$SaveL.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/MAXX.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/MAXX.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameSettings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MAXX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MAXX.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,5 +100,19 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/GameSettings.java</url>
+          <line>132</line>
+          <properties class="GameSettings.SaveL" method="saveGame">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

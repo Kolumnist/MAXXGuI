@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
 import java.io.Serializable;
 
 public class GameBoard extends JFrame implements Serializable {
+
     private Field[][] boardFields = new Field[8][8];
     private Player[] players;
     private double boardSum;
