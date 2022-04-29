@@ -23,8 +23,8 @@ public class GameBoard implements Serializable {
     private JTextField playerMoves_JTextField = new JTextField();
 
 
-    private Field[] importantFields = {new Field(players[0]), new Field(players[1]), new Field(players[2]), new Field(players[3]),
-            new Field(0, 0), new Field(0, 0), new Field(0, 0), new Field(0, 0), new Field(0, 0)};
+    private Field[] playerFields = {new Field(players[0]), new Field(players[1]), new Field(players[2]), new Field(players[3])};
+    private Field[] moveFields;
 
     /* Es gab nen Bug der nur mit dem hier: gefixt werden konnte*/
     JMenuItem[] menu_items = {
@@ -59,35 +59,30 @@ public class GameBoard implements Serializable {
         //setting 2-4 player on the board and giving the players their field
         switch (pPlayerNumber) {
             case 2:
-                players[0].players_field = importantFields[0];
-                players[1].players_field = importantFields[1];
-                boardFields[2][2] = importantFields[0];
-                boardFields[5][5] = importantFields[1];
+                players[0].players_field = playerFields[0];
+                players[1].players_field = playerFields[1];
+                boardFields[2][2] = playerFields[0];
+                boardFields[5][5] = playerFields[1];
                 break;
             case 3:
-                players[0].players_field = importantFields[0];
-                players[1].players_field = importantFields[1];
-                players[2].players_field = importantFields[2];
-                boardFields[2][2] = importantFields[0];
-                boardFields[5][5] = importantFields[1];
-                boardFields[2][5] = importantFields[2];
+                players[0].players_field = playerFields[0];
+                players[1].players_field = playerFields[1];
+                players[2].players_field = playerFields[2];
+                boardFields[2][2] = playerFields[0];
+                boardFields[5][5] = playerFields[1];
+                boardFields[2][5] = playerFields[2];
                 break;
             case 4:
-                players[0].players_field = importantFields[0];
-                players[1].players_field = importantFields[1];
-                players[2].players_field = importantFields[2];
-                players[3].players_field = importantFields[3];
-                boardFields[2][2] = importantFields[0];
-                boardFields[5][5] = importantFields[1];
-                boardFields[2][5] = importantFields[2];
-                boardFields[5][2] = importantFields[3];
+                players[0].players_field = playerFields[0];
+                players[1].players_field = playerFields[1];
+                players[2].players_field = playerFields[2];
+                players[3].players_field = playerFields[3];
+                boardFields[2][2] = playerFields[0];
+                boardFields[5][5] = playerFields[1];
+                boardFields[2][5] = playerFields[2];
+                boardFields[5][2] = playerFields[3];
                 break;
         }
-        importantFields[4].freeField = true;
-        importantFields[5].freeField = true;
-        importantFields[6].freeField = true;
-        importantFields[7].freeField = true;
-        importantFields[8].freeField = true;
 
         //this nested for-loop adds every "field" of "boardFields" to the frame
         for (int t = 0; t < 8; t++) {
@@ -101,6 +96,15 @@ public class GameBoard implements Serializable {
             GameSettings myGame = new GameSettings(this);
         });
         console();
+
+        try{
+            boardFields[players[selected].getY_pos()+1][players[selected].getX_pos()+1].freeField = true;
+            boardFields[players[selected].getY_pos()+1][players[selected].getX_pos()-1].freeField = true;
+            boardFields[players[selected].getY_pos()-1][players[selected].getX_pos()-1].freeField = true;
+            boardFields[players[selected].getY_pos()-1][players[selected].getX_pos()+1].freeField = true;
+        }catch(ArrayIndexOutOfBoundsException AIE){
+            System.err.println("Damnit" + AIE);
+        }
     }
 
     //region MousAdapter
@@ -109,17 +113,7 @@ public class GameBoard implements Serializable {
             if (players[selected].player_value.intValue() >= (84 / playerCount)) {
                 win();
             }
-
-            try{
-                boardFields[players[selected].getY_pos()+1][players[selected].getX_pos()+1].freeField = true;
-                boardFields[players[selected].getY_pos()+1][players[selected].getX_pos()-1].freeField = true;
-                boardFields[players[selected].getY_pos()-1][players[selected].getX_pos()-1].freeField = true;
-                boardFields[players[selected].getY_pos()-1][players[selected].getX_pos()+1].freeField = true;
-            }catch(ArrayIndexOutOfBoundsException AIE){
-                System.err.println("Damnit" + AIE);
-            }
             selected = players[selected].move(e, selected, playerCount);
-
             try{
                 boardFields[players[selected-1].getY_pos()+1][players[selected-1].getX_pos()+1].freeField = false;
                 boardFields[players[selected-1].getY_pos()+1][players[selected-1].getX_pos()-1].freeField = false;
