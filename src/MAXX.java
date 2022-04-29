@@ -21,8 +21,9 @@ public class MAXX implements Runnable {
     public MAXX()
     {
         play.setText("New Game Start");
-        gui = new GUI(menu_items);
         playerSelection = new JComboBox(new String[]{"2 Spieler", "3 Spieler", "4 Spieler"});
+
+        gui = new GUI(menu_items);
         gui.add(playerSelection);
         gui.add(play);
         gui.setVisible(true);
