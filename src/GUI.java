@@ -29,9 +29,10 @@ public class GUI extends JFrame implements Serializable {
     }
 
     //Constructor for the Gameboard
-    public GUI(String pTitle, JPanel pBoard_JPanel, JPanel pTerminal_JPanel){
+    public GUI(String pTitle, JPanel pBoard_JPanel, JPanel pTerminal_JPanel, JMenuItem[] pJMenuItem){
         setTitle(pTitle);
         setSize(700, 700);
+        setJMenuBar(createMenuBar(pJMenuItem));
 
         setLayout(new BorderLayout());
 

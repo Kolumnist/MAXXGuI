@@ -25,7 +25,7 @@ public class GameBoard extends JFrame implements Serializable {
     private JLabel playerMoves_JLabel = new JLabel("Moves of current player:");
     public Field white, black, red, yellow;
 
-    public GameBoard(int pPlayerNumber) {
+    public GameBoard(int pPlayerNumber, JMenuItem[] pJMenuItem) {
         players = new Player[]{new Player(2, 2, 'W'), new Player(5, 5, 'B'), new Player(5, 2, 'R'), new Player(2, 5, 'Y')};
         playerCount = pPlayerNumber;
 
@@ -97,7 +97,7 @@ public class GameBoard extends JFrame implements Serializable {
             }
         }
 
-        new GUI("MAXX" + (programCount++), board_JPanel, terminal_JPanel);
+        new GUI("MAXX" + (programCount++), board_JPanel, terminal_JPanel, pJMenuItem);
         console();
     }
 
