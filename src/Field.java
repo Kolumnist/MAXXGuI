@@ -16,7 +16,7 @@ public class Field extends JButton implements Serializable {
     private BigInteger numerator, denominator;
     private final BigInteger comp = new BigInteger("9");
     public Fraction fieldValue = new Fraction(new BigInteger("0"), new BigInteger("1"));
-    public boolean freeField = false;
+    public boolean freeField = true;
 
     //constructor to create a field with a fraction
     public Field(int pPositionX, int pPositionY) {
@@ -30,10 +30,10 @@ public class Field extends JButton implements Serializable {
     }
 
     //constructor to create a field with a player
-    public Field(Player pPlayer){
+    public Field(int pPositionX, int pPositionY, Player pPlayer){
         setPlayerOnField(pPlayer);
-        positionX = pPlayer.getX_pos();
-        positionY = pPlayer.getY_pos();
+        positionX = pPositionY;
+        positionY = pPositionY;
         setFont(new Font("Serif",Font.PLAIN,14));
     }
 
