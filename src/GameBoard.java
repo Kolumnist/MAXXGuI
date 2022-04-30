@@ -15,7 +15,7 @@ public class GameBoard implements Serializable {
     private Field[][] boardFields = new Field[8][8];
     private Player[] players;
     private GUI gameBoardGUI;
-    private MouseAdapter mouseAdapter = new MouseListener();
+    private MouseAdapter mouseAdapter;
     private double boardSum;
     private static int programCount;
     private int playerCount = 0;
@@ -24,7 +24,7 @@ public class GameBoard implements Serializable {
 
     JMenuItem[] menu_items = {
             new JMenuItem("Manual"), new JMenuItem("Save"),
-            new JMenuItem("Choose Game"), new JMenuItem("Delete Game"),
+            new JMenuItem("Choose Game"),
             new JMenuItem("Close all Window")
     };
 
@@ -32,6 +32,7 @@ public class GameBoard implements Serializable {
         gameBoardGUI = new GUI("MAXX" + (programCount++), menu_items);
         players = new Player[]{new Player('W'), new Player('B'), new Player('R'), new Player('Y')};
         playerCount = pPlayerNumber;
+        mouseAdapter = new MouseListener();
 
         //do-while-loop to create a field with a sum of 84
         do {
@@ -43,7 +44,7 @@ public class GameBoard implements Serializable {
                     boardSum += field.fieldValue.doubleValue();
                 }
             }
-        } while (boardSum < 84d);
+        } while (boardSum < 84d && boardSum > 88d);
 
         //setting 2-4 player on the board and giving the players their field
         switch (pPlayerNumber) {
@@ -104,7 +105,9 @@ public class GameBoard implements Serializable {
 
     //"GameBoard" constructor when you load the game
     public GameBoard(GameBoard pBoard){
+        gameBoardGUI = null;
         gameBoardGUI = new GUI("MAXX" + (programCount++), menu_items);
+
         players = pBoard.players;
         playerCount = pBoard.playerCount;
         boardFields = pBoard.boardFields;
@@ -133,7 +136,6 @@ public class GameBoard implements Serializable {
         for (int t = 0; t < 8; t++) {
             for (int z = 0; z < 8; z++) {
                 gameBoardGUI.board_JPanel.add(boardFields[t][z]);
-                boardFields[t][z].addMouseListener(mouseAdapter);
             }
         }
         menu_items[1].addActionListener(e -> {

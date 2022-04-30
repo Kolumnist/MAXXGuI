@@ -3,8 +3,6 @@
  * @Matrikelnummer: 212455 [mjouaux], 212848 [choss], 212467 [lmangi]
  * @version 2 21.04.2022
  */
-import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.io.Serializable;
 import java.math.BigInteger;
 
@@ -26,37 +24,21 @@ public class Player implements Serializable {
         return name+"";
     }
 
+    //Player gets moved from his Field to the "released" Field if the Field is "available"
     public boolean move(Field field) {
         if (field.freeField) {
-            //NORTH WEST FIELD
-            if (player_field.getPositionX() == field.getPositionX() + 1 && player_field.getPositionY() == field.getPositionY() + 1)
+
+            //REGULAR Available Fields
+            if  (   player_field.getPositionX() == field.getPositionX() + 1 && player_field.getPositionY() == field.getPositionY() + 1 ||
+                    player_field.getPositionX() == field.getPositionX() + 1 && player_field.getPositionY() == field.getPositionY() - 1 ||
+                    player_field.getPositionX() == field.getPositionX() - 1 && player_field.getPositionY() == field.getPositionY() - 1 ||
+                    player_field.getPositionX() == field.getPositionX() - 1 && player_field.getPositionY() == field.getPositionY() + 1  )
             {
                 player_value = player_value.add(field.fieldValue);//adds the fieldvalue to the playervalue
                 field.onPlayerMoves(player_field, this);
                 return true;
             }
-            //SOUTH WEST FIELD
-            else if (player_field.getPositionX() == field.getPositionX() + 1 && player_field.getPositionY() == field.getPositionY() - 1)
-            {
-                player_value = player_value.add(field.fieldValue);//adds the fieldvalue to the playervalue
-                field.onPlayerMoves(player_field, this);
-                return true;
-            }
-            //SOUTH EAST FIELD
-            else if (player_field.getPositionX() == field.getPositionX() - 1 && player_field.getPositionY() == field.getPositionY() - 1)
-            {
-                player_value = player_value.add(field.fieldValue);//adds the fieldvalue to the playervalue
-                field.onPlayerMoves(player_field, this);
-                return true;
-            }
-            //NORTH EAST FIELD
-            else if (player_field.getPositionX() == field.getPositionX() - 1 && player_field.getPositionY() == field.getPositionY() + 1)
-            {
-                player_value = player_value.add(field.fieldValue);//adds the fieldvalue to the playervalue
-                field.onPlayerMoves(player_field, this);
-                return true;
-            }
-            //SPECIAL MOVE
+            //SPECIAL Available Fields
             else if ((player_field.getPositionX() == field.getPositionX() + 1 && player_field.getPositionY() == field.getPositionY() && name == 'R')/*third player*/
                     || (player_field.getPositionX() == field.getPositionX() - 1 && player_field.getPositionY() == field.getPositionY() && name == 'Y')/*fourth player*/
                     || (player_field.getPositionY() == field.getPositionY() + 1 && player_field.getPositionX() == field.getPositionX() && name == 'W')/*first player*/
@@ -65,7 +47,8 @@ public class Player implements Serializable {
                 player_value = player_value.add(field.fieldValue);//adds the fieldvalue to the playervalue
                 field.onPlayerMoves(player_field, this);//player gets moved to the next field and the next player gets selected
                 return true;
-            } else//When the player gives something that he cant do
+            }
+            else
             {
                 System.out.println("Das darf deine Figur nicht!");
                 return false;
