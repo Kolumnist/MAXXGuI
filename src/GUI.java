@@ -30,7 +30,6 @@ public class GUI extends JFrame implements Serializable {
     public JMenu[] menus_JMenu = {new JMenu("More Information"), new JMenu("Game"), new JMenu("Exit")};
     public JPanel terminal_JPanel = new JPanel(new GridLayout(2, 2));
 
-
     //Constructor for the MainMenu
     public GUI(JMenuItem[] pJMenuItem){
         setTitle("MAXXGuI");

@@ -36,13 +36,13 @@ public class MAXX implements Runnable {
     public void run()
     {
         play.addActionListener(e -> {
-            switch(playerSelection.getSelectedIndex()+2)
-            {
-                case 2: board = new GameBoard(2); break;
-                case 3: board = new GameBoard(3); break;
-                case 4: board = new GameBoard(4); break;
-                default: System.err.println("Was zum Teufel ist hier passiert? Wie hast du das gemacht, das sollte nichtmal möglich sein!");
-            } });
+            switch (playerSelection.getSelectedIndex() + 2) {
+                case 2 -> board = new GameBoard(2);
+                case 3 -> board = new GameBoard(3);
+                case 4 -> board = new GameBoard(4);
+                default -> System.err.println("Was zum Teufel ist hier passiert? Wie hast du das gemacht, das sollte nichtmal möglich sein!");
+            }
+        });
     }
 
     public static void main(String[] args)
