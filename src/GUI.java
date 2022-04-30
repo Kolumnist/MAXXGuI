@@ -113,7 +113,7 @@ public class GUI extends JFrame implements Serializable {
         }
 
         for (int i = 0; i < pJMenuItem.length; i++) {
-            menus_JMenu[(i < 1) ? 0 : (i == pJMenuItem.length) ? 2 : 1].add(pJMenuItem[i]);
+            menus_JMenu[(i < 1) ? 0 : (i == pJMenuItem.length - 1) ? 2 : 1].add(pJMenuItem[i]);
         }
 
         return menuBar_JMenuBar;
