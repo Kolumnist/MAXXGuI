@@ -5,9 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/GUI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/GameBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/GameBoard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/MAXX.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/MAXX.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBoard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
