@@ -44,7 +44,7 @@ public class GameBoard implements Serializable {
                     boardSum += field.fieldValue.doubleValue();
                 }
             }
-        } while (boardSum < 84d);
+        } while (boardSum < 84d && boardSum > 88d);
 
         //setting 2-4 player on the board and giving the players their field
         switch (pPlayerNumber) {

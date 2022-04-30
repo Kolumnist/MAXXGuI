@@ -28,35 +28,17 @@ public class Player implements Serializable {
 
     public boolean move(Field field) {
         if (field.freeField) {
-            //NORTH WEST FIELD
-            if (player_field.getPositionX() == field.getPositionX() + 1 && player_field.getPositionY() == field.getPositionY() + 1)
+            //REGULAR Available Fields
+            if  (   player_field.getPositionX() == field.getPositionX() + 1 && player_field.getPositionY() == field.getPositionY() + 1 ||
+                    player_field.getPositionX() == field.getPositionX() + 1 && player_field.getPositionY() == field.getPositionY() - 1 ||
+                    player_field.getPositionX() == field.getPositionX() - 1 && player_field.getPositionY() == field.getPositionY() - 1 ||
+                    player_field.getPositionX() == field.getPositionX() - 1 && player_field.getPositionY() == field.getPositionY() + 1  )
             {
                 player_value = player_value.add(field.fieldValue);//adds the fieldvalue to the playervalue
                 field.onPlayerMoves(player_field, this);
                 return true;
             }
-            //SOUTH WEST FIELD
-            else if (player_field.getPositionX() == field.getPositionX() + 1 && player_field.getPositionY() == field.getPositionY() - 1)
-            {
-                player_value = player_value.add(field.fieldValue);//adds the fieldvalue to the playervalue
-                field.onPlayerMoves(player_field, this);
-                return true;
-            }
-            //SOUTH EAST FIELD
-            else if (player_field.getPositionX() == field.getPositionX() - 1 && player_field.getPositionY() == field.getPositionY() - 1)
-            {
-                player_value = player_value.add(field.fieldValue);//adds the fieldvalue to the playervalue
-                field.onPlayerMoves(player_field, this);
-                return true;
-            }
-            //NORTH EAST FIELD
-            else if (player_field.getPositionX() == field.getPositionX() - 1 && player_field.getPositionY() == field.getPositionY() + 1)
-            {
-                player_value = player_value.add(field.fieldValue);//adds the fieldvalue to the playervalue
-                field.onPlayerMoves(player_field, this);
-                return true;
-            }
-            //SPECIAL MOVE
+            //SPECIAL Available Fields
             else if ((player_field.getPositionX() == field.getPositionX() + 1 && player_field.getPositionY() == field.getPositionY() && name == 'R')/*third player*/
                     || (player_field.getPositionX() == field.getPositionX() - 1 && player_field.getPositionY() == field.getPositionY() && name == 'Y')/*fourth player*/
                     || (player_field.getPositionY() == field.getPositionY() + 1 && player_field.getPositionX() == field.getPositionX() && name == 'W')/*first player*/
