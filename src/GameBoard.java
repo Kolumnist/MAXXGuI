@@ -14,7 +14,7 @@ public class GameBoard implements Serializable {
 
     private Field[][] boardFields = new Field[8][8];
     private Player[] players;
-    private GUI gameBoardGUI;
+    private GUI gameBoardGUI = null;
     private MouseAdapter mouseAdapter;
     private double boardSum;
     private static int programCount;
@@ -105,8 +105,8 @@ public class GameBoard implements Serializable {
 
     //"GameBoard" constructor when you load the game
     public GameBoard(GameBoard pBoard){
-        gameBoardGUI = null;
-        gameBoardGUI = new GUI("MAXX" + (programCount++), menu_items);
+
+        this.gameBoardGUI = new GUI("MAXX" + (programCount++), menu_items);
 
         players = pBoard.players;
         playerCount = pBoard.playerCount;
@@ -151,6 +151,7 @@ public class GameBoard implements Serializable {
             GameSettings myGame = new GameSettings();
             myGame.loadGame(this);
         });
+
         console();
     }
 

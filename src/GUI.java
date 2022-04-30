@@ -14,10 +14,13 @@ public class GUI extends JFrame implements Serializable {
     private String manualText = "";
     private String inputText = null;
     private BufferedReader bufferedReader;
+
+
     public JLabel currentPlayer_JLabel = new JLabel("Current Player:");
     public JLabel playerMoves_JLabel = new JLabel("Moves of current player:");
     public JTextField currentPlayer_JTextField = new JTextField();
     public JTextField playerMoves_JTextField = new JTextField();
+
     public JPanel board_JPanel;
     public JMenuBar menuBar_JMenuBar = new JMenuBar();
     public JMenu[] menus_JMenu = {new JMenu("More Information"), new JMenu("Game"), new JMenu("Exit")};
@@ -57,7 +60,7 @@ public class GUI extends JFrame implements Serializable {
         });
 
         //this ActionListener close the whole program
-        pJMenuItem[3].addActionListener(e -> System.exit(0));
+        pJMenuItem[2].addActionListener(e -> System.exit(0));
     }
 
     //Constructor for the Gameboard
@@ -72,15 +75,18 @@ public class GUI extends JFrame implements Serializable {
         board_JPanel = new JPanel(new GridLayout(8, 8));
         add(board_JPanel, BorderLayout.CENTER);
 
-        pJMenuItem[4].addActionListener(e -> System.exit(0));
+        pJMenuItem[3].addActionListener(e -> System.exit(0));
 
         //creating a little console with JTextFields and JLabels to show the current player and it's moves
         JPanel terminal_JPanel = new JPanel(new GridLayout(2, 2));
         terminal_JPanel.add(currentPlayer_JLabel);
         terminal_JPanel.add(playerMoves_JLabel);
+        currentPlayer_JTextField.setEditable(false);
+        playerMoves_JTextField.setEditable(false);
         terminal_JPanel.add(currentPlayer_JTextField);
         terminal_JPanel.add(playerMoves_JTextField);
         add(terminal_JPanel, BorderLayout.SOUTH);
+
         setVisible(true);
     }
 
