@@ -30,6 +30,9 @@ public class GameSettings extends JFrame implements Serializable {
      */
     public GameSettings() {
 
+        this.gameboard = gameboard;
+        this.dateiname = dateiname;
+
         // function changes the current directory for the current process.
         c.setCurrentDirectory(new File(".\\saveFiles"));
         // FileNameExtensionFilter = The extension for a file is the portion of the file name after the last "."
