@@ -60,12 +60,6 @@ public class GUI extends JFrame implements Serializable {
             myJFrame.setVisible(true);
         });
 
-        // ### ActionListener für "Choose Game"
-        pJMenuItem[1].addActionListener(e -> {
-            GameSettings myGame = new GameSettings();
-            myGame.loadGame(board);
-        });
-
         //this ActionListener close the whole program
         pJMenuItem[3].addActionListener(e -> System.exit(0));
     }
@@ -82,6 +76,8 @@ public class GUI extends JFrame implements Serializable {
         board_JPanel = new JPanel(new GridLayout(8, 8));
         add(board_JPanel, BorderLayout.CENTER);
 
+        pJMenuItem[4].addActionListener(e -> System.exit(0));
+
         //creating a little console with JTextFields and JLabels to show the current player and it's moves
         JPanel terminal_JPanel = new JPanel(new GridLayout(2, 2));
         terminal_JPanel.add(currentPlayer_JLabel);
@@ -90,20 +86,6 @@ public class GUI extends JFrame implements Serializable {
         terminal_JPanel.add(playerMoves_JTextField);
         add(terminal_JPanel, BorderLayout.SOUTH);
         setVisible(true);
-
-        pJMenuItem[1].addActionListener(e -> {
-            GameSettings myGame = new GameSettings();
-            try {
-                myGame.saveGame(board);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        });
-
-        pJMenuItem[2].addActionListener(e -> {
-            GameSettings myGame = new GameSettings();
-            myGame.loadGame(board);
-        });
     }
 
     private JMenuBar createMenuBar(JMenuItem[] pJMenuItem) {

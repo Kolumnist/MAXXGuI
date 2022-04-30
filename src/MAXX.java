@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @Matrikelnummer: 212455 [mjouaux], 212848 [choss], 212467 [lmangi]
  * @version 2 21.04.2022
  */
-public class MAXX implements Runnable, Serializable{
+public class MAXX implements Serializable{
 
     private GUI gui;
     private GameBoard board;
@@ -26,13 +26,12 @@ public class MAXX implements Runnable, Serializable{
         gui.add(play);
         gui.setVisible(true);
 
-        Thread thread = new Thread(this);
-        thread.start();
-    }
+        // ### ActionListener für "Choose Game"
+        menu_items[1].addActionListener(e -> {
+            GameSettings myGame = new GameSettings();
+            myGame.loadGame(board);
+        });
 
-    @Override
-    public void run()
-    {
         play.addActionListener(e -> {
             switch(playerSelection.getSelectedIndex()+2)
             {
