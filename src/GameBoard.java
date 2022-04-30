@@ -44,7 +44,7 @@ public class GameBoard implements Serializable {
                     boardSum += field.fieldValue.doubleValue();
                 }
             }
-        } while (boardSum < 84d && boardSum > 88d);
+        } while (boardSum < 84d && boardSum > 85d);
 
         //setting 2-4 player on the board and giving the players their field
         switch (pPlayerNumber) {
@@ -156,21 +156,25 @@ public class GameBoard implements Serializable {
         console();
     }
 
-    //checks for the winner unfortunately it doesn't stop the game yet it just tells who won!
+    /*checks for the winner and tells who won with how many points(double)!*/
     public void win() {
+        System.out.println("Win happened!");
+
         JFrame f = new JFrame();
         JPanel panel = new JPanel();
+        f.setSize(500, 200);
+        f.add(panel);
+        f.setTitle("MAXX Win" + (programCount - 1));
+        f.setLayout(new FlowLayout());
+
         JTextArea win = new JTextArea("Herzlichen Glückwunsch der " + players[selected].toString()
                 + "  Spieler hat mit " + players[selected].player_value.doubleValue() + " Punkten gewonnen!\n");
         win.setSize(500, 200);
         win.setFont(new Font("Serif", Font.PLAIN, 14));
         panel.add(win);
-        f.setSize(500, 200);
-        f.add(panel);
+
+
         f.setVisible(true);
-        f.setTitle("MAXX Win" + (programCount - 1));
-        f.setLayout(new FlowLayout());
-        System.out.println("Win happened!");
     }
 
     //method for the output at the bottom of the frame like a console

@@ -11,39 +11,44 @@ import java.io.*;
 public class GUI extends JFrame implements Serializable {
 
     private GameBoard board;
+
+    private JMenuBar menuBar_JMenuBar = new JMenuBar();
+    private JMenu[] menus_JMenu = {new JMenu("More Information"), new JMenu("Game"), new JMenu("Exit")};
+
+    /*Strings and BufferedReader for the Manual*/
     private String manualText = "";
     private String inputText = null;
     private BufferedReader bufferedReader;
 
-
-    public JLabel currentPlayer_JLabel = new JLabel("Current Player:");
-    public JLabel playerMoves_JLabel = new JLabel("Moves of current player:");
+    /*Labels and TextFields for the Console*/
+    private JLabel currentPlayer_JLabel = new JLabel("Current Player:");
+    private JLabel playerMoves_JLabel = new JLabel("Moves of current player:");
     public JTextField currentPlayer_JTextField = new JTextField();
     public JTextField playerMoves_JTextField = new JTextField();
 
     public JPanel board_JPanel;
-    public JMenuBar menuBar_JMenuBar = new JMenuBar();
-    public JMenu[] menus_JMenu = {new JMenu("More Information"), new JMenu("Game"), new JMenu("Exit")};
 
-    //Constructor for the MainMenu
+    //Constructor for the main menu
     public GUI(JMenuItem[] pJMenuItem) {
         setTitle("MAXXGuI");
         setSize(700, 700);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         setLayout(new FlowLayout());
-        setJMenuBar(createMenuBar(pJMenuItem));
+        setJMenuBar(createMenuBar(pJMenuItem));//calls method createMenuBar!
 
-        //create a picture
+        /*create a picture on the main menu*/
         JLabel picture;
         Icon icon = new ImageIcon(new ImageIcon(getClass().getResource("MAXXGuI.png")).getImage().getScaledInstance(550, 550, Image.SCALE_DEFAULT));
         picture = new JLabel(icon);
         picture.setIcon(icon);
         add(picture);
 
-        //this ActionListener shows the manual
+        /*ActionListener which creates a new frame for the manual
+          To create the text for the manual we read the File "manual"*/
         pJMenuItem[0].addActionListener(e -> {
             JFrame myJFrame = new JFrame();
+
             try {
                 bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream("src/manual")));
                 do {
@@ -59,7 +64,7 @@ public class GUI extends JFrame implements Serializable {
             myJFrame.setVisible(true);
         });
 
-        //this ActionListener close the whole program
+        /*this ActionListener closes the whole program*/
         pJMenuItem[2].addActionListener(e -> System.exit(0));
     }
 
@@ -67,17 +72,39 @@ public class GUI extends JFrame implements Serializable {
     public GUI(String pTitle, JMenuItem[] pJMenuItem) {
         setTitle(pTitle);
         setSize(700, 700);
-        setJMenuBar(createMenuBar(pJMenuItem));
+        setJMenuBar(createMenuBar(pJMenuItem));//calls method createMenuBar!
 
         setLayout(new BorderLayout());
 
-        //GridLayout for the Gameboard
+        /*GridLayout for the Gameboard*/
         board_JPanel = new JPanel(new GridLayout(8, 8));
         add(board_JPanel, BorderLayout.CENTER);
 
+         /*ActionListener which creates a new frame for the manual.
+          To create the text for the manual we read the File "manual"*/
+        pJMenuItem[0].addActionListener(e -> {
+            JFrame myJFrame = new JFrame();
+
+            try {
+                bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream("src/manual")));
+                do {
+                    if(inputText != null) manualText = manualText + "\n" + inputText;
+                    inputText = bufferedReader.readLine();
+                } while (inputText != null);
+                myJFrame.add(new JTextArea(manualText));
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            myJFrame.setSize(1000, 300);
+            myJFrame.setLocation(250, 100);
+            myJFrame.setVisible(true);
+        });
+
+        /*this ActionListener closes the whole program*/
         pJMenuItem[3].addActionListener(e -> System.exit(0));
 
-        //creating a little console with JTextFields and JLabels to show the current player and it's moves
+        /*creating a little console with JTextFields and
+        JLabels to show the name of the current player(on the left side) and how he can move(on the right side)*/
         JPanel terminal_JPanel = new JPanel(new GridLayout(2, 2));
         terminal_JPanel.add(currentPlayer_JLabel);
         terminal_JPanel.add(playerMoves_JLabel);
@@ -90,6 +117,7 @@ public class GUI extends JFrame implements Serializable {
         setVisible(true);
     }
 
+    /*Adds all Menus to the MenuBar and sets all MenuItems in the correct Menu*/
     private JMenuBar createMenuBar(JMenuItem[] pJMenuItem) {
 
         for (int i = 0; i < menus_JMenu.length; i++) {

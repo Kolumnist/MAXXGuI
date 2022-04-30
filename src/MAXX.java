@@ -17,6 +17,8 @@ public class MAXX implements Serializable{
             new JMenuItem("Manual"), new JMenuItem("Choose Game"), new JMenuItem("Close all Window")
     };
 
+    /*Creates a Main Menu with a game start Button, a picture,
+      a combobox to choose from 2 to 4 players and a MenuBar*/
     public MAXX() {
         play.setText("New Game Start");
         playerSelection = new JComboBox(new String[]{"2 Spieler", "3 Spieler", "4 Spieler"});
@@ -26,13 +28,13 @@ public class MAXX implements Serializable{
         gui.add(play);
         gui.setVisible(true);
 
-        // ### ActionListener for "Choose Game"
+        /*this ActionListener is for "Choose Game" and is therefore able to load a game*/
         menu_items[1].addActionListener(e -> {
             GameSettings myGame = new GameSettings();
             myGame.loadGame(board);
         });
 
-        // ### ActionListener for the JButton play
+        /* ActionListener for the JButton play which starts a game with the selected playerNumber*/
         play.addActionListener(e -> {
             switch(playerSelection.getSelectedIndex()+2)
             {
