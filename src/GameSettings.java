@@ -1,86 +1,45 @@
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
 
 public class GameSettings extends JFrame implements Serializable {
 
+    private static final long serialVersionUID = 1;
     String dateiname;
     GameBoard gameboard;
-
-    // Textfelder für
-    JTextField filename = new JTextField();   // Dateinamen
-    JTextField dir = new JTextField();        // Directory
-    JTextField exits = new JTextField();      // Existenz-Abfrage
-    JTextField isdir = new JTextField();      // Directory-Abfrage
-
-
-    // Knöpfe für Öffnen und Speichern
-    JButton open = new JButton("Öffnen");
-    JButton save = new JButton("Speichern");
 
     // Start-Directory
     JFileChooser c = new JFileChooser();
 
+
     // Konstruktor
-    public GameSettings(GameBoard gameboard) {
+    public GameSettings() {
 
         this.gameboard = gameboard;
+        this.dateiname = dateiname;
 
         c.setCurrentDirectory(new File(".\\saveFiles"));
         FileNameExtensionFilter filter = new FileNameExtensionFilter("*.lcm", "lcm");
         c.setFileFilter(filter);
-
-        setTitle("Save Game");               // Fenster Titel
-        Container cp = getContentPane();     // Fenster-Container
-        open.addActionListener(new OpenL()); // AL registrieren
-        cp.add(open, BorderLayout.NORTH);    //    und einfügen
-        save.addActionListener(new SaveL());
-        cp.add(save, BorderLayout.SOUTH);
-        dir.setEditable(false);
-        filename.setEditable(false);
-        exits.setEditable(false);
-        isdir.setEditable(false);
-        JPanel p = new JPanel();
-        p.setLayout(new GridLayout(4, 1, 2, 2)); // Gridlayout für Textfelder-Panel
-        p.add(filename);                                             // Feld filename hinzufügen
-        p.add(dir);                                                  // Feld dir hinzufügen
-        p.add(exits);                                                // Feld exits hinzufügen
-        p.add(isdir);                                                // Feld isdir hinzufügen
-        cp.add(p, BorderLayout.CENTER);
-        c.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);  // Sel.-Modus
-        setVisible(true);
-        setSize(500, 500);
     }
 
-
-    class OpenL implements ActionListener {                                         // AL. für Öfnnen Knopf
-
-        public void actionPerformed(ActionEvent e) {
-            int rVal = c.showOpenDialog(GameSettings.this);                  // Öffne-Dialog öffnen
-            if (rVal == JFileChooser.APPROVE_OPTION) {// falls bestätigt:
-                dateiname = c.getSelectedFile().getName();
-                filename.setText("Filename: " + dateiname);
-                dir.setText("Akt.Directory: " + c.getCurrentDirectory());
-                exits.setText("Existiert? " + c.getSelectedFile().exists());
-                isdir.setText("Ist Directory? " + c.getSelectedFile().isDirectory());
-            }
-            if (rVal == JFileChooser.CANCEL_OPTION) {                              // falls abgebrochen:
-                filename.setText("Es wurde Abbrechen gedrückt!");
-                dir.setText("");
-                exits.setText("");                                                 // Texte löschen
-                isdir.setText("");
-            }
-            loadGame(gameboard);
-        }
-
-        public void loadGame(Object o) {
+    // ### Object zu GameBoard geändert, damit direkt der richtige Klassentyp da ist
+    public void loadGame(GameBoard o) {
+        int rVal = c.showOpenDialog(GameSettings.this);                  // Öffne-Dialog öffnen
+        if (rVal == JFileChooser.APPROVE_OPTION) {                             // falls bestätigt:
+            dateiname = c.getSelectedFile().getAbsolutePath();
             try {
                 FileInputStream fileIn = new FileInputStream(dateiname);
                 ObjectInputStream stream = new ObjectInputStream(fileIn);
-                o = stream.readObject();
+                o = (GameBoard) stream.readObject();
+                System.out.println(o.toString());
+
+                // Lässt das Fenster verschwinden
+              //  o.dispose(); -> liegt evtl. am JFrame (GameBoard = hat kein JFrame mehr
+
+                // Startet ein neues Spiel
+                new GameBoard(o);
                 stream.close();
                 System.out.println("\n---Game loaded ---\n");
             } catch (Exception e) {
@@ -89,49 +48,15 @@ public class GameSettings extends JFrame implements Serializable {
         }
     }
 
-    class SaveL implements ActionListener {                                        // AL für Speichern-Knopf
-
-        public void actionPerformed(ActionEvent e) {
-            int rVal = c.showSaveDialog(GameSettings.this);                     // Speichern-Dialog öffnen
-            if (rVal == JFileChooser.APPROVE_OPTION) {// falls bestätigt:
-                dateiname = c.getSelectedFile().getName();
-                filename.setText("Filename: " + dateiname);
-                dir.setText("Akt. Dictory: " + c.getCurrentDirectory());
-                exits.setText("Existiert? " + c.getSelectedFile().exists());
-                isdir.setText("Ist Directory? " + c.getSelectedFile().isDirectory());
-            }
-            if (rVal == JFileChooser.CANCEL_OPTION) {                              // falls abgebrochen:
-                filename.setText("Es wurde Abbrechen gedrückt!");
-                dir.setText("");
-                exits.setText("");
-                isdir.setText("");
-            }
+    public void saveGame(GameBoard o) throws IOException {
+        // ### Formatierung / Syntax? Error behoben
+        int rVal = c.showOpenDialog(GameSettings.this);                  // Öffne-Dialog öffnen
+        if (rVal == JFileChooser.APPROVE_OPTION) {                             // falls bestätigt:
+            dateiname = c.getSelectedFile().getName();
             try {
-                saveGame(gameboard);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
+                FileOutputStream fileOut = new FileOutputStream(c.getSelectedFile().getAbsolutePath() + ".lcm");
+                ObjectOutputStream stream = new ObjectOutputStream(fileOut);
 
-
-        private static void saveGame(Object o) throws FileNotFoundException, IOException{
-            JFileChooser fileChooser = new JFileChooser();
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("*.json", "json");
-            fileChooser.setFileFilter(filter);
-            int returner = fileChooser.showOpenDialog(null);
-            if(returner == JFileChooser.APPROVE_OPTION){
-                try (FileOutputStream fos = new FileOutputStream("TestFile.txt");
-                     ObjectOutputStream oos = new ObjectOutputStream(fos)) {
-                    oos.writeObject(o);
-                    oos.flush();
-                }
-            }
-        }
-
-/*
-        public void saveGame(Object o) throws IOException {
-            try (FileOutputStream fileOut = new FileOutputStream(c.getSelectedFile().getAbsolutePath()+".lcm");
-                 ObjectOutputStream stream = new ObjectOutputStream(fileOut)){
                 c.setDialogType(JFileChooser.SAVE_DIALOG);
                 stream.writeObject(o);  // es geht nicht, da ich nicht die Datei an sich speicher!! -> was für ein object muss ich übergeben??? -> Datei per UIClass ID finden?
                 stream.flush();
@@ -140,6 +65,8 @@ public class GameSettings extends JFrame implements Serializable {
             } catch (Exception e) {
                 System.out.println("Serialization Error! Can't save data.\n" + e.getClass() + " : " + e.getMessage() + "\n");
             }
-        }*/
+        }
     }
 }
+
+

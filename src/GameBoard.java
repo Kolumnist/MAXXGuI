@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.io.Serializable;
 
 public class GameBoard implements Serializable {
@@ -123,6 +124,19 @@ public class GameBoard implements Serializable {
                 boardFields[t][z].addMouseListener(mouseAdapter);
             }
         }
+        menu_items[1].addActionListener(e -> {
+            GameSettings myGame = new GameSettings();
+            try {
+                myGame.saveGame(this);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        menu_items[2].addActionListener(e -> {
+            GameSettings myGame = new GameSettings();
+            myGame.loadGame(this);
+        });
         console();
     }
 
