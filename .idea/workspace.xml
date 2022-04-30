@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="90f7b3b1-23da-4309-85c2-9ae872df7694" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/GameBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/GameBoard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/GameSettings.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/GameSettings.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBoard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,14 +93,10 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/GameSettings.java</url>
-          <line>27</line>
-          <properties class="GameSettings" method="loadGame">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="1" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/GameBoard.java</url>
+          <line>210</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
