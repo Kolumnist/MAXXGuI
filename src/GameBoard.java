@@ -19,10 +19,8 @@ public class GameBoard implements Serializable {
     private static int programCount;
     private int playerCount = 0;
     private int selected = 0;
-
     private Field white, black, red, yellow;
 
-    /* Es gab nen Bug der nur mit dem hier: gefixt werden konnte*/
     JMenuItem[] menu_items = {
             new JMenuItem("Manual"), new JMenuItem("Save"),
             new JMenuItem("Choose Game"), new JMenuItem("Delete Game"),
@@ -80,7 +78,7 @@ public class GameBoard implements Serializable {
                 break;
         }
 
-        //this nested for-loop adds every "field" of "boardFields" to the frame
+        //this nested for-loop adds every "field" of "boardFields" to the frame and adds the listener
         for (int t = 0; t < 8; t++) {
             for (int z = 0; z < 8; z++) {
                 gameBoardGUI.board_JPanel.add(boardFields[t][z]);
@@ -90,6 +88,7 @@ public class GameBoard implements Serializable {
         console();
     }
 
+    //"GameBoard" constructor when you
     public GameBoard(GameBoard pBoard){
         gameBoardGUI = new GUI("MAXX" + (programCount++), menu_items);
         players = pBoard.players;
@@ -116,7 +115,7 @@ public class GameBoard implements Serializable {
                 break;
         }
 
-        //this nested for-loop adds every "field" of "boardFields" to the frame
+        //this nested for-loop adds every "field" of "boardFields" to the frame and adds the listener
         for (int t = 0; t < 8; t++) {
             for (int z = 0; z < 8; z++) {
                 gameBoardGUI.board_JPanel.add(boardFields[t][z]);
@@ -143,7 +142,7 @@ public class GameBoard implements Serializable {
         System.out.println("Win happened!");
     }
 
-    //Method for the output at the bottem of the frame like a console
+    //method for the output at the bottom of the frame like a console
     public void console() {
         String specialMove = "";
         //determines the special move of the player
@@ -165,8 +164,10 @@ public class GameBoard implements Serializable {
         gameBoardGUI.currentPlayer_JTextField.setText("Spieler: " + players[selected] + " ist am zug.");
     }
 
+    //inner MouseListener class to make the listener serializable
     class MouseListener extends MouseAdapter implements Serializable{
         public void mouseReleased(MouseEvent e){
+            //checks if one player has enough points to win the game
             if (players[selected].player_value.intValue() >= (84 / playerCount)) {
                 win();
             }
