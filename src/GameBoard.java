@@ -89,7 +89,7 @@ public class GameBoard implements Serializable {
         console();
     }
 
-    //"GameBoard" constructor when you
+    //"GameBoard" constructor when you load the game
     public GameBoard(GameBoard pBoard){
         gameBoardGUI = new GUI("MAXX" + (programCount++), menu_items);
         players = pBoard.players;
