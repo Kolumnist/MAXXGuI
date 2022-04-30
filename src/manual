@@ -1,0 +1,13 @@
+Hallo! Herzlich willkommen zu 'MAXX'!
+In unserem Spiel können vier Spieler abwechselnd miteinander spielen. Diese Spieler sind als 'black', 'white', 'red' und 'yellow' konfiguriert.
+Alle Spieler fangen an einem unterschiedlichen Punkt des Spielfeldes an.
+Ziel des Spieles ist es, 21-42 Punkte zu ergattern.
+Die Punkte setzen sich aus den Brüchen in den insgesamt 60-62 Buttons zusammen.
+Damit der Spieler auf einen Button springen kann, muss einfacherweise nur auf den Button geklickt werden.
+
+ABER ACHTUNG!
+Die Spieler können sich nur schräg über das Spielfeld bewegen.
+Desweiteren gibt es noch einen SPECIAL MOVE, welcher den Spieler eine bestimmte Bewegung ermöglicht, die den anderen Spielern nicht vergönnt ist.
+So kann sich der weiße Spieler nach unten, der rote Spieler nach rechts, der gelbe Spieler nach links und der schwarze Spieler nach oben bewegen.
+
+Gewinner des Spiels ist derjenige, der mehr oder gleich 42 Punkte hat!
