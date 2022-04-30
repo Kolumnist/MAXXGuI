@@ -1,17 +1,18 @@
-import javax.swing.*;
-import java.io.Serializable;
-
 /**
  * @author Michel Jouaux, Collin Hoss, Lara Mangi
  * @Matrikelnummer: 212455 [mjouaux], 212848 [choss], 212467 [lmangi]
  * @version 2 21.04.2022
  */
+import javax.swing.*;
+import java.io.Serializable;
+
 public class MAXX implements Serializable{
 
     private GUI gui;
     private GameBoard board;
-    private JButton play = new JButton();
-    private JComboBox playerSelection;
+    private JButton play = new JButton();//The Play Button which starts a new game(the gameboard)
+    private JComboBox playerSelection; //Here the Player can select how many players play the game
+
     JMenuItem[] menu_items = {
             new JMenuItem("Manual"), new JMenuItem("Choose Game"), new JMenuItem("Close all Window")
     };
@@ -25,12 +26,13 @@ public class MAXX implements Serializable{
         gui.add(play);
         gui.setVisible(true);
 
-        // ### ActionListener für "Choose Game"
+        // ### ActionListener for "Choose Game"
         menu_items[1].addActionListener(e -> {
             GameSettings myGame = new GameSettings();
             myGame.loadGame(board);
         });
 
+        // ### ActionListener for the JButton play
         play.addActionListener(e -> {
             switch(playerSelection.getSelectedIndex()+2)
             {
