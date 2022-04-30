@@ -54,7 +54,7 @@ public class GameSettings extends JFrame implements Serializable {
                 FileInputStream fileIn = new FileInputStream(dateiname);
 
                 // create an instance of the class java.io.ObjectInputStream who deserializes the called Object
-                // -> deserialized the Object into human language
+                // deserializes the Object into human language
                 ObjectInputStream stream = new ObjectInputStream(fileIn);
 
                 // The readObject method is responsible for reading and restoring the state of the object for its particular class using data written to the stream by the corresponding writeObject method
@@ -80,7 +80,7 @@ public class GameSettings extends JFrame implements Serializable {
 
         // open-Dialog
         int rVal = c.showOpenDialog(GameSettings.this);
-        
+
         // (APPROVE_OPTION = the user accepts file selection)
         if (rVal == JFileChooser.APPROVE_OPTION) {
             dateiname = c.getSelectedFile().getName();
@@ -89,7 +89,7 @@ public class GameSettings extends JFrame implements Serializable {
                 FileOutputStream fileOut = new FileOutputStream(c.getSelectedFile().getAbsolutePath() + ".lcm");
 
                 // create an instance of the class java.io.ObjectOutputStream who writes the Object into the *data stream*
-                // -> serialized the Object into bytes (we need to change the language so the system will understand)
+                // -> serializes the Object into bytes (we need to change the language so the system will understand)
                 ObjectOutputStream stream = new ObjectOutputStream(fileOut);
 
                 // (SAVE_DIALOG = the user save file selection)
