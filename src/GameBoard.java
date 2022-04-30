@@ -24,7 +24,7 @@ public class GameBoard implements Serializable {
 
     JMenuItem[] menu_items = {
             new JMenuItem("Manual"), new JMenuItem("Save"),
-            new JMenuItem("Choose Game"), new JMenuItem("Delete Game"),
+            new JMenuItem("Choose Game"),
             new JMenuItem("Close all Window")
     };
 
@@ -105,7 +105,9 @@ public class GameBoard implements Serializable {
 
     //"GameBoard" constructor when you load the game
     public GameBoard(GameBoard pBoard){
+        gameBoardGUI = null;
         gameBoardGUI = new GUI("MAXX" + (programCount++), menu_items);
+
         players = pBoard.players;
         playerCount = pBoard.playerCount;
         boardFields = pBoard.boardFields;

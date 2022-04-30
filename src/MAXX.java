@@ -13,8 +13,7 @@ public class MAXX implements Serializable{
     private JButton play = new JButton();
     private JComboBox playerSelection;
     JMenuItem[] menu_items = {
-            new JMenuItem("Manual"), new JMenuItem("Choose Game"),
-            new JMenuItem("Delete Game"), new JMenuItem("Close all Window")
+            new JMenuItem("Manual"), new JMenuItem("Choose Game"), new JMenuItem("Close all Window")
     };
 
     public MAXX() {

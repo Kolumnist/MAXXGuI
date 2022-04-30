@@ -31,6 +31,7 @@ public class GUI extends JFrame implements Serializable {
     public JLabel playerMoves_JLabel = new JLabel("Moves of current player:");
     public JTextField currentPlayer_JTextField = new JTextField();
     public JTextField playerMoves_JTextField = new JTextField();
+    public JPanel terminal_JPanel = new JPanel(new GridLayout(2, 2));
     public JPanel board_JPanel;
     public JMenuBar menuBar_JMenuBar = new JMenuBar();
     public JMenu[] menus_JMenu = {new JMenu("More Information"), new JMenu("Game"), new JMenu("Exit")};
@@ -51,17 +52,8 @@ public class GUI extends JFrame implements Serializable {
         picture.setIcon(icon);
         add(picture);
 
-        //this ActionListener shows the manual
-        pJMenuItem[0].addActionListener(e -> {
-            JFrame myJFrame = new JFrame();
-            myJFrame.add(new JTextArea(manual_text));
-            myJFrame.setSize(1000, 300);
-            myJFrame.setLocation(250, 100);
-            myJFrame.setVisible(true);
-        });
-
         //this ActionListener close the whole program
-        pJMenuItem[3].addActionListener(e -> System.exit(0));
+        pJMenuItem[2].addActionListener(e -> System.exit(0));
     }
 
     //Constructor for the Gameboard
@@ -76,10 +68,9 @@ public class GUI extends JFrame implements Serializable {
         board_JPanel = new JPanel(new GridLayout(8, 8));
         add(board_JPanel, BorderLayout.CENTER);
 
-        pJMenuItem[4].addActionListener(e -> System.exit(0));
+        pJMenuItem[3].addActionListener(e -> System.exit(0));
 
         //creating a little console with JTextFields and JLabels to show the current player and it's moves
-        JPanel terminal_JPanel = new JPanel(new GridLayout(2, 2));
         terminal_JPanel.add(currentPlayer_JLabel);
         terminal_JPanel.add(playerMoves_JLabel);
         terminal_JPanel.add(currentPlayer_JTextField);
@@ -89,6 +80,14 @@ public class GUI extends JFrame implements Serializable {
     }
 
     private JMenuBar createMenuBar(JMenuItem[] pJMenuItem) {
+
+        pJMenuItem[0].addActionListener(e -> {
+            JFrame myJFrame = new JFrame();
+            myJFrame.add(new JTextArea(manual_text));
+            myJFrame.setSize(1000, 300);
+            myJFrame.setLocation(250, 100);
+            myJFrame.setVisible(true);
+        });
 
         for (int i = 0; i < menus_JMenu.length; i++) {
             menuBar_JMenuBar.add(menus_JMenu[i]);
