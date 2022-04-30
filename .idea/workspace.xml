@@ -3,9 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="90f7b3b1-23da-4309-85c2-9ae872df7694" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/Field.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/Field.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/GUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/GameBoard$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/GameBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/GameBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/GameSettings$OpenL.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/GameSettings$SaveL.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/GameSettings.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/GameSettings.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/MAXX.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/MAXX.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MAXXGuI/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MAXXGuI/Player.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,13 +42,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
-    <property name="settings.editor.selected.configurable" value="advanced.settings" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\laraj\OneDrive\Dokumente\MAXXGuI\MAXXGuI\src" />
@@ -96,5 +106,20 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/GameSettings.java</url>
+          <line>27</line>
+          <properties class="GameSettings" method="loadGame">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
