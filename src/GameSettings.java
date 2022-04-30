@@ -46,7 +46,6 @@ public class GameSettings extends JFrame implements Serializable {
         int rVal = c.showOpenDialog(GameSettings.this);
         // (APPROVE_OPTION = the user accepts file selection)
         if (rVal == JFileChooser.APPROVE_OPTION) {
-            // if its true:
             dateiname = c.getSelectedFile().getAbsolutePath();
             try {
                 // FileInputStream obtains the input bytes from the called file
@@ -75,7 +74,6 @@ public class GameSettings extends JFrame implements Serializable {
         int rVal = c.showOpenDialog(GameSettings.this);
         // (APPROVE_OPTION = the user accepts file selection)
         if (rVal == JFileChooser.APPROVE_OPTION) {
-            // if its ok:
             dateiname = c.getSelectedFile().getName();
             try {
                 // FileOutputStream writes the Object (data) into a file
