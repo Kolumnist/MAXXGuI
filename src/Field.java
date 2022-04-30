@@ -72,6 +72,20 @@ public class Field extends JButton implements Serializable {
         }
     }
 
+    //It happens when the player is moving from one field to another and handles this action accordingly
+    public void onPlayerMoves(Field before, Player player) {
+        //Where the player was
+        before.freeField = true;
+        before.setBackground(Color.cyan);
+        before.setText("x");
+        before.setName("x");
+        before.fieldValue = new Fraction(new BigInteger("0"), new BigInteger("1"));
+
+        //where the player is now
+        player.player_field = this;
+        setPlayerOnField(player);
+    }
+
     //creates a random fraction
     public String createValue(){
         do{

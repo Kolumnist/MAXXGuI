@@ -3,28 +3,23 @@
  * @Matrikelnummer: 212455 [mjouaux], 212848 [choss], 212467 [lmangi]
  * @version 2 21.04.2022
  */
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.Serializable;
 
-public class GameBoard extends JFrame implements Serializable {
+public class GameBoard implements Serializable {
 
     private Field[][] boardFields = new Field[8][8];
     private Player[] players;
+    private GUI gameBoardGUI;
     private double boardSum;
     private static int programCount;
     private int playerCount = 0;
     private int selected = 0;
-    private JTextField currentPlayer_JTextField = new JTextField();
-    private JTextField playerMoves_JTextField = new JTextField();
-    private JLabel currentPlayer_JLabel = new JLabel("Current Player:");
-    private JLabel playerMoves_JLabel = new JLabel("Moves of current player:");
-    public Field white, black, red, yellow;
+
+    private Field white, black, red, yellow;
 
     /* Es gab nen Bug der nur mit dem hier: gefixt werden konnte*/
     JMenuItem[] menu_items = {
@@ -34,19 +29,9 @@ public class GameBoard extends JFrame implements Serializable {
     };
 
     public GameBoard(int pPlayerNumber) {
-        players = new Player[]{new Player(2, 2, 'W'), new Player(5, 5, 'B'), new Player(5, 2, 'R'), new Player(2, 5, 'Y')};
+        gameBoardGUI = new GUI("MAXX" + (programCount++), menu_items);
+        players = new Player[]{new Player('W'), new Player('B'), new Player('R'), new Player('Y')};
         playerCount = pPlayerNumber;
-
-        //GridLayout for the Gameboard
-        JPanel board_JPanel = new JPanel(new GridLayout(8, 8));
-
-        //creating a little console with JTextFields and JLabels to show the current player and it's moves
-        JPanel terminal_JPanel = new JPanel(new GridLayout(2, 2));
-        terminal_JPanel.add(currentPlayer_JLabel);
-        terminal_JPanel.add(playerMoves_JLabel);
-        terminal_JPanel.add(currentPlayer_JTextField);
-        terminal_JPanel.add(playerMoves_JTextField);
-        add(terminal_JPanel, BorderLayout.SOUTH);
 
         //do-while-loop to create a field with a sum of 84
         do {
@@ -58,69 +43,72 @@ public class GameBoard extends JFrame implements Serializable {
                     boardSum += field.fieldValue.doubleValue();
                 }
             }
-        } while (boardSum == 84D);
+        } while (boardSum < 84d);
 
         //setting 2-4 player on the board and giving the players their field
         switch (pPlayerNumber) {
             case 2:
-                white = new Field(players[0].getX_pos(), players[0].getY_pos(), players[0]);
-                black = new Field(players[1].getX_pos(), players[1].getY_pos(), players[1]);
-                players[0].players_field = white;
-                players[1].players_field = black;
+                white = new Field(2, 2, players[0]);
+                black = new Field(5, 5, players[1]);
                 boardFields[2][2] = white;
                 boardFields[5][5] = black;
+
+                players[0].player_field = white; players[1].player_field = black;
                 break;
             case 3:
-                white = new Field(players[0].getX_pos(), players[0].getY_pos(), players[0]);
-                black = new Field(players[1].getX_pos(), players[1].getY_pos(), players[1]);
-                red = new Field(players[2].getX_pos(), players[2].getY_pos(), players[2]);
-                players[0].players_field = white;
-                players[1].players_field = black;
-                players[2].players_field = red;
+                white = new Field(2, 2, players[0]);
+                black = new Field(5, 5, players[1]);
+                red = new Field(2, 5, players[2]);
                 boardFields[2][2] = white;
                 boardFields[5][5] = black;
-                boardFields[2][5] = red;
+                boardFields[5][2] = red;
+
+                players[0].player_field = white; players[1].player_field = black; players[2].player_field = red;
                 break;
             case 4:
-                white = new Field(players[0].getX_pos(), players[0].getY_pos(), players[0]);
-                black = new Field(players[1].getX_pos(), players[1].getY_pos(), players[1]);
-                red = new Field(players[2].getX_pos(), players[2].getY_pos(), players[2]);
-                yellow = new Field(players[3].getX_pos(), players[3].getY_pos(), players[3]);
-                players[0].players_field = white;
-                players[1].players_field = black;
-                players[2].players_field = red;
-                players[3].players_field = yellow;
+                white = new Field(2, 2, players[0]);
+                black = new Field(5, 5, players[1]);
+                red = new Field(2, 5, players[2]);
+                yellow = new Field(5, 2, players[3]);
                 boardFields[2][2] = white;
                 boardFields[5][5] = black;
-                boardFields[2][5] = red;
-                boardFields[5][2] = yellow;
+                boardFields[5][2] = red;
+                boardFields[2][5] = yellow;
+
+                players[0].player_field = white; players[1].player_field = black; players[2].player_field = red; players[3].player_field = yellow;
                 break;
         }
 
         //this nested for-loop adds every "field" of "boardFields" to the frame
         for (int t = 0; t < 8; t++) {
             for (int z = 0; z < 8; z++) {
-                board_JPanel.add(boardFields[t][z]);
+                gameBoardGUI.board_JPanel.add(boardFields[t][z]);
                 boardFields[t][z].addMouseListener(mouseAdapter);
             }
         }
 
-        new GUI("MAXX" + (programCount++), board_JPanel, terminal_JPanel, menu_items);
-        menu_items[1].addActionListener(e -> {
-            GameSettings myGame = new GameSettings(this);
-        });
+
         console();
     }
 
     //region MousAdapter
     MouseAdapter mouseAdapter = new MouseAdapter() {
         public void mouseReleased(MouseEvent e) {
-            if (players[selected].player_value.intValue() == (84 / playerCount)) {
+            if (players[selected].player_value.intValue() >= (84 / playerCount)) {
                 win();
             }
-
-            selected = players[selected].move(e, selected, playerCount);
-            console(); //Updating the console
+            if(players[selected].move((Field)e.getComponent()))
+            {
+                switch(playerCount)//checks if, depending on the playerCount, the selected value is at its max or not
+                {
+                    case 2: selected = ((selected+1) % 2)-1; break;
+                    case 3: selected = ((selected+1) % 3)-1; break;
+                    case 4: selected = ((selected+1) % 4)-1; break;
+                    default: selected = -1; break;
+                }
+                selected++;
+                console(); //Updating the console
+            }
         }
     };
     //endregion
@@ -160,7 +148,7 @@ public class GameBoard extends JFrame implements Serializable {
                 specialMove = "Right";
                 break;
         }
-        playerMoves_JTextField.setText("Northwest \nNortheast, \nSouthwest, \nSoutheast, \n Special: " + specialMove);
-        currentPlayer_JTextField.setText("Spieler: " + players[selected] + " ist am zug.");
+        gameBoardGUI.playerMoves_JTextField.setText("Special: " + specialMove + " | Basics: \nNW, \nNE, \nSW, \nSE");
+        gameBoardGUI.currentPlayer_JTextField.setText("Spieler: " + players[selected] + " ist am zug.");
     }
 }
