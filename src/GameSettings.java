@@ -1,3 +1,8 @@
+/**
+ * @author Michel Jouaux, Collin Hoss, Lara Mangi
+ * @Matrikelnummer: 212455 [mjouaux], 212848 [choss], 212467 [lmangi]
+ * @version 2 21.04.2022
+ */
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -11,7 +16,7 @@ public class GameSettings extends JFrame implements Serializable {
     private static final long serialVersionUID = 1;
     // create a String
     String dateiname;
-    // called the GameBoard class
+    // create a gameboard
     GameBoard gameboard;
 
     // Start-Directory
