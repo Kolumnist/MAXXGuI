@@ -14,6 +14,7 @@ public class GameBoard implements Serializable {
     private Field[][] boardFields = new Field[8][8];
     private Player[] players;
     private GUI gameBoardGUI;
+    private MouseAdapter mouseAdapter = new MouseListener();
     private double boardSum;
     private static int programCount;
     private int playerCount = 0;
@@ -86,32 +87,44 @@ public class GameBoard implements Serializable {
                 boardFields[t][z].addMouseListener(mouseAdapter);
             }
         }
-
-
         console();
     }
 
-    //region MousAdapter
-    MouseAdapter mouseAdapter = new MouseAdapter() {
-        public void mouseReleased(MouseEvent e) {
-            if (players[selected].player_value.intValue() >= (84 / playerCount)) {
-                win();
-            }
-            if(players[selected].move((Field)e.getComponent()))
-            {
-                switch(playerCount)//checks if, depending on the playerCount, the selected value is at its max or not
-                {
-                    case 2: selected = ((selected+1) % 2)-1; break;
-                    case 3: selected = ((selected+1) % 3)-1; break;
-                    case 4: selected = ((selected+1) % 4)-1; break;
-                    default: selected = -1; break;
-                }
-                selected++;
-                console(); //Updating the console
+    public GameBoard(GameBoard pBoard){
+        gameBoardGUI = new GUI("MAXX" + (programCount++), menu_items);
+        players = pBoard.players;
+        playerCount = pBoard.playerCount;
+        boardFields = pBoard.boardFields;
+        boardSum = pBoard.boardSum;
+        selected = pBoard.selected;
+
+        switch (playerCount){
+            case 2:
+                white = pBoard.white;
+                black = pBoard.black;
+                break;
+            case 3:
+                white = pBoard.white;
+                black = pBoard.black;
+                red = pBoard.red;
+                break;
+            case 4:
+                white = pBoard.white;
+                black = pBoard.black;
+                red = pBoard.red;
+                yellow = pBoard.yellow;
+                break;
+        }
+
+        //this nested for-loop adds every "field" of "boardFields" to the frame
+        for (int t = 0; t < 8; t++) {
+            for (int z = 0; z < 8; z++) {
+                gameBoardGUI.board_JPanel.add(boardFields[t][z]);
+                boardFields[t][z].addMouseListener(mouseAdapter);
             }
         }
-    };
-    //endregion
+        console();
+    }
 
     //checks for the winner unfortunately it doesn't stop the game yet it just tells who won!
     public void win() {
@@ -150,5 +163,25 @@ public class GameBoard implements Serializable {
         }
         gameBoardGUI.playerMoves_JTextField.setText("Special: " + specialMove + " | Basics: \nNW, \nNE, \nSW, \nSE");
         gameBoardGUI.currentPlayer_JTextField.setText("Spieler: " + players[selected] + " ist am zug.");
+    }
+
+    class MouseListener extends MouseAdapter implements Serializable{
+        public void mouseReleased(MouseEvent e){
+            if (players[selected].player_value.intValue() >= (84 / playerCount)) {
+                win();
+            }
+            if(players[selected].move((Field)e.getComponent()))
+            {
+                switch(playerCount)//checks if, depending on the playerCount, the selected value is at its max or not
+                {
+                    case 2: selected = ((selected+1) % 2)-1; break;
+                    case 3: selected = ((selected+1) % 3)-1; break;
+                    case 4: selected = ((selected+1) % 4)-1; break;
+                    default: selected = -1; break;
+                }
+                selected++;
+                console(); //Updating the console
+            }
+        }
     }
 }
