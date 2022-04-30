@@ -42,23 +42,30 @@ public class GameSettings extends JFrame implements Serializable {
     This method opens a saved datafile
      */
     public void loadGame(GameBoard o) {
+
         // open-Dialog
         int rVal = c.showOpenDialog(GameSettings.this);
+
         // (APPROVE_OPTION = the user accepts file selection)
         if (rVal == JFileChooser.APPROVE_OPTION) {
             dateiname = c.getSelectedFile().getAbsolutePath();
             try {
                 // FileInputStream obtains the input bytes from the called file
                 FileInputStream fileIn = new FileInputStream(dateiname);
+
                 // create an instance of the class java.io.ObjectInputStream who deserializes the called Object
                 // -> deserialized the Object into human language
                 ObjectInputStream stream = new ObjectInputStream(fileIn);
+
                 // The readObject method is responsible for reading and restoring the state of the object for its particular class using data written to the stream by the corresponding writeObject method
                 o = (GameBoard) stream.readObject();
-                // starts a new game
+
+                // starts a new game with the saved Object
                 new GameBoard(o);
+
                 //  close() = used to close the stream and release the resources that were busy in the stream (if there are any)
                 stream.close();
+
                 System.out.println("\n---Game loaded ---\n");
             } catch (Exception e) {
                 System.out.println("Serialization Error! Can't load data.\n" + e.getClass() + " : " + e.getMessage() + "\n");
@@ -70,25 +77,33 @@ public class GameSettings extends JFrame implements Serializable {
     This method save the Object class in a datafile
      */
     public void saveGame(GameBoard o) throws IOException {
+
         // open-Dialog
         int rVal = c.showOpenDialog(GameSettings.this);
+        
         // (APPROVE_OPTION = the user accepts file selection)
         if (rVal == JFileChooser.APPROVE_OPTION) {
             dateiname = c.getSelectedFile().getName();
             try {
                 // FileOutputStream writes the Object (data) into a file
                 FileOutputStream fileOut = new FileOutputStream(c.getSelectedFile().getAbsolutePath() + ".lcm");
+
                 // create an instance of the class java.io.ObjectOutputStream who writes the Object into the *data stream*
                 // -> serialized the Object into bytes (we need to change the language so the system will understand)
                 ObjectOutputStream stream = new ObjectOutputStream(fileOut);
+
                 // (SAVE_DIALOG = the user save file selection)
                 c.setDialogType(JFileChooser.SAVE_DIALOG);
+
                 // The writeObject method is responsible for writing the state of the object for its particular class so that the corresponding readObject method can restore it
                 stream.writeObject(o);
+
                 // flush the stream -> it means to clear the stream of any element that may be or maybe not inside the stream
                 stream.flush();
+
                 //  close() = used to close the stream and release the resources that were busy in the stream (if there are any)
                 stream.close();
+
                 System.out.println("Game saved!");
             } catch (Exception e) {
                 System.out.println("Serialization Error! Can't save data.\n" + e.getClass() + " : " + e.getMessage() + "\n");
