@@ -14,8 +14,10 @@ public class GameSettings extends JFrame implements Serializable {
     // protects against inconsisteny which can be arises because program and data can be changed separately
     // (but a serial number don't protect for 100%)
     private static final long serialVersionUID = 1;
+
     // create a String
     String dateiname;
+
     // create a gameboard
     GameBoard gameboard;
 
@@ -27,7 +29,7 @@ public class GameSettings extends JFrame implements Serializable {
     constructor of the class
      */
     public GameSettings() {
-        
+
         // function changes the current directory for the current process.
         c.setCurrentDirectory(new File(".\\saveFiles"));
         // FileNameExtensionFilter = The extension for a file is the portion of the file name after the last "."
