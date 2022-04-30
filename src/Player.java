@@ -13,18 +13,20 @@ public class Player implements Serializable {
 
     private final char name; //for the playing field
 
-    public Player(char name)//Constructor for Player, it needs a position and a name(B or W etc.)
+    /*Constructor with name as parameter(B or W etc.)*/
+    public Player(char name)
     {
         this.name = name;
         player_value = new Fraction(new BigInteger("0"), new BigInteger("1"));
     }
 
-    public String toString()//gives only the name of the player as string
+    /*gives only the name of the player as string*/
+    public String toString()
     {
         return name+"";
     }
 
-    //Player gets moved from his Field to the "released" Field if the Field is "available"
+    /*Player gets moved from his Field to the "released" Field if the Field is "available"*/
     public boolean move(Field field) {
         if (field.freeField) {
 

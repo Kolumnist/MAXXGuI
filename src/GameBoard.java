@@ -156,23 +156,22 @@ public class GameBoard implements Serializable {
         console();
     }
 
-    /*checks for the winner and tells who won with how many points(double)!*/
+    /*The winner gets printed on a new frame with their current points(double)*/
     public void win() {
         System.out.println("Win happened!");
 
         JFrame f = new JFrame();
         JPanel panel = new JPanel();
+        JTextArea win = new JTextArea("Herzlichen Glückwunsch der " + players[selected].toString()
+                + "  Spieler hat mit " + players[selected].player_value.doubleValue() + " Punkten gewonnen!\n");
+
         f.setSize(500, 200);
         f.add(panel);
         f.setTitle("MAXX Win" + (programCount - 1));
         f.setLayout(new FlowLayout());
-
-        JTextArea win = new JTextArea("Herzlichen Glückwunsch der " + players[selected].toString()
-                + "  Spieler hat mit " + players[selected].player_value.doubleValue() + " Punkten gewonnen!\n");
         win.setSize(500, 200);
         win.setFont(new Font("Serif", Font.PLAIN, 14));
         panel.add(win);
-
 
         f.setVisible(true);
     }
